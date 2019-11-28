@@ -1,0 +1,99 @@
+.badge-secondary
+{
+    background-color: #6b6f82;
+}
+.badge-secondary.badge-glow
+{
+    -webkit-box-shadow: 0 0 10px #6b6f82;
+    box-shadow: 0 0 10px #6b6f82;
+}
+.badge-secondary[href]:hover,
+.badge-secondary[href]:focus
+{
+    background-color: #545766;
+}
+
+.badge-primary
+{
+    background-color: #666ee8;
+}
+.badge-primary.badge-glow
+{
+    -webkit-box-shadow: 0 0 10px #666ee8;
+    box-shadow: 0 0 10px #666ee8;
+}
+.badge-primary[href]:hover,
+.badge-primary[href]:focus
+{
+    background-color: #3a44e1;
+}
+
+.badge-success
+{
+    background-color: #28d094;
+}
+.badge-success.badge-glow
+{
+    -webkit-box-shadow: 0 0 10px #28d094;
+    box-shadow: 0 0 10px #28d094;
+}
+.badge-success[href]:hover,
+.badge-success[href]:focus
+{
+    background-color: #20a576;
+}
+
+.badge-info
+{
+    background-color: #1e9ff2;
+}
+.badge-info.badge-glow
+{
+    -webkit-box-shadow: 0 0 10px #1e9ff2;
+    box-shadow: 0 0 10px #1e9ff2;
+}
+.badge-info[href]:hover,
+.badge-info[href]:focus
+{
+    background-color: #0c84d1;
+}
+
+.badge-warning
+{
+    background-color: #ff9149;
+}
+.badge-warning.badge-glow
+{
+    -webkit-box-shadow: 0 0 10px #ff9149;
+    box-shadow: 0 0 10px #ff9149;
+}
+.badge-warning[href]:hover,
+.badge-warning[href]:focus
+{
+    background-color: #ff7216;
+}
+
+.badge-danger
+{
+    background-color: #ff4961;
+}
+.badge-danger.badge-glow
+{
+    -webkit-box-shadow: 0 0 10px #ff4961;
+    box-shadow: 0 0 10px #ff4961;
+}
+.badge-danger[href]:hover,
+.badge-danger[href]:focus
+{
+    background-color: #ff1635;
+}
+
+/*user_list style*/
+.user_avata {
+    width: 60px;
+    height: auto;
+    border-radius: 50%;
+}
+.vertical-middle>tbody>tr>td {
+    vertical-align: middle;
+}
