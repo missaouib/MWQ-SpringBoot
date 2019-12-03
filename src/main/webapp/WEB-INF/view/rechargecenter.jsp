@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> 圈子 </title>
+    <title> 充值中心 </title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -24,7 +24,7 @@
                 </button>
             </div>
             <div style="float: left; padding-left: 14rem; font-size: 18px;">
-                <span>圈子</span>
+                <span>充值中心</span>
             </div>
         </div>
     </section>

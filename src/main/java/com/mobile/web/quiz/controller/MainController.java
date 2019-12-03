@@ -12,14 +12,15 @@ public class MainController extends BaseController  {
 
     @GetMapping({"/", "/home"})
     public String index(Model model) {
-        StringBuilder noticeTitles = new StringBuilder();
+        StringBuilder notices = new StringBuilder();
         for (Notice item : noticeService.getNotices()) {
-            noticeTitles.append(item.getTitle());
-            noticeTitles.append("，");
+            notices.append(item.getContent());
+            notices.append("，");
         }
-        noticeTitles.deleteCharAt(noticeTitles.length() - 1);
+        notices.deleteCharAt(notices.length() - 1);
 
-        model.addAttribute("noticeTitles", noticeTitles.toString());
+        model.addAttribute("notices", notices.toString());
+        model.addAttribute("popularArticles", articleService.getPopularArticles());
         model.addAttribute("bottomBar", getBottomBarItems(0));
 
         return "home";

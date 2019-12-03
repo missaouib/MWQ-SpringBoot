@@ -133,7 +133,7 @@ public class AuthController extends BaseController {
 
     // Login
     @RequestMapping({"/login"})
-    public String performLogIn(Model model, @RequestParam Map<String, String> params, HttpSession session, HttpServletRequest request) {
+    public String performLogIn(Model model, @RequestParam Map<String, String> params) {
         if (params.size() == 0) {
             return "login";
         } else {

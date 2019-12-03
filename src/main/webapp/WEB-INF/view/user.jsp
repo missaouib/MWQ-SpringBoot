@@ -24,7 +24,9 @@
                 <div class="col-xs-10">
                     <img src="/img/v2_pvfw1g.png" style="width: 12%; border-radius: 50%;">
                     <span class="site_font">&nbsp; &nbsp;凌风 &nbsp;</span>
-                    <span class="site_font user_verify_span">认证会员</span>
+                    <a href="<%=request.getContextPath()%>/becomemember">
+                        <span class="site_font user_verify_span">认证会员</span>
+                    </a>
                 </div>
                <div class="col-xs-2">
                    <button class="user_setting_button">
@@ -60,9 +62,11 @@
                     <span class="site_font" style="font-size: 12px; color: rgba(255, 255, 255, 0.75);">&nbsp; &nbsp;充值优惠进行中~</span>
                 </div>
                 <div class="col-xs-4 text-right" style="padding-top: 8px; color: white;">
+                    <a href="<%=request.getContextPath()%>/rechargecenter">
                     <button class="user_setting_button">
                         立即充值
                     </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -70,20 +74,26 @@
     <section class="content border_bottom_line">
         <div class="row text-center" style="padding-top: 2rem; padding-bottom: 1rem;">
             <div class="col-xs-3">
+                <a href="<%=request.getContextPath()%>/applyforentry">
                 <img src="/img/v2_pxxlpo.png" style="width: 70%; border-radius: 50%;">
                 <p class="site_font" style="font-size: 12px;">申请大神</p>
+                </a>
             </div>
             <div class="col-xs-3">
                 <img src="/img/v2_pxxlxb.png" style="width: 70%; border-radius: 50%;">
                 <p class="site_font" style="font-size: 12px;">购买喇叭</p>
             </div>
             <div class="col-xs-3">
+                <a href="<%=request.getContextPath()%>/myorder">
                 <img src="/img/v2_pxxlxh.png" style="width: 70%; border-radius: 50%;">
                 <p class="site_font" style="font-size: 12px;">我的订单</p>
+                </a>
             </div>
             <div class="col-xs-3">
-                <img src="/img/v2_pxxlxm.png" style="width: 70%; border-radius: 50%;">
-                <p class="site_font" style="font-size: 12px;">商城</p>
+                <a href="<%=request.getContextPath()%>/mall">
+                    <img src="/img/v2_pxxlxm.png" style="width: 70%; border-radius: 50%;">
+                    <p class="site_font" style="font-size: 12px;">商城</p>
+                </a>
             </div>
         </div>
     </section>
@@ -128,6 +138,7 @@
             </div>
         </div>
         <div class="row" style="padding-top: 1rem;">
+            <a href="<%=request.getContextPath()%>/invitefriends">
             <div class="user_top_div">
                 <div class="col-xs-10">
                     <img src="/img/user_other.png" style="width: 12%; border-radius: 50%;">&nbsp;
@@ -139,6 +150,7 @@
                     </button>
                 </div>
             </div>
+            </a>
         </div>
     </section>
 

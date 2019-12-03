@@ -7,6 +7,7 @@ import com.mobile.web.quiz.service.BottomBarService;
 import com.mobile.web.quiz.service.UserLoginHistoryService;
 import com.mobile.web.quiz.service.UserService;
 import com.mobile.web.quiz.service.VerifySMSService;
+import com.mobile.web.quiz.service.admin.ArticleService;
 import com.mobile.web.quiz.service.admin.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,9 @@ public class BaseController {
 
     @Autowired
     protected NoticeService noticeService;
+
+    @Autowired
+    protected ArticleService articleService;
 
     @Autowired
     protected BottomBarService bottomBarService;

@@ -2,12 +2,15 @@ package com.mobile.web.quiz.controller;
 
 import com.mobile.web.quiz.config.Config;
 import com.mobile.web.quiz.model.admin.AdminUser;
+import com.mobile.web.quiz.model.admin.Article;
 import com.mobile.web.quiz.model.admin.Notice;
 import com.mobile.web.quiz.model.admin.SideBarItem;
 import com.mobile.web.quiz.service.UserLoginHistoryService;
 import com.mobile.web.quiz.service.UserService;
 import com.mobile.web.quiz.service.admin.AdminUserService;
+import com.mobile.web.quiz.service.admin.ArticleService;
 import com.mobile.web.quiz.service.admin.NoticeService;
+import com.mobile.web.quiz.utils.UploadDirectories;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,8 +29,6 @@ import java.util.UUID;
 
 @Controller
 public class AdminController {
-    private enum UploadType { Notice };
-
     @Autowired
     protected HttpSession session;
 
@@ -47,9 +48,7 @@ public class AdminController {
         return loggedAdminUser != null;
     }
 
-    private String saveUploadedFile(UploadType uploadType, MultipartFile file) {
-        String[] subPaths = new String[] {"notice"};
-
+    private String saveUploadedFile(String dest, MultipartFile file) {
         String uploadedUrl = "";
 
         if (!file.isEmpty()) {
@@ -58,10 +57,10 @@ public class AdminController {
                 String extension = FilenameUtils.getExtension(file.getOriginalFilename());
                 String fileName = UUID.randomUUID().toString() + "." + extension;
 
-                Path savedPath = Paths.get(Config.UPLOAD_DIR.getAbsolutePath(), subPaths[uploadType.ordinal()], fileName);
+                Path savedPath = Paths.get(Config.UPLOAD_DIR.getAbsolutePath(), dest, fileName);
                 Files.write(savedPath, bytes);
 
-                uploadedUrl = Paths.get(Config.UPLOAD_PATH, subPaths[uploadType.ordinal()], fileName).toString();
+                uploadedUrl = Paths.get(Config.UPLOAD_PATH, dest, fileName).toString();
             } catch (IOException ex) {
                 ex.printStackTrace();
                 uploadedUrl = null;
@@ -148,14 +147,45 @@ public class AdminController {
         return "admin/user/login_history";
     }
 
+    @Autowired
+    private ArticleService articleService;
+
     @RequestMapping({"/admin/add-article"})
     public String addArticle(Model model) {
         model.addAttribute("sideBarItem", new SideBarItem("info-center", "article"));
         return "admin/infos/add_article";
     }
 
+    @PostMapping({"/admin/add-article"})
+    @ResponseBody
+    public HashMap<String, Object> addArticle(Model model, @RequestParam Map<String, String> params, @RequestParam Map<String, MultipartFile> files) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        boolean status = false;
+        if (params.size() != 0 || files.size() !=0) {
+            String content = params.get("content");
+
+            MultipartFile image = files.get("image");
+            String imageUrl = saveUploadedFile(UploadDirectories.ARTICLE, image);
+
+            Article newArticle = new Article();
+            newArticle.setContent(content);
+            if (imageUrl != null)
+                newArticle.setImageUrl(imageUrl);
+            else
+                response.put("message", "fail to upload image");
+
+            articleService.add(newArticle);
+            status = true;
+        }
+
+        response.put("status", status);
+        return response;
+    }
+
     @GetMapping({"/admin/article-list"})
     public String articleList(Model model) {
+        model.addAttribute("articleList", articleService.getArticles());
         model.addAttribute("sideBarItem", new SideBarItem("info-center", "article"));
         return "admin/infos/article_list";
     }
@@ -179,18 +209,10 @@ public class AdminController {
             String title = params.get("title");
             String content = params.get("content");
 
-            MultipartFile image = files.get("image");
-            String imageUrl = saveUploadedFile(UploadType.Notice, image);
-
             Notice newNotice = new Notice();
-            newNotice.setTitle(title);
             newNotice.setContent(content);
-            if (imageUrl != null)
-                newNotice.setImageUrl(imageUrl);
-            else
-                response.put("message", "fail to upload image");
-
             noticeService.add(newNotice);
+
             status = true;
         }
 
@@ -200,6 +222,7 @@ public class AdminController {
 
     @GetMapping({"/admin/notice-list"})
     public String noticeList(Model model) {
+        model.addAttribute("noticeList", noticeService.getNotices());
         model.addAttribute("sideBarItem", new SideBarItem("info-center", "notice"));
         return "admin/infos/notice_list";
     }

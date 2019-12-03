@@ -79,9 +79,11 @@
     </div>
 
     <div class="page_footer text-center">
+        <a href="<%=request.getContextPath()%>/submitsuccess">
         <div class="row" style="height: 100%; margin: 0; padding-top: 11px; background-color: rgb(255, 152, 0); color: white;">
             <span class="site_font">提交申请</span>
         </div>
+        </a>
     </div>
 </div>
 <script src="/js/app.js"></script>

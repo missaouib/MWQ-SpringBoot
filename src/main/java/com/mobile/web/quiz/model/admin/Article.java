@@ -3,16 +3,14 @@ package com.mobile.web.quiz.model.admin;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Notice implements Serializable {
+public class Article implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,6 +28,28 @@ public class Notice implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Column(nullable = false, columnDefinition = "VARCHAR(255) DEFAULT ''")
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    @Column(nullable = false, columnDefinition = "INT DEFAULT 0")
+    private int readCount;
+
+    public int getReadCount() {
+        return readCount;
+    }
+
+    public void setReadCount(int readCount) {
+        this.readCount = readCount;
     }
 
     @Column(nullable = false, updatable = false)
@@ -55,6 +75,7 @@ public class Notice implements Serializable {
         return "Notice {" +
             "id=" + id + "," +
             "content=" + content + "," +
+            "imageUrl=" + imageUrl + "," +
             "createdAt=" + createdAt + "," +
             "updatedAt=" + updatedAt +
         "}";

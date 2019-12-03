@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,50 +71,45 @@
                                 <table class="table table-striped table-bordered table-hover dataTable no-footer"
                                        id="sample_editable_1" role="grid">
                                     <thead class="table_head">
-                                    <tr role="row">
-                                        <th class="" tabindex="0" aria-controls="sample_editable_1"
-                                            rowspan="1" colspan="1">Username
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" aria-label="
-                                                 Full Name
-                                            : activate to sort column ascending">Full Name
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" aria-label="
-                                                 Points
-                                            : activate to sort column ascending">Points
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" aria-label="
-                                                 Notes
-                                            : activate to sort column ascending">Notes
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" aria-label="
-                                                 Edit
-                                            : activate to sort column ascending">Edit
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" aria-label="
-                                                 Delete
-                                            : activate to sort column ascending">Delete
-                                        </th>
-                                    </tr>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" aria-label="
+                                                     Content
+                                                : activate to sort column ascending"> 公告内容
+                                            </th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" aria-label="
+                                                         Updated Date
+                                                    : activate to sort column ascending">更新日期
+                                            </th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" aria-label="
+                                                         Action
+                                                    : activate to sort column ascending">操作
+                                            </th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr role="row" class="odd" data-id="1">
-                                        <td class="sorting_1">Tatyana</td>
-                                        <td>Tatyana Nilson</td>
-                                        <td>1234</td>
-                                        <td class="center">power user</td>
-                                        <td>
-                                            <a class="edit" href="javascript:;">Edit</a>
-                                        </td>
-                                        <td>
-                                            <a class="delete" href="javascript:;">Delete</a>
-                                        </td>
-                                    </tr>
+                                        <c:forEach var="notice" varStatus="status" items="${noticeList}">
+                                            <c:choose>
+                                                <c:when test="${status.index % 2 == 1}">
+                                                    <c:set value="odd" var="class_type" />
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:set value="even" var="class_type" />
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <tr role="row" class="${class_type}" data-id="${notice.id}">
+                                                <td><c:out value="${notice.content}" /></td>
+                                                <td><fmt:formatDate value="${notice.updatedAt}" pattern="yyyy年MM月dd日 H:mm:ss"/></td>
+                                                <td>
+                                                    <a class="delete btn danger btn-xs black" href="javascript:;">
+                                                        <i class="livicon" data-name="trash" data-loop="true" data-color="#fff" data-hovercolor="black" data-size="14"></i>
+                                                        <span style="color: white;">删除</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

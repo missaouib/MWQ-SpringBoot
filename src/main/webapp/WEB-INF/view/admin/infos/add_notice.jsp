@@ -53,32 +53,11 @@
                                 <div class="panel-body">
                                     <form class="form-horizontal">
                                         <fieldset>
-                                            <!-- Name input-->
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label" for="title">标题</label>
-                                                <div class="col-md-9">
-                                                    <input id="title" name="title" type="text" placeholder="请输入标题。。。" class="form-control"></div>
-                                            </div>
                                             <!-- Message body -->
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label" for="content">内容</label>
                                                 <div class="col-md-9">
                                                     <textarea class="form-control resize_vertical" id="content" name="content" placeholder="请输入公告内容。。。" rows="5"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-md-3"></div>
-                                                <div class="col-md-9">
-                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-                                                        <div>
-                                                    <span class="btn btn-default btn-file">
-                                                        <span class="fileinput-new">选择图片</span>
-                                                        <span class="fileinput-exists">更新</span>
-                                                        <input id="image" name="image" type="file"></span>
-                                                            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">删除</a>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
 
@@ -125,12 +104,7 @@
             });
 
             function submit() {
-                var title = $("#title").val();
                 var content = $("#content").val();
-                if(title.length < 1){
-                    swal("警告", "请输入标题。", "warning");
-                    return;
-                }
                 if(content.length < 1){
                     swal("警告", "请输入公告内容。", "warning");
                     return;
@@ -173,10 +147,7 @@
             }
 
             function reset() {
-                $("#title").val("");
                 $("#content").val("");
-                $("#image").val("");
-                $(".fileinput-preview").html("");
             }
         </script>
     </body>

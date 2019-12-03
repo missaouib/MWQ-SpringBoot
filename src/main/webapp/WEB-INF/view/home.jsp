@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +58,7 @@
     <section class="content platform_section">
         <div class="col-md-12 paddingtopbottom_5px">
             <span class="home_text">平台公告</span><i class="fa fa-fw fa-volume-down" style="color: rgb(229, 28, 35)"></i>
-            <span class="site_font" style="margin-left: 2rem;">${noticeTitles}</span>
+            <span class="site_font" style="margin-left: 2rem;">${notices}</span>
         </div>
     </section>
     <section class="content" style="background-color: white; ">
@@ -81,17 +83,21 @@
         </div>
         <div class="row text-center border_bottom_line" style="padding-bottom: 1rem;">
             <div class="col-xs-3">
-                <div>
-                    <img src="/img/raw_1532277248.jpeg" style="width: 100%; border-radius: 10px;">
-                </div>
-                <div style="height:18px;">
-                   <span class="site_font" style="font-size: 13px;">体彩兴趣</span>
-                </div>
-                <div>
-                    <span class="site_font" style="color: lightgrey; font-size: 12px;">154万人</span>
-                </div>
+                <a href="<%=request.getContextPath()%>/circle">
+                    <div>
+                        <img src="/img/raw_1532277248.jpeg" style="width: 100%; border-radius: 10px;">
+                    </div>
+                    <div style="height:18px;">
+                        <span class="site_font" style="font-size: 13px;">体彩兴趣</span>
+                    </div>
+                    <div>
+                        <span class="site_font" style="color: lightgrey; font-size: 12px;">154万人</span>
+                    </div>
+                </a>
+
             </div>
             <div class="col-xs-3">
+                <a href="<%=request.getContextPath()%>/circle">
                 <div>
                     <img src="/img/raw_1534857014.png" style="width: 100%; border-radius: 10px;">
                 </div>
@@ -101,8 +107,10 @@
                 <div>
                     <span class="site_font" style="color: lightgrey; font-size: 12px;">154万人</span>
                 </div>
+                </a>
             </div>
             <div class="col-xs-3">
+                <a href="<%=request.getContextPath()%>/circle">
                 <div>
                     <img src="/img/raw_1526002395.png" style="width: 100%; border-radius: 10px;">
                 </div>
@@ -112,8 +120,10 @@
                 <div>
                     <span class="site_font" style="color: lightgrey; font-size: 12px;">154万人</span>
                 </div>
+                </a>
             </div>
             <div class="col-xs-3">
+                <a href="<%=request.getContextPath()%>/circle">
                 <div>
                     <img src="/img/raw_1534873085.png" style="width: 100%; border-radius: 10px;">
                 </div>
@@ -123,6 +133,7 @@
                 <div>
                     <span class="site_font" style="color: lightgrey; font-size: 12px;">154万人</span>
                 </div>
+                </a>
             </div>
         </div>
     </section>
@@ -173,54 +184,24 @@
                 <p style="padding-left: 6px; padding-right: 6px;">中国体育彩票如何规划？在线专家为你解答最新走势，热门话题正在进行中~</p>
             </div>
         </div>
-        <div class="row">
-            <div class="paddingtopbottom_5px" style="height: 70px;">
-                <div class="col-xs-4" style="height: 100%;">
-                    <img src="/img/v2_pg9fu2.png" style="width: 100%; height: 100%">
-                </div>
-                <div class="col-xs-8">
-                    <span style="font-size: 13px;">如果你无法简洁的表达你的想法，那只说明你还不够了解它。</span>
-                    <div class="col-xs-6 text-left">
-                        <span style="font-size: 12px;">2018-09-12</span>
+        <c:forEach var="article" varStatus="status" items="${popularArticles}">
+            <div class="row">
+                <div class="paddingtopbottom_5px" style="height: 70px;">
+                    <div class="col-xs-4" style="height: 100%;">
+                        <img src="${article.imageUrl}" style="width: 100%; height: 100%">
                     </div>
-                    <div class="col-xs-6 text-right">
-                        <span style="font-size: 12px;">4625人阅读</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="paddingtopbottom_5px" style="height: 70px;">
-                <div class="col-xs-4" style="height: 100%;">
-                    <img src="/img/v2_pg9fu2.png" style="width: 100%; height: 100%">
-                </div>
-                <div class="col-xs-8">
-                    <span style="font-size: 13px;">如果你无法简洁的表达你的想法，那只说明你还不够了解它。</span>
-                    <div class="col-xs-6 text-left">
-                        <span style="font-size: 12px;">2018-09-12</span>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <span style="font-size: 12px;">4625人阅读</span>
+                    <div class="col-xs-8">
+                        <span style="font-size: 13px;">${article.content}</span>
+                        <div class="col-xs-6 text-left">
+                            <span style="font-size: 12px;"><fmt:formatDate value="${article.updatedAt}" pattern="yyyy年MM月dd日"/></span>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <span style="font-size: 12px;">${article.readCount}人阅读</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row border_bottom_line" style="padding-bottom: 1rem;">
-            <div class="paddingtopbottom_5px" style="height: 70px;">
-                <div class="col-xs-4" style="height: 100%;">
-                    <img src="/img/v2_pg9fu2.png" style="width: 100%; height: 100%">
-                </div>
-                <div class="col-xs-8">
-                    <span style="font-size: 13px;">如果你无法简洁的表达你的想法，那只说明你还不够了解它。</span>
-                    <div class="col-xs-6 text-left">
-                        <span style="font-size: 12px;">2018-09-12</span>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <span style="font-size: 12px;">4625人阅读</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </c:forEach>
     </section>
     <section class="content" style="background-color: white;">
         <div class="row">

@@ -43,8 +43,10 @@
             <div class="border_bottom_line" style="background-color: white; width: 100%; height: 120px;">
                 <div class="col-xs-4">
                     <div class="text-center" style="padding-top: 4rem;">
-                        <img src="img/gift.png" style="width: 50%;"> <br>
-                        <span class="site_font" style="font-size: 12px;">最新榜单</span>
+                        <a href="<%=request.getContextPath()%>/latestlist">
+                            <img src="img/gift.png" style="width: 50%;"> <br>
+                            <span class="site_font" style="font-size: 12px;">最新榜单</span>
+                        </a>
                     </div>
                 </div>
                 <div class="col-xs-4">
