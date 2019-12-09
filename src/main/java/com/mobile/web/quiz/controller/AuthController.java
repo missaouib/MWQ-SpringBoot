@@ -110,6 +110,7 @@ public class AuthController extends BaseController {
                 newUser.setName(username);
                 newUser.setPhoneNumber(phoneNumber);
                 newUser.setPassword(CommonUtils.getMD5Hex(password));
+                newUser.setStatus(1);
 
                 userService.add(newUser);
 
@@ -159,7 +160,7 @@ public class AuthController extends BaseController {
                         loginHistory.setPhoneNumber(user.getPhoneNumber());
                         loginHistory.setUsername(user.getName());
                         loginHistory.setIpAddress(request.getRemoteAddr());
-                        loginHistory.setActivity(1);
+                        loginHistory.setActivity(0);
                         userLoginHistoryService.add(loginHistory);
                     }
                 } else {
