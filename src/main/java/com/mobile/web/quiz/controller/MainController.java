@@ -17,7 +17,9 @@ public class MainController extends BaseController  {
             notices.append(item.getContent());
             notices.append("，");
         }
-        notices.deleteCharAt(notices.length() - 1);
+        if (notices.length() > 0) {
+            notices.deleteCharAt(notices.length() - 1);
+        }
 
         model.addAttribute("notices", notices.toString());
         model.addAttribute("popularArticles", articleService.getPopularArticles());
