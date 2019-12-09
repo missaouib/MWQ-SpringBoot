@@ -17,10 +17,16 @@ public class MainController extends BaseController  {
             notices.append(item.getContent());
             notices.append("，");
         }
+<<<<<<< HEAD
 	
 	if (notices.length() > 0) {
             notices.deleteCharAt(notices.length() - 1);
 	}
+=======
+        if (notices.length() > 0) {
+            notices.deleteCharAt(notices.length() - 1);
+        }
+>>>>>>> 260e97aaed2de87fe33834ef211f93b79a590001
 
         model.addAttribute("notices", notices.toString());
         model.addAttribute("popularArticles", articleService.getPopularArticles());

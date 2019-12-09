@@ -159,7 +159,7 @@ public class AuthController extends BaseController {
                         loginHistory.setPhoneNumber(user.getPhoneNumber());
                         loginHistory.setUsername(user.getName());
                         loginHistory.setIpAddress(request.getRemoteAddr());
-                        loginHistory.setActivity(0);
+                        loginHistory.setActivity(1);
                         userLoginHistoryService.add(loginHistory);
                     }
                 } else {
