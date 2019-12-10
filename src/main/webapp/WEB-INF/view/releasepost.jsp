@@ -19,7 +19,7 @@
     <section class="content" style="height: 45px; width: 100%; position: fixed; top: 0; left: 0; padding-top: 1rem;">
         <div class="row ">
             <div class="col-xs-3 text-left">
-                <span style="font-family: PingFangSC; color: #8C8C8C;">取消</span>
+                <span style="font-family: PingFangSC; color: #8C8C8C;" onclick="goBack()">取消</span>
             </div>
             <div class="col-xs-6 text-center">
                 <span style="font-family: PingFangSC; font-size: 16px;">发布帖子</span>
@@ -61,5 +61,10 @@
 
 </div>
 <script src="/js/app.js"></script>
+<script>
+    function goBack() {
+        window.history.go(-1);
+    }
+</script>
 </body>
 </html>

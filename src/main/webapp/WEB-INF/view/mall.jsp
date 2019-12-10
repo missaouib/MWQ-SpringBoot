@@ -23,7 +23,7 @@
 <div class="wrapper main_page">
     <section class="content">
         <div class="box-body" style="height: 165px;">
-            <i class="fa fa-fw fa-angle-left" style="font-size: 22px; position: absolute; top: 5px; left: 0;z-index: 99;"></i>
+            <i class="fa fa-fw fa-angle-left" style="font-size: 22px; position: absolute; top: 5px; left: 0;z-index: 99;" onclick="goBack()"></i>
             <!--carousel starts-->
             <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 100%">
                 <!-- Wrapper for slides -->
@@ -120,5 +120,10 @@
 <script src="/js/app.js"></script>
 <script src="/vendors/owl.carousel/js/owl.carousel.min.js"></script>
 <script src="/js/pages/carousel.js"></script>
+<script>
+    function goBack() {
+        window.history.go(-1);
+    }
+</script>
 </body>
 </html>

@@ -19,7 +19,7 @@
     <section class="content" style="height: 45px; width: 100%;">
         <div class="paddingtopbottom_5px" style="float: left;">
             <div style="float:left;">
-                <button class="user_setting_button">
+                <button class="user_setting_button btn_outline_none" onclick="goBack()">
                     <i class="fa fa-fw fa-angle-left" style="font-size: 20px;"></i>
                 </button>
             </div>
@@ -93,5 +93,10 @@
 
 </div>
 <script src="/js/app.js"></script>
+<script>
+    function goBack() {
+        window.history.go(-1);
+    }
+</script>
 </body>
 </html>

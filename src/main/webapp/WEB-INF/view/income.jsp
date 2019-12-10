@@ -19,11 +19,11 @@
     <section class="content" style="height: 45px; width: 100%;">
         <div class="paddingtopbottom_5px" style="float: left;">
             <div style="float:left;">
-                <button class="user_setting_button">
+                <button class="user_setting_button" onclick="goBack()">
                     <i class="fa fa-fw fa-angle-left" style="font-size: 20px;"></i>
                 </button>
             </div>
-            <div style="float: left; padding-left: 14rem; font-size: 18px;">
+            <div class="top_title_with_back" style="padding-left: 14rem;">
                 <span>收益</span>
             </div>
         </div>
@@ -54,5 +54,10 @@
 
 </div>
 <script src="/js/app.js"></script>
+<script>
+    function goBack() {
+        window.history.go(-1);
+    }
+</script>
 </body>
 </html>

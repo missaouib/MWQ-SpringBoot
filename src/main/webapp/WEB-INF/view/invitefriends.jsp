@@ -19,7 +19,7 @@
     <div style="height: 45px; padding-top: 1rem;">
         <div class="row">
             <div class="col-xs-1 text-left">
-                <i class="fa fa-fw fa-angle-left" style="font-size: 20px; color: white;"></i>
+                <i class="fa fa-fw fa-angle-left" style="font-size: 20px; color: white;" onclick="goBack()"></i>
             </div>
             <div class="col-xs-10 text-center">
                 <span style="color: white; font-size: 18px;">邀请好友</span>
@@ -49,5 +49,10 @@
     </div>
 </div>
 <script src="/js/app.js"></script>
+<script>
+    function goBack() {
+        window.history.go(-1);
+    }
+</script>
 </body>
 </html>

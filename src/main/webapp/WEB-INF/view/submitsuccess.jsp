@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col-xs-3"></div>
         <div class="col-xs-6 text-center" style="padding-top: 5rem;">
-            <button class="user_setting_button" style="border: solid thin lightgrey; padding: 6px 40px; color: rgb(255, 152, 0);">返回首页</button>
+            <button class="user_setting_button btn_outline_none" style="border: solid thin lightgrey; padding: 6px 40px; color: rgb(255, 152, 0);">返回首页</button>
         </div>
         <div class="col-xs-3"></div>
     </div>

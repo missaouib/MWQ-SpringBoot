@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> 我的地址 </title>
+    <title> 订单记录 </title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -24,43 +24,22 @@
                 </button>
             </div>
             <div class="top_title_with_back">
-                <span>我的地址</span>
+                <span>订单记录</span>
             </div>
         </div>
     </section>
 
-    <div class="row" style="padding-top: 1rem;">
-        <div class="col-xs-2">
-            <p>张三</p>
-        </div>
-        <div class="col-xs-8">
-            <p>13888888888</p>
-        </div>
-        <div class="col-xs-2">
-            <p>默认</p>
-        </div>
-        <div class="col-xs-12">
-            地址：杭州市滨江区南环路13号
-        </div>
+    <div class="row text-center" style="color: rgba(79, 79, 79, 0.72); padding: 1rem 0;">
+        <div class="col-xs-4">消费项目</div>
+        <div class="col-xs-4">金额</div>
+        <div class="col-xs-4">时间</div>
     </div>
-    <div class="row" style="padding-top: 3rem;">
-        <div class="col-xs-2">
-            <p>张三</p>
-        </div>
-        <div class="col-xs-8">
-            <p>13888888888</p>
-        </div>
-        <div class="col-xs-2">
-        </div>
-        <div class="col-xs-12">
-            地址：杭州市滨江区南环路13号
-        </div>
+    <div class="row text-center" style="color: rgba(79, 79, 79, 0.72); padding: 1rem 0;">
+        <div class="col-xs-4">购买喇叭</div>
+        <div class="col-xs-4" style="color: rgb(255, 152, 0);">200</div>
+        <div class="col-xs-4">2019-11-14</div>
     </div>
-    <div class="row" style="padding-top: 4rem;">
-        <div class="col-xs-12 text-center">
-            <p>＋新增地址</p>
-        </div>
-    </div>
+
 </div>
 <script src="/js/app.js"></script>
 <script>
