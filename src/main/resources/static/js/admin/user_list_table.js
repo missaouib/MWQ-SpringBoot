@@ -76,6 +76,61 @@ jQuery(document).ready(function()
         nNew = true;
     });
 
+    table.on('click', '.status', function (e) {
+        e.preventDefault();
+        if (nEditing !== null && nEditing != nRow) {
+               /* Get the row as a parent of the link that was clicked on */
+               var nRow = $(this).parents('tr')[0];
+
+               if (nEditing !== null && nEditing != nRow) {
+                   /* Currently editing - but not this row - restore the old before continuing to edit mode */
+                   $('#editConfirmModal').modal();
+               } else if (nEditing == nRow && this.innerHTML == "Save") {
+                   /* Editing this row and want to save it */
+                   saveRow(oTable, nEditing);
+                   nEditing = null;
+                   $('#saveConfirmModal').modal();
+               }
+           }
+           else {
+               /*if (confirm("Are you sure to delete this row ?") == false) {
+                return;
+                }*/
+
+               /* $('button.btnDelete').on('click', function (e) {
+                e.preventDefault();
+                var id = $(this).closest('tr').data('id');
+                $('#myModal').data('id', id).modal('show');
+                });
+
+                $('#btnDelteYes').click(function () {
+                var id = $('#myModal').data('id');
+                $('[data-id=' + id + ']').remove();
+                $('#myModal').modal('hide');
+                });*/
+
+               var status = $('.status').data('status');
+
+               if (status == 1) {
+                   console.log("click 1");
+                  // table.reload(); // success
+               } else {
+                    console.log("click 2");
+                   // table.reload(); // success
+               }
+
+
+               /*$('#deleteConfirmModal').modal({ backdrop: 'static', keyboard: false })
+                .one('click', '#delete_item', function (e) {
+                // var aiNew = oTable.fnAddData(['', '', '', '', '', '']);
+                var nRow = oTable.fnGetNodes();
+                console.log(nRow);
+                oTable.fnDeleteRow(nRow[0]);
+
+                });*/
+           }
+    });
+
     table.on('click', '.delete', function(e) {
         e.preventDefault();
 
@@ -117,7 +172,8 @@ jQuery(document).ready(function()
             $('#user_list_delete_item').click(function () {
                 var id = $('#user_list_deleteConfirmModal').data('id');
                 $('[data-id=' + id + ']').remove();
-                $('#user_list_deleteConfirmModal').modal('hide');
+                // ajax
+                $('#user_list_deleteConfirmModal').modal('hide'); // success
             });
 
 

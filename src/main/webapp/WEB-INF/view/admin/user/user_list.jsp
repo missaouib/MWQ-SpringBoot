@@ -127,10 +127,10 @@
                                                 <td>
                                                     <c:choose>
                                                         <c:when test="${user.status == 0}">
-                                                            <div class="badge badge-secondary round"><span>已停用</span></div>
+                                                            <div class="status badge badge-secondary round mouse_hover" data-status="0"><span>已停用</span></div>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <div class="badge badge-success round"><span>有效</span></div>
+                                                            <div class="status badge badge-success round mouse_hover" data-status="1"><span>有效</span></div>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </td>

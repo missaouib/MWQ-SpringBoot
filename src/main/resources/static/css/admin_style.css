@@ -97,3 +97,7 @@
 .vertical-middle>tbody>tr>td {
     vertical-align: middle;
 }
+
+.mouse_hover {
+    cursor: pointer;
+}
