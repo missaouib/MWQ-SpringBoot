@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>新增圈子</title>
+    <title>产品添加</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -30,7 +30,7 @@
     <aside class="right-side">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>新增圈子</h1>
+            <h1>产品添加</h1>
             <ol class="breadcrumb">
                 <li>
                     <a href="/admin">
@@ -39,9 +39,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">板块管理</a>
+                    <a href="#">商城管理</a>
                 </li>
-                <li class="active">新增圈子</li>
+                <li class="active">产品添加</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -55,9 +55,33 @@
                             <form class="form-horizontal">
                                 <fieldset>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label" for="content">圈子名称</label>
+                                        <label class="col-md-3 control-label" for="title">产品名称</label>
                                         <div class="col-md-9">
-                                            <input class="form-control resize_vertical" id="content" name="content" placeholder="请输入圈子名称。。。"/>
+                                            <input class="form-control resize_vertical" id="title" name="content" placeholder="请输入产品名称"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="price">产品价格</label>
+                                        <div class="col-md-9">
+                                            <input class="form-control resize_vertical" id="price" name="content" placeholder="请输入产品价格"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="express">快递</label>
+                                        <div class="col-md-9">
+                                            <input class="form-control resize_vertical" id="express" name="content" placeholder="请输入快递"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="parameter">参数</label>
+                                        <div class="col-md-9">
+                                            <input class="form-control resize_vertical" id="parameter" name="content" placeholder="请输入参数" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="detail">详情</label>
+                                        <div class="col-md-9">
+                                            <textarea class="form-control resize_vertical" id="detail" name="content" placeholder="请输入详情" rows="5"> </textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -67,7 +91,7 @@
                                                 <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
                                                 <div>
                                                             <span class="btn btn-default btn-file">
-                                                                <span class="fileinput-new">选择 logo</span>
+                                                                <span class="fileinput-new">图片添加</span>
                                                                 <span class="fileinput-exists">更新</span>
                                                                 <input id="image" name="image" type="file"></span>
                                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">删除</a>

@@ -227,6 +227,18 @@ public class AdminController {
         return "admin/infos/notice_list";
     }
 
+    @GetMapping({"/admin/product-add"})
+    public String productAdd(Model model) {
+        model.addAttribute("sideBarItem", new SideBarItem("shop", "add"));
+        return "admin/shop/product_add";
+    }
+
+    @GetMapping({"/admin/product-list"})
+    public String productList(Model model) {
+        model.addAttribute("sideBarItem", new SideBarItem("shop", "list"));
+        return "admin/shop/product_list";
+    }
+
     @GetMapping({"/admin/order-check"})
     public String orderCheck(Model model) {
         model.addAttribute("sideBarItem", new SideBarItem("order", "check"));
