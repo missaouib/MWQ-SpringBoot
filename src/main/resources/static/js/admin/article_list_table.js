@@ -120,7 +120,7 @@ jQuery(document).ready(function()
             $('#delete_item').click(function () {
                 var id = $('#deleteConfirmModal').data('id');
 
-                $.post("<%=request.getContextPath()%>/admin/del-article", {id: id},
+                $.post("/admin/del-article", {id: id},
                     function (result) {
                         if (result.status) {
                             $('[data-id=' + id + ']').remove();

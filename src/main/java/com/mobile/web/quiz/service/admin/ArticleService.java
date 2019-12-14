@@ -30,7 +30,7 @@ public class ArticleService {
     public List<Article> getPopularArticles()
     {
         try {
-            return (List<Article>) repository.findAll(Sort.by(Sort.Direction.DESC, "readCount")).subList(0, 2);
+            return (List<Article>) repository.findAll(Sort.by(Sort.Direction.DESC, "readCount")).subList(0, 3);
         } catch (IndexOutOfBoundsException ex) {
             return (List<Article>) repository.findAll(Sort.by(Sort.Direction.DESC, "readCount"));
         }
