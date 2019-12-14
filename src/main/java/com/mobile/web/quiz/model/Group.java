@@ -3,6 +3,7 @@ package com.mobile.web.quiz.model;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -10,8 +11,11 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = Group.tableName)
 @EntityListeners(AuditingEntityListener.class)
-public class User implements Serializable {
+public class Group implements Serializable {
+    public static final String tableName = "groups";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,45 +25,27 @@ public class User implements Serializable {
     }
 
     @NotBlank
-    private String phoneNumber;
+    private String title;
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public String getTitle() {
+        return title;
     }
 
-    @NotBlank
-    private String password;
-
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    @Column
-    private String username;
+    @Column(nullable = false, columnDefinition = "VARCHAR(255) DEFAULT ''")
+    private String logoUrl;
 
-    public String getName() {
-        return username;
-    }
-    public void setName(String name) {
-        this.username = name;
+    public String getLogoUrl() {
+        return logoUrl;
     }
 
-    @Column
-    private String photo;
-
-    public String getPhoto() {
-        return photo;
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
 
     @Column(nullable = false)
     private int status;
@@ -71,8 +57,12 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    @ManyToMany(mappedBy = "users")
-    private List<Group> groups;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "group_user",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id",
+                    referencedColumnName = "id"))
+    private List<User> users;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -90,11 +80,11 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User {" +
-            "id=" + id + "," +
-            "name=" + username + "," +
-            "phone=" + phoneNumber + "," +
-            "password=" + password +
-        "}";
+        return "Group {" +
+                "id=" + id + "," +
+                "title=" + title + "," +
+                "logoUrl=" + logoUrl + "," +
+                "status=" + status +
+                "}";
     }
 }
