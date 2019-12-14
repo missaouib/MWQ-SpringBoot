@@ -1,10 +1,12 @@
 package com.mobile.web.quiz.controller;
 
 import com.mobile.web.quiz.config.Config;
+import com.mobile.web.quiz.model.Group;
 import com.mobile.web.quiz.model.admin.AdminUser;
 import com.mobile.web.quiz.model.admin.Article;
 import com.mobile.web.quiz.model.admin.Notice;
 import com.mobile.web.quiz.model.admin.SideBarItem;
+import com.mobile.web.quiz.service.GroupService;
 import com.mobile.web.quiz.service.UserLoginHistoryService;
 import com.mobile.web.quiz.service.UserService;
 import com.mobile.web.quiz.service.admin.AdminUserService;
@@ -158,28 +160,40 @@ public class AdminController {
 
     @PostMapping({"/admin/add-article"})
     @ResponseBody
-    public HashMap<String, Object> addArticle(Model model, @RequestParam Map<String, String> params, @RequestParam Map<String, MultipartFile> files) {
+    public HashMap<String, Object> addArticle(@RequestParam Map<String, String> params, @RequestParam Map<String, MultipartFile> files) {
         HashMap<String, Object> response = new HashMap<>();
 
         boolean status = false;
         if (params.size() != 0 || files.size() !=0) {
             String content = params.get("content");
-
             MultipartFile image = files.get("image");
             String imageUrl = saveUploadedFile(UploadDirectories.ARTICLE, image);
 
-            Article newArticle = new Article();
-            newArticle.setContent(content);
-            if (imageUrl != null)
+            if (imageUrl != null) {
+                Article newArticle = new Article();
+                newArticle.setContent(content);
                 newArticle.setImageUrl(imageUrl);
-            else
-                response.put("message", "fail to upload image");
 
-            articleService.add(newArticle);
-            status = true;
+                articleService.add(newArticle);
+                status = true;
+            } else {
+                response.put("message", "fail to upload image");
+            }
         }
 
         response.put("status", status);
+        return response;
+    }
+
+    @PostMapping({"/admin/del-article"})
+    @ResponseBody
+    public HashMap<String, Object> deleteArticle(@RequestParam Map<String, String> params) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        String id = params.get("id");
+        articleService.delete(Long.parseLong(id));
+
+        response.put("status", true);
         return response;
     }
 
@@ -201,12 +215,12 @@ public class AdminController {
 
     @PostMapping({"/admin/add-notice"})
     @ResponseBody
-    public HashMap<String, Object> addNotice(Model model, @RequestParam Map<String, String> params, @RequestParam Map<String, MultipartFile> files) {
+    public HashMap<String, Object> addNotice(@RequestParam Map<String, String> params, @RequestParam Map<String, MultipartFile> files) {
         HashMap<String, Object> response = new HashMap<>();
 
         boolean status = false;
         if (params.size() != 0 || files.size() !=0) {
-            String title = params.get("title");
+            //String title = params.get("title");
             String content = params.get("content");
 
             Notice newNotice = new Notice();
@@ -220,12 +234,79 @@ public class AdminController {
         return response;
     }
 
+    @PostMapping({"/admin/del-notice"})
+    @ResponseBody
+    public HashMap<String, Object> deleteNotice(@RequestParam Map<String, String> params) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        String id = params.get("id");
+        noticeService.delete(Long.parseLong(id));
+
+        response.put("status", true);
+        return response;
+    }
+
     @GetMapping({"/admin/notice-list"})
     public String noticeList(Model model) {
         model.addAttribute("noticeList", noticeService.getNotices());
         model.addAttribute("sideBarItem", new SideBarItem("info-center", "notice"));
         return "admin/infos/notice_list";
     }
+
+    @Autowired
+    private GroupService groupService;
+
+    @GetMapping({"/admin/add-circle"})
+    public String addGroup(Model model) {
+        model.addAttribute("sideBarItem", new SideBarItem("plate", "add-circle"));
+        return "admin/sector/add_circle";
+    }
+
+    @PostMapping({"/admin/add-circle"})
+    @ResponseBody
+    public HashMap<String, Object> addGroup(@RequestParam Map<String, String> params, @RequestParam Map<String, MultipartFile> files) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        boolean status = false;
+        if (params.size() != 0 || files.size() !=0) {
+            String title = params.get("title");
+            MultipartFile logo = files.get("logo");
+            String logoUrl = saveUploadedFile(UploadDirectories.GROUP, logo);
+
+            if (logoUrl != null) {
+                Group newGroup = new Group();
+                newGroup.setTitle(title);
+                newGroup.setLogoUrl(logoUrl);
+
+                groupService.add(newGroup);
+                status = true;
+            } else {
+                response.put("message", "fail to upload image");
+            }
+        }
+
+        response.put("status", status);
+        return response;
+    }
+
+    @PostMapping({"/admin/del-group"})
+    @ResponseBody
+    public HashMap<String, Object> deleteGroup(@RequestParam Map<String, String> params) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        String id = params.get("id");
+        groupService.delete(Long.parseLong(id));
+
+        response.put("status", true);
+        return response;
+    }
+
+    @GetMapping({"/admin/circle-management"})
+    public String groupList(Model model) {
+        model.addAttribute("sideBarItem", new SideBarItem("plate", "circle-management"));
+        return "admin/sector/circle_management";
+    }
+
 
     @GetMapping({"/admin/order-check"})
     public String orderCheck(Model model) {
@@ -267,18 +348,6 @@ public class AdminController {
     public String fund_recharge(Model model) {
         model.addAttribute("sideBarItem", new SideBarItem("fund", "recharge"));
         return "admin/fund/recharge_management";
-    }
-
-    @GetMapping({"/admin/add-circle"})
-    public String add_circle(Model model) {
-        model.addAttribute("sideBarItem", new SideBarItem("plate", "add-circle"));
-        return "admin/sector/add_circle";
-    }
-
-    @GetMapping({"/admin/circle-management"})
-    public String circle_management(Model model) {
-        model.addAttribute("sideBarItem", new SideBarItem("plate", "circle-management"));
-        return "admin/sector/circle_management";
     }
 
     @GetMapping({"/admin/withdrawal"})

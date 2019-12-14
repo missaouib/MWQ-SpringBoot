@@ -1,5 +1,6 @@
 package com.mobile.web.quiz.service;
 
+import com.mobile.web.quiz.exception.RecordNotFoundException;
 import com.mobile.web.quiz.model.User;
 import com.mobile.web.quiz.repository.UserRepository;
 import com.mobile.web.quiz.utils.CommonUtils;
@@ -42,6 +43,6 @@ public class UserService {
 
     public User getUserById(long id) {
         Optional<User> optionalUser = repository.findById(id);
-        return optionalUser.orElseThrow(() -> new UserNotFoundException("Couldn't find a User with id: " + id));
+        return optionalUser.orElseThrow(() -> new RecordNotFoundException("Couldn't find a User with id: " + id));
     }
 }

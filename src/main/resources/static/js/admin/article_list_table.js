@@ -119,11 +119,20 @@ jQuery(document).ready(function()
 
             $('#delete_item').click(function () {
                 var id = $('#deleteConfirmModal').data('id');
-                $('[data-id=' + id + ']').remove();
 
-                // delete ajax
+                $.post("<%=request.getContextPath()%>/admin/del-article", {id: id},
+                    function (result) {
+                        if (result.status) {
+                            $('[data-id=' + id + ']').remove();
 
-                $('#deleteConfirmModal').modal('hide'); // When delete success
+                            $('#deleteConfirmModal').modal('hide');
+                        } else {
+                            $('#deleteConfirmModal').modal('hide');
+
+                            swal("警告", "删除失败。", "warning");
+                        }
+                    }
+                );
             });
 
 
