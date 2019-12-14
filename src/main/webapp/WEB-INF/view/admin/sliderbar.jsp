@@ -108,12 +108,12 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="<%= sideBarItem.getMainMenu().equals("shop") && sideBarItem.getSubMenu().equals("add")? "active" : ""%>">
-                            <a href="/admin/shop-add">
+                            <a href="/admin/product-add">
                                 <i class="fa fa-angle-double-right"></i> 产品添加
                             </a>
                         </li>
                         <li class="<%= sideBarItem.getMainMenu().equals("shop") && sideBarItem.getSubMenu().equals("list")? "active" : ""%>">
-                            <a href="/admin/shop-list">
+                            <a href="/admin/product-list">
                                 <i class="fa fa-angle-double-right"></i> 产品列表
                             </a>
                         </li>

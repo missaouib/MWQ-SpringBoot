@@ -253,6 +253,7 @@ public class AdminController {
         return "admin/infos/notice_list";
     }
 
+<<<<<<< HEAD
     @Autowired
     private GroupService groupService;
 
@@ -308,6 +309,20 @@ public class AdminController {
     }
 
 
+=======
+    @GetMapping({"/admin/product-add"})
+    public String productAdd(Model model) {
+        model.addAttribute("sideBarItem", new SideBarItem("shop", "add"));
+        return "admin/shop/product_add";
+    }
+
+    @GetMapping({"/admin/product-list"})
+    public String productList(Model model) {
+        model.addAttribute("sideBarItem", new SideBarItem("shop", "list"));
+        return "admin/shop/product_list";
+    }
+
+>>>>>>> c2f75b742b842f7b086576b0380d12f00c7292ae
     @GetMapping({"/admin/order-check"})
     public String orderCheck(Model model) {
         model.addAttribute("sideBarItem", new SideBarItem("order", "check"));
