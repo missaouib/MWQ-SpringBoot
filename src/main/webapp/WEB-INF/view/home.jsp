@@ -29,7 +29,7 @@
                 <div class="form-group input-group">
                     <input type="search" class="form-control" style="border-radius: 17px; outline: none;">
                     <span class="input-group-btn">
-                    <button id="search_button" class="btn btn-default" type="button" style="background-color: transparent; border-color: transparent; color: white;">
+                    <button id="search_button" class="btn btn-default btn_outline_none" type="button" style="background-color: transparent; border-color: transparent; color: white;">
                         <i class="fa fa-search"></i>
                     </button>
                 </span>

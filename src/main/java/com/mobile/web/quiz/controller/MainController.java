@@ -65,6 +65,9 @@ public class MainController extends BaseController  {
     @GetMapping({"/rechargecenter"})
     public String rechargecenter(Model model) { return "rechargecenter"; }
 
+    @GetMapping({"/online-recharge"})
+    public String online_recharge(Model model) { return "online_recharge"; }
+
     @GetMapping({"/income"})
     public String income(Model model) { return "income"; }
 
@@ -83,6 +86,9 @@ public class MainController extends BaseController  {
     @GetMapping({"/mall"})
     public String mall(Model model) { return "mall"; }
 
+    @GetMapping({"/buyhorn"})
+    public String buyhorn(Model model) { return "buyhorn"; }
+
     @GetMapping({"/confirmorder"})
     public String confirmorder(Model model) { return "confirmorder"; }
 
@@ -91,6 +97,9 @@ public class MainController extends BaseController  {
 
     @GetMapping({"/myorder"})
     public String myorder(Model model) { return "myorder"; }
+
+    @GetMapping({"/order-history"})
+    public String order_history(Model model) { return "order_history"; }
 
     @GetMapping({"/notice-list"})
     public String notice_list(Model model) { return "notice_list"; }

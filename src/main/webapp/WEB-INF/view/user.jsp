@@ -29,7 +29,7 @@
                     </a>
                 </div>
                <div class="col-xs-2">
-                   <button class="user_setting_button">
+                   <button class="user_setting_button btn_outline_none">
                        <i class="fa fa-fw fa-cog" style="font-size: 22px;"></i>
                    </button>
                </div>
@@ -80,8 +80,10 @@
                 </a>
             </div>
             <div class="col-xs-3">
-                <img src="/img/v2_pxxlxb.png" style="width: 70%; border-radius: 50%;">
-                <p class="site_font" style="font-size: 12px;">购买喇叭</p>
+                <a href="<%=request.getContextPath()%>/buyhorn">
+                    <img src="/img/v2_pxxlxb.png" style="width: 70%; border-radius: 50%;">
+                    <p class="site_font" style="font-size: 12px;">购买喇叭</p>
+                </a>
             </div>
             <div class="col-xs-3">
                 <a href="<%=request.getContextPath()%>/myorder">
@@ -102,10 +104,10 @@
             <div class="user_top_div">
                 <div class="col-xs-10">
                     <img src="/img/user_phone.png" style="width: 12%; border-radius: 50%;">&nbsp;
-                    <button class="user_setting_button">绑定手机</button>
+                    <button class="user_setting_button btn_outline_none">绑定手机</button>
                 </div>
                 <div class="col-xs-2">
-                    <button class="user_setting_button">
+                    <button class="user_setting_button btn_outline_none">
                         <i class="fa fa-fw fa-angle-right" style="font-size: 22px;"></i>
                     </button>
                 </div>
@@ -115,10 +117,10 @@
             <div class="user_top_div">
                 <div class="col-xs-10">
                     <img src="/img/user_other.png" style="width: 12%; border-radius: 50%;">&nbsp;
-                    <button class="user_setting_button">联系客服</button>
+                    <button class="user_setting_button btn_outline_none">联系客服</button>
                 </div>
                 <div class="col-xs-2">
-                    <button class="user_setting_button">
+                    <button class="user_setting_button btn_outline_none">
                         <i class="fa fa-fw fa-angle-right" style="font-size: 22px;"></i>
                     </button>
                 </div>
@@ -128,10 +130,10 @@
             <div class="user_top_div">
                 <div class="col-xs-10">
                     <img src="/img/user_other.png" style="width: 12%; border-radius: 50%;">&nbsp;
-                    <button class="user_setting_button">联系客服</button>
+                    <button class="user_setting_button btn_outline_none">联系客服</button>
                 </div>
                 <div class="col-xs-2">
-                    <button class="user_setting_button">
+                    <button class="user_setting_button btn_outline_none">
                         <i class="fa fa-fw fa-angle-right" style="font-size: 22px;"></i>
                     </button>
                 </div>
@@ -142,10 +144,10 @@
             <div class="user_top_div">
                 <div class="col-xs-10">
                     <img src="/img/user_other.png" style="width: 12%; border-radius: 50%;">&nbsp;
-                    <button class="user_setting_button">邀请好友</button>
+                    <button class="user_setting_button btn_outline_none">邀请好友</button>
                 </div>
                 <div class="col-xs-2">
-                    <button class="user_setting_button">
+                    <button class="user_setting_button btn_outline_none">
                         <i class="fa fa-fw fa-angle-right" style="font-size: 22px;"></i>
                     </button>
                 </div>

@@ -19,11 +19,11 @@
     <section class="content" style="height: 45px; width: 100%;">
         <div class="paddingtopbottom_5px" style="float: left;">
             <div style="float:left;">
-                <button class="user_setting_button">
+                <button class="user_setting_button btn_outline_none" onclick="goBack()">
                     <i class="fa fa-fw fa-angle-left" style="font-size: 20px;"></i>
                 </button>
             </div>
-            <div style="float: left; padding-left: 14rem; font-size: 18px;">
+            <div style="float: left; padding-left: 12rem; font-size: 18px; margin-top: 5px;">
                 <span>充值中心</span>
             </div>
         </div>
@@ -31,7 +31,7 @@
 
     <div class="row">
         <div class="col-xs-8"></div>
-        <div class="col-xs-4">
+        <div class="col-xs-4 text-right">
             <button class="user_setting_button">使用说明</button>
         </div>
     </div>
@@ -96,5 +96,10 @@
     </div>
 </div>
 <script src="/js/app.js"></script>
+<script>
+    function goBack() {
+        window.history.go(-1);
+    }
+</script>
 </body>
 </html>

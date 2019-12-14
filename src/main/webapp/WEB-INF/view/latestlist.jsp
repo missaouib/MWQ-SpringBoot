@@ -13,9 +13,9 @@
 </head>
 <body>
 <div class="wrapper main_page" style="background-color: white;">
-    <div class="text-center" style="background-color: white; height: 60px; width: 100%; padding-top: 1rem;box-shadow: rgb(230, 230, 230) 0px 0px 1px 1px;">
+    <div class="text-center latest_list_top_div">
         <p style="font-size: 19px;">最新榜单</p>
-        <button style="background-color: rgb(129,13,219); border: none; border-radius: 18px; padding: 5px 23px; box-shadow: rgb(129, 13, 219) 0 0 3px 3px; color: white;">人气热榜</button>
+        <button class="latest_list_cover_button">人气热榜</button>
     </div>
     <div class="row" style="height: 4rem; width: 100%;"></div>
     <div class="row" style="padding-bottom: 1rem;">

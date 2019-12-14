@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> 我的地址 </title>
+    <title> 在线充值 </title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="wrapper main_page" style="background-color: white;">
-    <section class="content" style="height: 45px; width: 100%;">
+    <section class="content" style="height: 45px; width: 100%; background-color: #f8f8f8">
         <div class="paddingtopbottom_5px" style="float: left;">
             <div style="float:left;">
                 <button class="user_setting_button" onclick="goBack()">
@@ -24,42 +24,48 @@
                 </button>
             </div>
             <div class="top_title_with_back">
-                <span>我的地址</span>
+                <span>在线充值</span>
             </div>
         </div>
     </section>
+    <div class="row" style="margin-top: 5rem;">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-4">
+            <button class="text-center btn_outline_none online_recharge_selected">
+                100元
+            </button>
+        </div>
+        <div class="col-xs-4">
+            <button class="text-center btn_outline_none online_recharge_deselected" >
+                200元
+            </button>
+        </div>
+        <div class="col-xs-2"></div>
+    </div>
 
-    <div class="row" style="padding-top: 1rem;">
-        <div class="col-xs-2">
-            <p>张三</p>
+    <div class="row" style="margin-top: 2rem;">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-4">
+            <button class="text-center btn_outline_none online_recharge_deselected">
+                300元
+            </button>
         </div>
-        <div class="col-xs-8">
-            <p>13888888888</p>
+        <div class="col-xs-4">
+            <button class="text-center btn_outline_none online_recharge_deselected">
+                400元
+            </button>
         </div>
-        <div class="col-xs-2">
-            <p>默认</p>
-        </div>
-        <div class="col-xs-12">
-            地址：杭州市滨江区南环路13号
-        </div>
+        <div class="col-xs-2"></div>
     </div>
-    <div class="row" style="padding-top: 3rem;">
-        <div class="col-xs-2">
-            <p>张三</p>
-        </div>
+
+    <div class="row">
+        <div class="col-xs-2"></div>
         <div class="col-xs-8">
-            <p>13888888888</p>
+            <button class="text-center btn_outline_none buy_horn_pay_button">
+                立即充值
+            </button>
         </div>
-        <div class="col-xs-2">
-        </div>
-        <div class="col-xs-12">
-            地址：杭州市滨江区南环路13号
-        </div>
-    </div>
-    <div class="row" style="padding-top: 4rem;">
-        <div class="col-xs-12 text-center">
-            <p>＋新增地址</p>
-        </div>
+        <div class="col-xs-2"></div>
     </div>
 </div>
 <script src="/js/app.js"></script>
