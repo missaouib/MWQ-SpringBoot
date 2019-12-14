@@ -56,7 +56,8 @@ jQuery(document).ready(function()
         "select":true,
         "responsive":true,
         "language": {
-            "lengthMenu": " _MENU_ records"
+            "lengthMenu": " _MENU_ records",
+            "emptyTable": "表中无可用数据。",
         }, dom: 'Bfrtip',
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'

@@ -67,7 +67,7 @@
                         <div class="panel-body">
                             <div id="sample_editable_1_wrapper" class="">
                                 <table class="table table-striped table-bordered table-hover dataTable no-footer"
-                                       id="sample_editable_1" role="grid">
+                                       id="article_list_table" role="grid">
                                     <thead class="table_head">
                                         <tr role="row">
                                             <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
@@ -139,54 +139,15 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Delete Item</h4>
+                        <h4 class="modal-title">删除项目</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure to delete?</p>
+                        <p>确定要删除吗？</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger" id="delete_item" data-dismiss="modal">Delete
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-danger" id="delete_item" data-dismiss="modal">删除
                         </button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <div class="modal fade" id="editConfirmModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Edit Confirm</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>You are already editing a row, you must save or cancel that row before editing/deleting a new
-                            row</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <div class="modal fade" id="saveConfirmModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Save Row</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Updated successfully, Do not forget to do some ajax to sync with backend.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -222,7 +183,7 @@
 <script src="/vendors/datatables/js/pdfmake.js"></script>
 <script src="/vendors/datatables/js/vfs_fonts.js"></script>
 <script src="/vendors/datatables/js/dataTables.scroller.js"></script>
-<script src="/js/pages/table-editable.js"></script>
+<script src="/js/admin/article_list_table.js"></script>
 <!-- end of page level js -->
 
 </body>

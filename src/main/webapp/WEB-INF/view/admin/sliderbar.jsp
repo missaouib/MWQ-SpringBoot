@@ -61,24 +61,25 @@
                         </li>
                     </ul>
                 </li>
-                <li class="<%= sideBarItem.getMainMenu().equals("order")? "active" : ""%>">
+                <li class="<%= sideBarItem.getMainMenu().equals("plate")? "active" : ""%>">
                     <a href="#">
-                        <i class="livicon" data-name="doc-portrait" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i>
-                        <span class="title">订单管理</span>
+                        <i class="livicon" data-name="thumbnails-big" data-c="#00bc8c" data-hc="#00bc8c" data-size="18" data-loop="true"></i>
+                        <span class="title">板块管理</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="sub-menu">
-                        <li class="<%= sideBarItem.getMainMenu().equals("order") && sideBarItem.getSubMenu().equals("list")? "active" : ""%>">
-                            <a href="/admin/order-list">
-                                <i class="fa fa-angle-double-right"></i> 订单列表
+                        <li class="<%= sideBarItem.getMainMenu().equals("plate") && sideBarItem.getSubMenu().equals("add-circle")? "active" : ""%>">
+                            <a href="/admin/add-circle">
+                                <i class="fa fa-angle-double-right"></i> 新增圈子
                             </a>
                         </li>
-                        <li class="<%= sideBarItem.getMainMenu().equals("order") && sideBarItem.getSubMenu().equals("check")? "active" : ""%>">
-                            <a href="/admin/order-check">
-                                <i class="fa fa-angle-double-right"></i> 查看订单
+                        <li class="<%= sideBarItem.getMainMenu().equals("plate") && sideBarItem.getSubMenu().equals("circle-management")? "active" : ""%>">
+                            <a href="/admin/circle-management">
+                                <i class="fa fa-angle-double-right"></i> 圈子管理
                             </a>
                         </li>
                     </ul>
+                    </a>
                 </li>
                 <li class="<%= sideBarItem.getMainMenu().equals("review")? "active" : ""%>">
                     <a href="#">
@@ -95,6 +96,44 @@
                         <li class="<%= sideBarItem.getMainMenu().equals("review") && sideBarItem.getSubMenu().equals("audited")? "active" : ""%>">
                             <a href="/admin/audited">
                                 <i class="fa fa-angle-double-right"></i> 已审核
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="<%= sideBarItem.getMainMenu().equals("shop")? "active" : ""%>">
+                    <a href="#">
+                        <i class="livicon" data-name="doc-portrait" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i>
+                        <span class="title">商城管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="<%= sideBarItem.getMainMenu().equals("shop") && sideBarItem.getSubMenu().equals("add")? "active" : ""%>">
+                            <a href="/admin/shop-add">
+                                <i class="fa fa-angle-double-right"></i> 产品添加
+                            </a>
+                        </li>
+                        <li class="<%= sideBarItem.getMainMenu().equals("shop") && sideBarItem.getSubMenu().equals("list")? "active" : ""%>">
+                            <a href="/admin/shop-list">
+                                <i class="fa fa-angle-double-right"></i> 产品列表
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="<%= sideBarItem.getMainMenu().equals("order")? "active" : ""%>">
+                    <a href="#">
+                        <i class="livicon" data-name="doc-portrait" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i>
+                        <span class="title">订单管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="<%= sideBarItem.getMainMenu().equals("order") && sideBarItem.getSubMenu().equals("list")? "active" : ""%>">
+                            <a href="/admin/order-list">
+                                <i class="fa fa-angle-double-right"></i> 订单列表
+                            </a>
+                        </li>
+                        <li class="<%= sideBarItem.getMainMenu().equals("order") && sideBarItem.getSubMenu().equals("check")? "active" : ""%>">
+                            <a href="/admin/order-check">
+                                <i class="fa fa-angle-double-right"></i> 查看订单
                             </a>
                         </li>
                     </ul>
@@ -123,26 +162,6 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li class="<%= sideBarItem.getMainMenu().equals("plate")? "active" : ""%>">
-                    <a href="#">
-                        <i class="livicon" data-name="thumbnails-big" data-c="#00bc8c" data-hc="#00bc8c" data-size="18" data-loop="true"></i>
-                        <span class="title">板块管理</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="<%= sideBarItem.getMainMenu().equals("plate") && sideBarItem.getSubMenu().equals("add-circle")? "active" : ""%>">
-                            <a href="/admin/add-circle">
-                                <i class="fa fa-angle-double-right"></i> 新增圈子
-                            </a>
-                        </li>
-                        <li class="<%= sideBarItem.getMainMenu().equals("plate") && sideBarItem.getSubMenu().equals("circle-management")? "active" : ""%>">
-                            <a href="/admin/circle-management">
-                                <i class="fa fa-angle-double-right"></i> 圈子管理
-                            </a>
-                        </li>
-                    </ul>
-                    </a>
                 </li>
                 <li class="<%= sideBarItem.getMainMenu().equals("withdrawal")? "active" : ""%>">
                     <a href="/admin/withdrawal">

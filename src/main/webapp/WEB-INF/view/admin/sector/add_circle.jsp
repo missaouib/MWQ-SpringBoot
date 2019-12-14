@@ -13,15 +13,9 @@
     <link href="/css/app.css" rel="stylesheet">
     <!-- end of global css -->
     <!--page level css -->
-    <link rel="stylesheet" href="/vendors/select2/css/select2.min.css"/>
-    <link rel="stylesheet" href="/vendors/select2/css/select2-bootstrap.css"/>
-    <link rel="stylesheet" href="/vendors/datatables/css/dataTables.bootstrap.css"/>
-    <link rel="stylesheet" href="/vendors/datatables/css/buttons.bootstrap.css">
-    <link rel="stylesheet" href="/vendors/datatables/css/colReorder.bootstrap.css"/>
-    <link rel="stylesheet" href="/vendors/datatables/css/dataTables.bootstrap.css"/>
-    <link rel="stylesheet" href="/vendors/datatables/css/rowReorder.bootstrap.css">
-    <link rel="stylesheet" href="/vendors/datatables/css/buttons.bootstrap.css"/>
-    <link href="/css/pages/tables.css" rel="stylesheet"/>
+    <link href="/vendors/jasny-bootstrap/css/jasny-bootstrap.css" rel="stylesheet" />
+    <link href="/vendors/iCheck/css/all.css" rel="stylesheet" type="text/css" />
+    <link href="/vendors/sweetalert/css/sweetalert.css" rel="stylesheet">
     <!--end of page level css-->
 </head>
 
@@ -52,7 +46,51 @@
         </section>
         <!-- Main content -->
 
+        <section class="content">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="panel panel-primary" id="hidepanel1">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="content">圈子名称</label>
+                                        <div class="col-md-9">
+                                            <input class="form-control resize_vertical" id="content" name="content" placeholder="请输入圈子名称。。。" rows="5"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-9">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                                                <div>
+                                                            <span class="btn btn-default btn-file">
+                                                                <span class="fileinput-new">选择 logo</span>
+                                                                <span class="fileinput-exists">更新</span>
+                                                                <input id="image" name="image" type="file"></span>
+                                                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">删除</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <!-- Form actions -->
+                                    <div class="form-group">
+                                        <div class="col-md-12 text-center">
+                                            <button type="button" id="add_button" class="btn btn-responsive btn-primary btn-sm">添加</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+
+            </div>
+        </section>
 
 
     </aside>
@@ -68,21 +106,13 @@
 <!-- end of global js -->
 <!-- begining of page level js -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="/vendors/favicon/favicon.js"></script>
+<script src="/vendors/jasny-bootstrap/js/jasny-bootstrap.js"></script>
+<script src="/vendors/iCheck/js/icheck.js"></script>
 <script src="/vendors/select2/js/select2.js"></script>
-<script src="/vendors/datatables/js/jquery.dataTables.js"></script>
-<script src="/vendors/datatables/js/dataTables.bootstrap.js"></script>
-<script src="/vendors/datatables/js/dataTables.buttons.js"></script>
-<script src="/vendors/datatables/js/dataTables.colReorder.js"></script>
-<script src="/vendors/datatables/js/dataTables.responsive.js"></script>
-<script src="/vendors/datatables/js/dataTables.rowReorder.js"></script>
-<script src="/vendors/datatables/js/buttons.colVis.js"></script>
-<script src="/vendors/datatables/js/buttons.html5.js"></script>
-<script src="/vendors/datatables/js/buttons.print.js"></script>
-<script src="/vendors/datatables/js/buttons.bootstrap.js"></script>
-<script src="/vendors/datatables/js/pdfmake.js"></script>
-<script src="/vendors/datatables/js/vfs_fonts.js"></script>
-<script src="/vendors/datatables/js/dataTables.scroller.js"></script>
-<script src="/js/pages/table-editable.js"></script>
+<script src="/js/pages/form_examples.js"></script>
+<!-- end of page level js -->
+<script src="<%=request.getContextPath()%>/vendors/sweetalert/js/sweetalert.min.js"></script>
 <!-- end of page level js -->
 
 </body>
