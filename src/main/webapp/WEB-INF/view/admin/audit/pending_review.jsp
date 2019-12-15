@@ -15,6 +15,7 @@
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!-- global css -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/admin_style.css" rel="stylesheet">
     <!-- end of global css -->
     <!--page level css -->
     <link rel="stylesheet" href="/vendors/select2/css/select2.min.css"/>

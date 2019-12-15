@@ -55,33 +55,33 @@
                             <form class="form-horizontal">
                                 <fieldset>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label" for="title">产品名称</label>
+                                        <label class="col-md-3 control-label" for="name">产品名称</label>
                                         <div class="col-md-9">
-                                            <input class="form-control resize_vertical" id="title" name="content" placeholder="请输入产品名称"/>
+                                            <input class="form-control resize_vertical" id="name" name="name" placeholder="请输入产品名称"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="price">产品价格</label>
                                         <div class="col-md-9">
-                                            <input class="form-control resize_vertical" id="price" name="content" placeholder="请输入产品价格"/>
+                                            <input class="form-control resize_vertical" id="price" name="price" placeholder="请输入产品价格"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="express">快递</label>
                                         <div class="col-md-9">
-                                            <input class="form-control resize_vertical" id="express" name="content" placeholder="请输入快递"/>
+                                            <input class="form-control resize_vertical" id="express" name="express" placeholder="请输入快递"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="parameter">参数</label>
                                         <div class="col-md-9">
-                                            <input class="form-control resize_vertical" id="parameter" name="content" placeholder="请输入参数" />
+                                            <input class="form-control resize_vertical" id="parameter" name="parameter" placeholder="请输入参数" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="detail">详情</label>
                                         <div class="col-md-9">
-                                            <textarea class="form-control resize_vertical" id="detail" name="content" placeholder="请输入详情" rows="5"> </textarea>
+                                            <textarea class="form-control resize_vertical" id="detail" name="detail" placeholder="请输入详情" rows="5"> </textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -137,7 +137,72 @@
 <script src="/js/pages/form_examples.js"></script>
 <!-- end of page level js -->
 <script src="<%=request.getContextPath()%>/vendors/sweetalert/js/sweetalert.min.js"></script>
-<!-- end of page level js -->
+<script>
+    $(document).ready(function(){
+        $("#add_button").click(function(event){
+            event.preventDefault();
+            submit();
+        });
+    });
 
+    function submit() {
+        var name = $("#name").val();
+        var price = $("#price").val();
+        var express = $("#express").val();
+        var parameter = $("#parameter").val();
+        var detail = $("#detail").val();
+
+        if(name.length < 1){
+            swal("警告", "请输入产品名称。", "warning");
+            return;
+        }
+
+        if(price.length < 1){
+            swal("警告", "请输入产品价格。", "warning");
+            return;
+        }
+
+        var form = $('form')[0];
+        var data = new FormData(form);
+
+        $("#add_button").prop("disabled", true);
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/admin/add-product",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (result) {
+                if (result.status) {
+                    swal("成功！", "", "success");
+                    reset();
+                } else {
+                    swal("失败", "", "warning");
+                }
+
+                $("#add_button").prop("disabled", false);
+            },
+            error: function (e) {
+                swal("错误", "上传数据时出错", "error");
+                $("#add_button").prop("disabled", false);
+            }
+        });
+    }
+
+    function reset() {
+        $("#name").val("");
+        $("#price").val("");
+        $("#express").val("");
+        $("#parameter").val("");
+        $("#detail").val("");
+        $("#image").val("");
+        $(".fileinput-preview").html("");
+    }
+</script>
+<!-- end of page level js -->
 </body>
 </html>

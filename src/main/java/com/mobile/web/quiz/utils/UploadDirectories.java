@@ -12,6 +12,7 @@ import java.util.Date;
 public class UploadDirectories {
     public static final String ARTICLE = "article";
     public static final String GROUP = "group";
+    public static final String PRODUCT = "product";
 
     @EventListener
     public void appReady(ApplicationReadyEvent event) {
@@ -19,7 +20,7 @@ public class UploadDirectories {
             Config.UPLOAD_DIR.mkdir();
         }
 
-        String[] subDirs = new String[] { ARTICLE, GROUP };
+        String[] subDirs = new String[] { ARTICLE, GROUP, PRODUCT };
         for (int i = 0; i < subDirs.length; i++) {
             File subDir = new File(Config.UPLOAD_DIR + "/" + subDirs[i]);
             if (!subDir.exists()) {

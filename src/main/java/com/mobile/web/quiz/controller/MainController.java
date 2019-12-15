@@ -92,10 +92,16 @@ public class MainController extends BaseController  {
     public String submitsuccess(Model model) { return "submitsuccess"; }
 
     @GetMapping({"/mall"})
-    public String mall(Model model) { return "mall"; }
+    public String mall(Model model) {
+        model.addAttribute("products", productService.getAvailableProducts());
+        return "mall";
+    }
 
-    @GetMapping({"/product-detail"})
-    public String productDetail(Model model) { return "product_detail"; }
+    @GetMapping({"/product-detail/{id}"})
+    public String productDetail(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("product", productService.getProductById(id));
+        return "product_detail";
+    }
 
     @GetMapping({"/buyhorn"})
     public String buyhorn(Model model) { return "buyhorn"; }

@@ -20,28 +20,28 @@
     <section class="content" style="height: 212px;">
         <div class="row">
             <i class="fa fa-fw fa-angle-left" style="font-size: 22px; position: absolute; top: 5px; left: 0;z-index: 99;" onclick="goBack()"></i>
-            <img src="img/raw_1513011839.jpg" class="img-responsive" alt="image1">
+            <img src="${product.imageUrl}" class="img-responsive" alt="image1">
         </div>
     </section>
     <section class="content" style="background-color: white; padding-top: 2rem;">
         <div class="row">
             <div class="col-xs-12">
-                <p style="font-size: 20px; color: rgb(255, 152, 0);">¥<span>198</span></p>
-                <p>维生素d3 全球购包邮保税</p>
+                <p style="font-size: 20px; color: rgb(255, 152, 0);">¥<span><c:out value="${product.price}" /></span></p>
+                <p><c:out value="${product.name}" /></p>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-6">
-               <span>快递：</span><span>0.00</span>
+               <span>快递：</span><span><c:out value="${product.expressDeliveryCost}" /></span>
             </div>
             <div class="col-xs-6 text-right">
-                <span>已售：</span><span>3256件</span>
+                <span>已售：</span><span><c:out value="${product.sellCount}" />件</span>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12">
                 <div style="padding-top: 3rem; padding-bottom: 3rem;">
-                    <span style="color: silver;">参数&nbsp;&nbsp;&nbsp;</span><span>400</span><span>g/盒</span><span>300</span><span>粒</span>
+                    <span style="color: silver;">参数&nbsp;&nbsp;&nbsp;</span><span><c:out value="${product.parameter}" /></span>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <p class="text-center">简介图文</p>
+                <p class="text-center"><c:out value="${product.detail}" /></p>
             </div>
         </div>
 
@@ -63,7 +63,7 @@
         <div class="row" style="height: 100%; width: 100%; margin: 0; padding: 0; float: left;">
             <div style="height: 100%; width: 15%; float: left; cursor:pointer;">
                 <div style="text-align: center;width: 100%;height: 60%;">
-                    <img src="img/headphone.png" style="height: 90%;margin: 4px;">
+                    <img src="<%=request.getContextPath()%>/img/headphone.png" style="height: 90%;margin: 4px;">
                 </div>
                 <div style="text-align: center;width: 100%;height: 40%;">
                         <span style="font-family: PingFangSC-Regular;
@@ -74,7 +74,7 @@
             </div>
             <div style="height: 100%; width: 15%; float: left; cursor:pointer;">
                 <div style="text-align: center;width: 100%;height: 60%;">
-                    <img src="img/heart.png" style="height: 90%;margin: 4px;">
+                    <img src="<%=request.getContextPath()%>/img/heart.png" style="height: 90%;margin: 4px;">
                 </div>
                 <div style="text-align: center;width: 100%;height: 40%;">
                         <span style="font-family: PingFangSC-Regular;

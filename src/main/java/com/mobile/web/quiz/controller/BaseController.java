@@ -41,6 +41,9 @@ public class BaseController {
     protected GroupService groupService;
 
     @Autowired
+    protected ProductService productService;
+
+    @Autowired
     protected BottomBarService bottomBarService;
 
     protected void setLoggedUser(User user) {

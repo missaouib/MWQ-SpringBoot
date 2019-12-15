@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> 主页 </title>
+    <title> 商城 </title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -51,68 +53,22 @@
 
     <section class="content">
         <div class="row" style="padding-top: 10px; background-color: white;">
-            <div class="col-xs-6" style="padding-left: 5px; padding-right: 5px;">
-                <div>
-                    <img src="/img/mall1.png" style="width: 100%;">
+            <c:forEach var="product" varStatus="status" items="${products}">
+                <div class="col-xs-6" style="padding-left: 5px; padding-right: 5px;">
+                    <a href="<%=request.getContextPath()%>/product-detail/${product.id}">
+                        <div>
+                            <img src="${product.imageUrl}" style="width: 100%;">
+                        </div>
+                        <div style="float: left;">
+                            <div><c:out value="${product.name}" /></div>
+                            <div style="color: rgb(255, 87, 34);">¥<c:out value="${product.price}" /></div>
+                            <div style="float:right;">
+                                <span style="font-size: 12px; color: rgb(148, 148, 148);"><c:out value="${product.purchaseMemberCount}" />人已购买</span>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div style="float: left;">
-                    <div>台湾进口车厘子50g包装</div>
-                    <div style="color: rgb(255, 87, 34);">¥30</div>
-                    <div style="float:left;">
-                        <span style="font-size: 12px;">滨江菜场</span>
-                    </div>
-                    <div style="float:right;">
-                        <span style="font-size: 12px; color: rgb(148, 148, 148);">324人已购买</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6" style="padding-left: 5px; padding-right: 5px;">
-                <div>
-                    <img src="/img/mall1.png" style="width: 100%;">
-                </div>
-                <div style="float: left;">
-                    <div>台湾进口车厘子50g包装</div>
-                    <div style="color: rgb(255, 87, 34);">¥30</div>
-                    <div style="float:left;">
-                        <span style="font-size: 12px;">滨江菜场</span>
-                    </div>
-                    <div style="float:right;">
-                        <span style="font-size: 12px; color: rgb(148, 148, 148);">324人已购买</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row" style="padding-top: 10px; background-color: white;">
-            <div class="col-xs-6" style="padding-left: 5px; padding-right: 5px;">
-                <div>
-                    <img src="/img/mall1.png" style="width: 100%;">
-                </div>
-                <div style="float: left;">
-                    <div>台湾进口车厘子50g包装</div>
-                    <div style="color: rgb(255, 87, 34);">¥30</div>
-                    <div style="float:left;">
-                        <span style="font-size: 12px;">滨江菜场</span>
-                    </div>
-                    <div style="float:right;">
-                        <span style="font-size: 12px; color: rgb(148, 148, 148);">324人已购买</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6" style="padding-left: 5px; padding-right: 5px;">
-                <div>
-                    <img src="/img/mall1.png" style="width: 100%;">
-                </div>
-                <div style="float: left;">
-                    <div>台湾进口车厘子50g包装</div>
-                    <div style="color: rgb(255, 87, 34);">¥30</div>
-                    <div style="float:left;">
-                        <span style="font-size: 12px;">滨江菜场</span>
-                    </div>
-                    <div style="float:right;">
-                        <span style="font-size: 12px; color: rgb(148, 148, 148);">324人已购买</span>
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
         </div>
     </section>
 

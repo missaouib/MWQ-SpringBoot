@@ -3,12 +3,14 @@ package com.mobile.web.quiz.controller;
 import com.mobile.web.quiz.config.Config;
 import com.mobile.web.quiz.exception.RecordNotFoundException;
 import com.mobile.web.quiz.model.Group;
+import com.mobile.web.quiz.model.Product;
 import com.mobile.web.quiz.model.User;
 import com.mobile.web.quiz.model.admin.AdminUser;
 import com.mobile.web.quiz.model.admin.Article;
 import com.mobile.web.quiz.model.admin.Notice;
 import com.mobile.web.quiz.model.admin.SideBarItem;
 import com.mobile.web.quiz.service.GroupService;
+import com.mobile.web.quiz.service.ProductService;
 import com.mobile.web.quiz.service.UserLoginHistoryService;
 import com.mobile.web.quiz.service.UserService;
 import com.mobile.web.quiz.service.admin.AdminUserService;
@@ -356,11 +358,13 @@ public class AdminController {
 
     @GetMapping({"/admin/circle-management"})
     public String groupList(Model model) {
-        model.addAttribute("groups", groupService.getApprovedGroups());
         model.addAttribute("sideBarItem", new SideBarItem("plate", "circle-management"));
+        model.addAttribute("groups", groupService.getApprovedGroups());
         return "admin/sector/circle_management";
     }
 
+    @Autowired
+    private ProductService productService;
 
     @GetMapping({"/admin/product-add"})
     public String productAdd(Model model) {
@@ -368,9 +372,47 @@ public class AdminController {
         return "admin/shop/product_add";
     }
 
+    @PostMapping({"/admin/add-product"})
+    @ResponseBody
+    public HashMap<String, Object> addProduct(@RequestParam Map<String, String> params, @RequestParam Map<String, MultipartFile> files) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        boolean status = false;
+        if (params.size() != 0 || files.size() !=0) {
+            String name = params.get("name");
+            MultipartFile image = files.get("image");
+            String imageUrl = saveUploadedFile(UploadDirectories.PRODUCT, image);
+            double price = params.get("price").isEmpty() ? 0 : Double.parseDouble(params.get("price"));
+            double expressDeliveryCost = params.get("express").isEmpty() ? 0 : Double.parseDouble(params.get("express"));
+            String parameter = params.get("parameter");
+            String detail = params.get("detail");
+
+            if (imageUrl != null) {
+                Product newProduct = new Product();
+                newProduct.setName(name);
+                newProduct.setImageUrl(imageUrl);
+                newProduct.setPrice(price);
+                newProduct.setExpressDeliveryCost(expressDeliveryCost);
+                newProduct.setParameter(parameter);
+                newProduct.setDetail(detail);
+
+                newProduct.setStatus(Product.ACTIVE);
+
+                productService.add(newProduct);
+                status = true;
+            } else {
+                response.put("message", "fail to upload image");
+            }
+        }
+
+        response.put("status", status);
+        return response;
+    }
+
     @GetMapping({"/admin/product-list"})
     public String productList(Model model) {
         model.addAttribute("sideBarItem", new SideBarItem("shop", "list"));
+        model.addAttribute("products", productService.getAllProducts());
         return "admin/shop/product_list";
     }
 
