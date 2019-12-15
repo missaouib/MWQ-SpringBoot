@@ -24,14 +24,14 @@ $(".tooltip-examples a").tooltip({
 
 
 $('#myTabContent').slimscroll({
-    height: '130px',
+    // height: '130px',
     size: '3px',
     color: '#D84A38',
     opacity: 1
 
 });
 $('#slim1').slimscroll({
-    height: '100px',
+    // height: '100px',
     size: '3px',
     color: '#D84A38',
 
@@ -45,7 +45,7 @@ $('#slim2').slimscroll({
     opacity: 1
 });
 $('#slim3').slimscroll({
-    height: '100px',
+    // height: '100px',
     size: '3px',
     color: '#FE6A0A',
     opacity: 1

@@ -86,6 +86,9 @@ public class MainController extends BaseController  {
     @GetMapping({"/mall"})
     public String mall(Model model) { return "mall"; }
 
+    @GetMapping({"/product-detail"})
+    public String productDetail(Model model) { return "product_detail"; }
+
     @GetMapping({"/buyhorn"})
     public String buyhorn(Model model) { return "buyhorn"; }
 

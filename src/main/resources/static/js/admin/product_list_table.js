@@ -119,7 +119,19 @@ jQuery(document).ready(function()
             $('#delete_item').click(function () {
                 var id = $('#deleteConfirmModal').data('id');
                 $('[data-id=' + id + ']').remove();
-                $('#deleteConfirmModal').modal('hide');
+                $.post("/admin/---", {id: id},
+                    function (result) {
+                        if (result.status) {
+                            $('[data-id=' + id + ']').remove();
+
+                            $('#deleteConfirmModal').modal('hide');
+                        } else {
+                            $('#deleteConfirmModal').modal('hide');
+
+                            swal("警告", "删除失败。", "warning");
+                        }
+                    }
+                );
             });
 
 

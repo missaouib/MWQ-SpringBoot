@@ -186,3 +186,9 @@ button {
     border: solid thin lightgrey;
     padding: 9px 17px;
 }
+
+.tabtop .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    border-top: 4px solid #F89A14 !important;
+    border-right: 1px solid #F89A14 !important;
+    border-left: 1px solid #F89A14 !important;
+}
