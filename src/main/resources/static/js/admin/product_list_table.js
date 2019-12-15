@@ -118,7 +118,6 @@ jQuery(document).ready(function()
 
             $('#delete_item').click(function () {
                 var id = $('#deleteConfirmModal').data('id');
-                $('[data-id=' + id + ']').remove();
                 $.post("/admin/---", {id: id},
                     function (result) {
                         if (result.status) {

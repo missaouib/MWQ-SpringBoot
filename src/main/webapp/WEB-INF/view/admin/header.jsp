@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <header class="header">
     <a href="/admin" class="logo">
-        <img src="/img/admin/logo.png" alt="Logo">
+<%--        <img src="/img/admin/logo.png" alt="Logo">--%>
+        <h3 style="color: silver;">竞猜管理系统</h3>
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
