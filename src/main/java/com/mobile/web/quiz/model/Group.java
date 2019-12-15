@@ -16,6 +16,10 @@ import java.util.List;
 public class Group implements Serializable {
     public static final String tableName = "groups";
 
+    public static final int ACTIVE = 1;
+    public static final int INACTIVE = 0;
+    public static final int PENDING = 2;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -64,6 +68,14 @@ public class Group implements Serializable {
                     referencedColumnName = "id"))
     private List<User> users;
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public int getUserCount() {
+        return users.size();
+    }
+
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
@@ -77,6 +89,10 @@ public class Group implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedAt;
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
 
     @Override
     public String toString() {

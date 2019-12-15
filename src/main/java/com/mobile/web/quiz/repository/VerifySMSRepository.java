@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface VerifySMSRepository extends JpaRepository<VerifySMS, Long> {
 
+    List<VerifySMS> findByPhoneNumber(String phoneNumber);
     List<VerifySMS> findByPhoneNumberAndExpiredOrderByCreatedAtDesc(String phoneNumber, boolean expired);
 }

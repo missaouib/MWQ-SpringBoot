@@ -55,9 +55,9 @@
                             <form class="form-horizontal">
                                 <fieldset>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label" for="content">圈子名称</label>
+                                        <label class="col-md-3 control-label" for="title">圈子名称</label>
                                         <div class="col-md-9">
-                                            <input class="form-control resize_vertical" id="content" name="content" placeholder="请输入圈子名称。。。"/>
+                                            <input class="form-control resize_vertical" id="title" name="title" placeholder="请输入圈子名称。。。"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -113,6 +113,58 @@
 <script src="/js/pages/form_examples.js"></script>
 <!-- end of page level js -->
 <script src="<%=request.getContextPath()%>/vendors/sweetalert/js/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#add_button").click(function(event){
+            event.preventDefault();
+            submit();
+        });
+    });
+
+    function submit() {
+        var content = $("#content").val();
+        if(title.length < 1){
+            swal("警告", "请输入圈子名称。", "warning");
+            return;
+        }
+
+        var form = $('form')[0];
+        var data = new FormData(form);
+
+        $("#add_button").prop("disabled", true);
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/admin/add-group",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (result) {
+                if (result.status) {
+                    swal("成功！", "", "success");
+                    reset();
+                } else {
+                    swal("失败", "", "warning");
+                }
+
+                $("#add_button").prop("disabled", false);
+            },
+            error: function (e) {
+                swal("错误", "上传数据时出错", "error");
+                $("#add_button").prop("disabled", false);
+            }
+        });
+    }
+
+    function reset() {
+        $("#content").val("");
+        $("#image").val("");
+        $(".fileinput-preview").html("");
+    }
+</script>
 <!-- end of page level js -->
 
 </body>

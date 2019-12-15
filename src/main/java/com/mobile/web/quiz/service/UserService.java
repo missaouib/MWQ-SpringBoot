@@ -15,12 +15,36 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
+    @Autowired
+    private VerifySMSService verifyService;
+
     public void add(User user) {
         repository.save(user);
     }
 
     public void delete(long id) {
-        repository.deleteById(id);
+        try {
+            User user = getUserById(id);
+            verifyService.deleteByPhoneNumber(user.getPhoneNumber());
+
+            repository.deleteById(id);
+        } catch (RecordNotFoundException ex) {
+
+        }
+    }
+
+    public int changeStatus(long id) {
+        try {
+            User user = getUserById(id);
+            if (user.getStatus() == User.ACTIVE)
+                user.setStatus(User.INACTIVE);
+            else
+                user.setStatus(User.ACTIVE);
+
+            return user.getStatus();
+        } catch (RecordNotFoundException ex) {
+            return -1;
+        }
     }
 
     public List<User> getUsers() {

@@ -12,6 +12,9 @@ import java.util.List;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class User implements Serializable {
+    public static final int ACTIVE = 1;
+    public static final int INACTIVE = 0;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

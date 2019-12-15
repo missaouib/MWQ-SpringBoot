@@ -29,6 +29,13 @@ public class VerifySMSService {
         repository.deleteById(id);
     }
 
+    public void deleteByPhoneNumber(String phoneNumber) {
+        List<VerifySMS> entities = repository.findByPhoneNumber(phoneNumber);
+        for(VerifySMS entity : entities) {
+            repository.deleteById(entity.getId());
+        }
+    }
+
     public boolean canRegisterPhoneNumber(String phoneNumber)  {
         List<VerifySMS> entities = repository.findByPhoneNumberAndExpiredOrderByCreatedAtDesc(phoneNumber, true);
 

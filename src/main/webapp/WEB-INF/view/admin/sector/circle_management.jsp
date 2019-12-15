@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,35 +69,69 @@
                                     <thead class="table_head">
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1"
-                                            rowspan="1" colspan="1">logo
+                                            rowspan="1" colspan="1"> 圈子LOGO
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" aria-label="
-                                                 Full Name
-                                            : activate to sort column ascending">圈子名称
+                                            colspan="1" > 圈子名称
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" aria-label="
-                                                 Delete
-                                            : activate to sort column ascending">操作
+                                            colspan="1" > 成员
+                                        </th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                            colspan="1"> 状态
+                                        </th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                            colspan="1" > 更新日期
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                            colspan="1" > 操作
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr role="row" class="odd" data-id="1">
-                                        <td class="sorting_1">logo</td>
-                                        <td>circle name</td>
-                                        <td>
-                                            <a class="btn success btn-xs black" href="javascript:;">
-                                                <i class="livicon" data-name="edit" data-loop="true" data-color="#fff" data-hovercolor="black" data-size="14"></i>
-                                                <span style="color: white;">编辑</span>
-                                            </a>
-                                            <a class="delete btn danger btn-xs black" href="javascript:;">
-                                                <i class="livicon" data-name="trash" data-loop="true" data-color="#fff" data-hovercolor="black" data-size="14"></i>
-                                                <span style="color: white;">删除</span>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                        <c:forEach var="group" varStatus="status" items="${groups}">
+                                            <c:choose>
+                                                <c:when test="${status.index % 2 == 1}">
+                                                    <c:set value="odd" var="class_type" />
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:set value="even" var="class_type" />
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <tr role="row" class="${class_type}" data-id="${group.id}">
+                                                <td><c:out value="${group.title}" /></td>
+                                                <td>
+                                                    <c:if test="${group.logoUrl != ''}">
+                                                        <img src="${group.logoUrl}" style="max-width: 100px; max-height: 50px;">
+                                                    </c:if>
+                                                </td>
+                                                <td><c:out value="${group.userCount}" /></td>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${group.status == 0}">
+                                                            <div class="status badge badge-secondary round mouse_hover" data-status="0"><span>已停用</span></div>
+                                                        </c:when>
+                                                        <c:when test="${group.status == 1}">
+                                                            <div class="status badge badge-secondary round mouse_hover" data-status="1"><span>有效</span></div>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <div class="status badge badge-success round mouse_hover" data-status="2"><span>审核</span></div>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
+                                                <td><fmt:formatDate value="${group.updatedAt}" pattern="yyyy年MM月dd日"/></td>
+                                                <td>
+                                                    <a class="btn success btn-xs black" href="javascript:;">
+                                                        <i class="livicon" data-name="edit" data-loop="true" data-color="#fff" data-hovercolor="black" data-size="14"></i>
+                                                        <span style="color: white;">编辑</span>
+                                                    </a>
+                                                    <a class="delete btn danger btn-xs black" href="javascript:;">
+                                                        <i class="livicon" data-name="trash" data-loop="true" data-color="#fff" data-hovercolor="black" data-size="14"></i>
+                                                        <span style="color: white;">删除</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

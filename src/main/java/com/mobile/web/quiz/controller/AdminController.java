@@ -1,7 +1,9 @@
 package com.mobile.web.quiz.controller;
 
 import com.mobile.web.quiz.config.Config;
+import com.mobile.web.quiz.exception.RecordNotFoundException;
 import com.mobile.web.quiz.model.Group;
+import com.mobile.web.quiz.model.User;
 import com.mobile.web.quiz.model.admin.AdminUser;
 import com.mobile.web.quiz.model.admin.Article;
 import com.mobile.web.quiz.model.admin.Notice;
@@ -138,6 +140,31 @@ public class AdminController {
         return "admin/user/user_list";
     }
 
+    @PostMapping({"/admin/del-user"})
+    @ResponseBody
+    public HashMap<String, Object> deleteUser(@RequestParam Map<String, String> params) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        String id = params.get("id");
+        userService.delete(Long.parseLong(id));
+
+        response.put("status", true);
+        return response;
+    }
+
+    @PostMapping({"/admin/user-status"})
+    @ResponseBody
+    public HashMap<String, Object> changeUserStatus(@RequestParam Map<String, String> params) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        String id = params.get("id");
+
+        int status = userService.changeStatus(Long.parseLong(id));
+
+        response.put("status", status);
+        return response;
+    }
+
     @Autowired
     private UserLoginHistoryService loginHistoryService;
 
@@ -262,7 +289,7 @@ public class AdminController {
         return "admin/sector/add_circle";
     }
 
-    @PostMapping({"/admin/add-circle"})
+    @PostMapping({"/admin/add-group"})
     @ResponseBody
     public HashMap<String, Object> addGroup(@RequestParam Map<String, String> params, @RequestParam Map<String, MultipartFile> files) {
         HashMap<String, Object> response = new HashMap<>();
@@ -270,13 +297,14 @@ public class AdminController {
         boolean status = false;
         if (params.size() != 0 || files.size() !=0) {
             String title = params.get("title");
-            MultipartFile logo = files.get("logo");
+            MultipartFile logo = files.get("image");
             String logoUrl = saveUploadedFile(UploadDirectories.GROUP, logo);
 
             if (logoUrl != null) {
                 Group newGroup = new Group();
                 newGroup.setTitle(title);
                 newGroup.setLogoUrl(logoUrl);
+                newGroup.setStatus(Group.PENDING);
 
                 groupService.add(newGroup);
                 status = true;
@@ -303,6 +331,7 @@ public class AdminController {
 
     @GetMapping({"/admin/circle-management"})
     public String groupList(Model model) {
+        model.addAttribute("groups", groupService.getGroups());
         model.addAttribute("sideBarItem", new SideBarItem("plate", "circle-management"));
         return "admin/sector/circle_management";
     }

@@ -110,7 +110,7 @@ public class AuthController extends BaseController {
                 newUser.setName(username);
                 newUser.setPhoneNumber(phoneNumber);
                 newUser.setPassword(CommonUtils.getMD5Hex(password));
-                newUser.setStatus(1);
+                newUser.setStatus(User.INACTIVE);
 
                 userService.add(newUser);
 
