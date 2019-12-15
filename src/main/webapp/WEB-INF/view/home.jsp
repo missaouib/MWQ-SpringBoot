@@ -86,10 +86,10 @@
                 <div class="col-xs-3">
                     <a href="<%=request.getContextPath()%>/circle/${group.id}">
                         <div>
-                            <img src="${group.logoUrl}" style="width: 100%; border-radius: 10px;">
+                            <img src="${group.logoUrl}" style="width: 100%; height: 45px; border-radius: 10px;">
                         </div>
                         <div style="height:18px;">
-                            <span class="site_font" style="font-size: 13px;"><c:out value="${group.title}" /></span>
+                            <span class="site_font" style="font-size: 13px; color: black;"><c:out value="${group.title}" /></span>
                         </div>
                         <div>
                             <span class="site_font" style="color: lightgrey; font-size: 12px;"><c:out value="${group.userCount}" />人</span>

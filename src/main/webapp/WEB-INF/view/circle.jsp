@@ -36,7 +36,7 @@
         <div class="row" style="height: 100%;">
             <div style="background-image: url('/img/raw_1492697498.png'); height: 100%; padding: 18px 0; color: white;">
                 <div class="col-xs-2">
-                    <img src="${group.logoUrl}" style="width: 147%; border-radius: 50%;">
+                    <img src="${group.logoUrl}" style="width: 45px; height: 45px; border-radius: 50%;">
                 </div>
                 <div class="col-xs-6">
                     <p><c:out value="${group.title}" /></p>
@@ -137,7 +137,9 @@
     </section>
     <div class="page_footer text-center">
         <div class="row" style="height: 100%; margin: 0; padding-top: 11px; background-color: rgb(255, 152, 0); color: white;">
-            <span class="site_font">发布话题</span>
+            <a href="<%=request.getContextPath()%>/releasepost">
+            <span class="site_font" style="color: white;">发布话题</span>
+            </a>
         </div>
     </div>
 </div>
