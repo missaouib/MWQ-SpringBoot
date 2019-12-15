@@ -31,7 +31,7 @@
 
     <div class="row">
         <div class="col-xs-12 text-center" style="padding-top: 2rem; padding-bottom: 2rem;">
-           <button class="user_setting_button">＋ 收货地址</button>
+           <a href="<%=request.getContextPath()%>/myaddress" class="user_setting_button" style="color: black;">＋ 收货地址</a>
         </div>
     </div>
 
@@ -72,18 +72,22 @@
         </div>
     </div>
 
-    <div class="page_footer text-center">
-        <div class="row" style="height: 100%; margin: 0; padding-top: 11px; background-color: rgb(255, 152, 0); color: white;">
-            <span class="site_font">立即支付</span>
-        </div>
-    </div>
-
     <div class="row">
         <div class="col-xs-6"></div>
         <div class="col-xs-6 text-right" style="padding-top: 1rem; padding-bottom: 1rem;">
             <span style="color: rgb(255, 168, 0);">合计：¥ 3243.00 </span>
         </div>
     </div>
+
+    <div class="page_footer text-center">
+        <div class="row" style="height: 100%; margin: 0; padding-top: 11px; background-color: rgb(255, 152, 0); color: white;">
+            <a href="<%=request.getContextPath()%>/myorder" style="color: white;">
+                <span class="site_font">立即支付</span>
+            </a>
+        </div>
+    </div>
+
+
 </div>
 <script src="/js/app.js"></script>
 <script>

@@ -29,7 +29,7 @@
         </div>
     </section>
 
-    <div class="row" style="padding-top: 1rem;">
+    <div class="row" style="padding-top: 1rem; padding-bottom: 1rem; border-bottom: solid thin silver;">
         <div class="col-xs-2">
             <p>张三</p>
         </div>
@@ -43,7 +43,7 @@
             地址：杭州市滨江区南环路13号
         </div>
     </div>
-    <div class="row" style="padding-top: 3rem;">
+    <div class="row" style="padding-top: 2rem; padding-bottom: 1rem; border-bottom: solid thin silver;">
         <div class="col-xs-2">
             <p>张三</p>
         </div>
