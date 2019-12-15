@@ -3,10 +3,7 @@ package com.mobile.web.quiz.controller;
 import com.mobile.web.quiz.model.BottomBarItem;
 import com.mobile.web.quiz.model.BottomBarItem2;
 import com.mobile.web.quiz.model.User;
-import com.mobile.web.quiz.service.BottomBarService;
-import com.mobile.web.quiz.service.UserLoginHistoryService;
-import com.mobile.web.quiz.service.UserService;
-import com.mobile.web.quiz.service.VerifySMSService;
+import com.mobile.web.quiz.service.*;
 import com.mobile.web.quiz.service.admin.ArticleService;
 import com.mobile.web.quiz.service.admin.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +36,9 @@ public class BaseController {
 
     @Autowired
     protected ArticleService articleService;
+
+    @Autowired
+    protected GroupService groupService;
 
     @Autowired
     protected BottomBarService bottomBarService;

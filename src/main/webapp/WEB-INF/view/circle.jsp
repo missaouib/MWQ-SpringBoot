@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,11 +36,11 @@
         <div class="row" style="height: 100%;">
             <div style="background-image: url('/img/raw_1492697498.png'); height: 100%; padding: 18px 0; color: white;">
                 <div class="col-xs-2">
-                    <img src="img/v2_pvfw1g.png" style="width: 147%; border-radius: 50%;">
+                    <img src="${group.logoUrl}" style="width: 147%; border-radius: 50%;">
                 </div>
                 <div class="col-xs-6">
-                    <p>时时彩圈子</p>
-                    <p>成员: <span>15451</span> <span>帖子数: 578</span></p>
+                    <p><c:out value="${group.title}" /></p>
+                    <p>成员: <span><c:out value="${group.userCount}" /></span> <span>帖子数: 578</span></p>
                 </div>
                 <div class="col-xs-4">
                     <button style="background-color: white; color: rgb(255, 152, 0); padding: 5px 22px; border: none; border-radius: 5px; margin-top: 9px; margin-left: 1rem;">关注</button>

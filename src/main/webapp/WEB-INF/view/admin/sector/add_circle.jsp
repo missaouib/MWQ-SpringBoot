@@ -160,7 +160,7 @@
     }
 
     function reset() {
-        $("#content").val("");
+        $("#title").val("");
         $("#image").val("");
         $(".fileinput-preview").html("");
     }

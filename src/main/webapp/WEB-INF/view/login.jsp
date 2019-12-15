@@ -41,6 +41,8 @@
                         </div>
                         <div class="col-xs-1"></div>
                     </div>
+
+                    <input type="hidden" name="redirectCtrl" value="${redirectCtrl}">
                 </form>
             </section>
             <div class="row">

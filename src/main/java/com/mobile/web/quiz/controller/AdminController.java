@@ -317,6 +317,31 @@ public class AdminController {
         return response;
     }
 
+    @PostMapping({"/admin/approve-group"})
+    @ResponseBody
+    public HashMap<String, Object> approveGroup(@RequestParam Map<String, String> params) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        String id = params.get("id");
+        boolean status = groupService.approve(Long.parseLong(id));
+
+        response.put("status", status);
+        return response;
+    }
+
+    @PostMapping({"/admin/group-status"})
+    @ResponseBody
+    public HashMap<String, Object> changeGroupStatus(@RequestParam Map<String, String> params) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        String id = params.get("id");
+
+        int status = groupService.changeStatus(Long.parseLong(id));
+
+        response.put("status", status);
+        return response;
+    }
+
     @PostMapping({"/admin/del-group"})
     @ResponseBody
     public HashMap<String, Object> deleteGroup(@RequestParam Map<String, String> params) {
@@ -331,7 +356,7 @@ public class AdminController {
 
     @GetMapping({"/admin/circle-management"})
     public String groupList(Model model) {
-        model.addAttribute("groups", groupService.getGroups());
+        model.addAttribute("groups", groupService.getApprovedGroups());
         model.addAttribute("sideBarItem", new SideBarItem("plate", "circle-management"));
         return "admin/sector/circle_management";
     }
@@ -363,12 +388,14 @@ public class AdminController {
 
     @GetMapping({"/admin/audited"})
     public String audited(Model model) {
+        model.addAttribute("groups", groupService.getApprovedGroups());
         model.addAttribute("sideBarItem", new SideBarItem("review", "audited"));
         return "admin/audit/audited";
     }
 
     @GetMapping({"/admin/pending-review"})
     public String pendingReview(Model model) {
+        model.addAttribute("groups", groupService.getPendingGroups());
         model.addAttribute("sideBarItem", new SideBarItem("review", "pending"));
         return "admin/audit/pending_review";
     }

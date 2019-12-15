@@ -4,6 +4,7 @@ import com.mobile.web.quiz.model.admin.Notice;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,6 +25,9 @@ public class MainController extends BaseController  {
 
         model.addAttribute("notices", notices.toString());
         model.addAttribute("popularArticles", articleService.getPopularArticles());
+
+        model.addAttribute("popularGroups", groupService.getPopularGroups());
+
         model.addAttribute("bottomBar", getBottomBarItems(0));
 
         return "home";
@@ -52,12 +56,16 @@ public class MainController extends BaseController  {
             model.addAttribute("bottomBar", getBottomBarItems(3));
             return "user";
         } else {
+            model.addAttribute("redirectCtrl", "profile");
             return "login";
         }
     }
 
-    @GetMapping({"/circle"})
-    public String circle(Model model) { return "circle"; }
+    @GetMapping({"/circle/{id}"})
+    public String viewGroup(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("group", groupService.getGroupById(id));
+        return "circle";
+    }
 
     @GetMapping({"/releasepost"})
     public String releasepost(Model model) { return "releasepost"; }

@@ -57,10 +57,9 @@ jQuery(document).ready(function()
 
         $('#deleteConfirmModal_1').data('id', id).modal('show');
 
-
         $('#delete_item_1').click(function () {
             var id = $('#deleteConfirmModal_1').data('id');
-            $.post("/admin/---", {id: id},
+            $.post("/admin/del-group", {id: id},
                 function (result) {
                     if (result.status) {
                         tr_ele.remove();
@@ -76,16 +75,30 @@ jQuery(document).ready(function()
         });
     });
 
-    table1.on('click', '.cancel', function (e) {
+    table1.on('click', '.enable', function (e) {
         e.preventDefault();
 
-        if (nNew) {
-            oTable.fnDeleteRow(nEditing);
-            nNew = false;
-        } else {
-            restoreRow(oTable, nEditing);
-            nEditing = null;
-        }
+        var id = $(this).closest('tr').data('id');
+        var tr_ele = $(this).closest('tr');
+
+        $('#enableConfirmModal_1').data('id', id).modal('show');
+
+        $('#enable_item_1').click(function () {
+            var id = $('#enableConfirmModal_1').data('id');
+            $.post("/admin/approve-group", {id: id},
+                function (result) {
+                    if (result.status) {
+                        tr_ele.remove();
+
+                        $('#enableConfirmModal_1').modal('hide');
+                    } else {
+                        $('#enableConfirmModal_1').modal('hide');
+
+                        swal("警告", "删除失败。", "warning");
+                    }
+                }
+            );
+        });
     });
 
     // table 2

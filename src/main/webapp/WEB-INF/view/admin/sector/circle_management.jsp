@@ -67,26 +67,26 @@
                                 <table class="table table-striped table-bordered table-hover dataTable no-footer"
                                        id="circle_management_table" role="grid">
                                     <thead class="table_head">
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1"
-                                            rowspan="1" colspan="1"> 圈子LOGO
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 圈子名称
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 成员
-                                        </th>
-                                        <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1"> 状态
-                                        </th>
-                                        <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 更新日期
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 操作
-                                        </th>
-                                    </tr>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1"
+                                                rowspan="1" colspan="1"> 圈子LOGO
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" > 圈子名称
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" > 成员
+                                            </th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" > 更新日期
+                                            </th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1"> 状态
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" > 操作
+                                            </th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach var="group" varStatus="status" items="${groups}">
@@ -106,20 +106,17 @@
                                                     </c:if>
                                                 </td>
                                                 <td><c:out value="${group.userCount}" /></td>
+                                                <td><fmt:formatDate value="${group.updatedAt}" pattern="yyyy年MM月dd日"/></td>
                                                 <td>
                                                     <c:choose>
                                                         <c:when test="${group.status == 0}">
                                                             <div class="status badge badge-secondary round mouse_hover" data-status="0"><span>已停用</span></div>
                                                         </c:when>
-                                                        <c:when test="${group.status == 1}">
-                                                            <div class="status badge badge-secondary round mouse_hover" data-status="1"><span>有效</span></div>
-                                                        </c:when>
                                                         <c:otherwise>
-                                                            <div class="status badge badge-success round mouse_hover" data-status="2"><span>审核</span></div>
+                                                            <div class="status badge badge-success round mouse_hover" data-status="1"><span>有效</span></div>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </td>
-                                                <td><fmt:formatDate value="${group.updatedAt}" pattern="yyyy年MM月dd日"/></td>
                                                 <td>
                                                     <a class="btn success btn-xs black" href="javascript:;">
                                                         <i class="livicon" data-name="edit" data-loop="true" data-color="#fff" data-hovercolor="black" data-size="14"></i>

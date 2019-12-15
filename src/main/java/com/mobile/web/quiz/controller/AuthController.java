@@ -141,6 +141,10 @@ public class AuthController extends BaseController {
             String phoneNumber = params.get("phone");
             String password = params.get("password");
 
+            String redirectCtrl = params.get("redirectCtrl");
+            System.out.println(redirectCtrl);
+
+
             boolean status = false;
             String message = "";
 
@@ -169,7 +173,7 @@ public class AuthController extends BaseController {
             }
 
             if (status) {
-                return "redirect:";
+                return "redirect:" + redirectCtrl;
             } else {
                 model.addAttribute("phone", phoneNumber);
                 model.addAttribute("password", password);

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
@@ -82,59 +82,21 @@
             </div>
         </div>
         <div class="row text-center border_bottom_line" style="padding-bottom: 1rem;">
-            <div class="col-xs-3">
-                <a href="<%=request.getContextPath()%>/circle">
-                    <div>
-                        <img src="/img/raw_1532277248.jpeg" style="width: 100%; border-radius: 10px;">
-                    </div>
-                    <div style="height:18px;">
-                        <span class="site_font" style="font-size: 13px;">体彩兴趣</span>
-                    </div>
-                    <div>
-                        <span class="site_font" style="color: lightgrey; font-size: 12px;">154万人</span>
-                    </div>
-                </a>
-
-            </div>
-            <div class="col-xs-3">
-                <a href="<%=request.getContextPath()%>/circle">
-                <div>
-                    <img src="/img/raw_1534857014.png" style="width: 100%; border-radius: 10px;">
+            <c:forEach var="group" varStatus="status" items="${popularGroups}">
+                <div class="col-xs-3">
+                    <a href="<%=request.getContextPath()%>/circle/${group.id}">
+                        <div>
+                            <img src="${group.logoUrl}" style="width: 100%; border-radius: 10px;">
+                        </div>
+                        <div style="height:18px;">
+                            <span class="site_font" style="font-size: 13px;"><c:out value="${group.title}" /></span>
+                        </div>
+                        <div>
+                            <span class="site_font" style="color: lightgrey; font-size: 12px;"><c:out value="${group.userCount}" />人</span>
+                        </div>
+                    </a>
                 </div>
-                <div style="height:18px;">
-                    <span class="site_font" style="font-size: 13px;">体彩兴趣</span>
-                </div>
-                <div>
-                    <span class="site_font" style="color: lightgrey; font-size: 12px;">154万人</span>
-                </div>
-                </a>
-            </div>
-            <div class="col-xs-3">
-                <a href="<%=request.getContextPath()%>/circle">
-                <div>
-                    <img src="/img/raw_1526002395.png" style="width: 100%; border-radius: 10px;">
-                </div>
-                <div style="height:18px;">
-                    <span class="site_font" style="font-size: 13px;">体彩兴趣</span>
-                </div>
-                <div>
-                    <span class="site_font" style="color: lightgrey; font-size: 12px;">154万人</span>
-                </div>
-                </a>
-            </div>
-            <div class="col-xs-3">
-                <a href="<%=request.getContextPath()%>/circle">
-                <div>
-                    <img src="/img/raw_1534873085.png" style="width: 100%; border-radius: 10px;">
-                </div>
-                <div style="height:18px;">
-                    <span class="site_font" style="font-size: 13px;">体彩兴趣</span>
-                </div>
-                <div>
-                    <span class="site_font" style="color: lightgrey; font-size: 12px;">154万人</span>
-                </div>
-                </a>
-            </div>
+            </c:forEach>
         </div>
     </section>
     <section class="content" style="background-color: white; ">
