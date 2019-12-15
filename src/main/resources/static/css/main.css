@@ -187,6 +187,28 @@ button {
     padding: 9px 17px;
 }
 
+.product_detail_b_l_btn {
+    height: 100%;
+    width: 30%;
+    float: left;
+    background-color: rgb(255, 152, 0);
+    color: white;
+    font-size: 16px;
+    padding-top: 3%;
+    cursor: pointer;
+}
+
+.product_detail_b_r_btn {
+    height: 100%;
+    width: 40%;
+    float: left;
+    background-color: rgb(255, 153, 190);
+    color: white;
+    font-size: 16px;
+    padding-top: 3%;
+    cursor: pointer;
+}
+
 .tabtop .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     border-top: 4px solid #F89A14 !important;
     border-right: 1px solid #F89A14 !important;

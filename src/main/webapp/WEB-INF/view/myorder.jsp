@@ -13,6 +13,8 @@
     <link href="/vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
     <link href="/vendors/ionicons/css/ionicons.min.css" rel="stylesheet">
     <link href="/css/pages/icon.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/pages/tab.css" />
 </head>
 <body>
 <div class="wrapper main_page" style="background-color: white;">
@@ -31,25 +33,42 @@
 
     <div class="row">
         <div class="text-center" style="float: left; width: 100%; border-top: solid thin lightgrey; border-bottom: solid thin lightgrey; padding-top:8px; padding-bottom: 8px;">
-            <div style="width: 20%; float: left;">
-                <span style="color: rgb(255, 152, 0);">全部</span>
-            </div>
-            <div style="width: 20%; float: left;">
-                <span>待付款</span>
-            </div>
-            <div style="width: 20%; float: left;">
-                <span>待发货</span>
-            </div>
-            <div style="width: 20%; float: left;">
-                <span>待收货</span>
-            </div>
-            <div style="width: 20%; float: left;">
-                <span>退款/售后</span>
-            </div>
+<%--            <div style="width: 20%; float: left;">--%>
+<%--                <span style="color: rgb(255, 152, 0);">全部</span>--%>
+<%--            </div>--%>
+<%--            <div style="width: 20%; float: left;">--%>
+<%--                <span>待付款</span>--%>
+<%--            </div>--%>
+<%--            <div style="width: 20%; float: left;">--%>
+<%--                <span>待发货</span>--%>
+<%--            </div>--%>
+<%--            <div style="width: 20%; float: left;">--%>
+<%--                <span>待收货</span>--%>
+<%--            </div>--%>
+<%--            <div style="width: 20%; float: left;">--%>
+<%--                <span>退款/售后</span>--%>
+<%--            </div>--%>
+            <ul class="nav nav-tabs" style="font-size: 13px;">
+                <li class="active" style="margin-left: 5px;">
+                    <a href="#tab1" data-toggle="tab">全部</a>
+                </li>
+                <li>
+                    <a href="#tab2" data-toggle="tab">待付款</a>
+                </li>
+                <li>
+                    <a href="#tab3" data-toggle="tab">待发货</a>
+                </li>
+                <li>
+                    <a href="#tab4" data-toggle="tab">待收货</a>
+                </li>
+                <li>
+                    <a href="#tab5" data-toggle="tab">退款/售后</a>
+                </li>
+            </ul>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row tab-pane active" id="tab1">
         <div style="background-color: whitesmoke; border-bottom: solid thin rgb(187, 187, 187); height: 60px; padding-top: 5px;">
             <div class="col-xs-3">
                 <img src="/img/raw_1517891489.png" style="width: 100%; height: 47px;">
@@ -90,9 +109,174 @@
             </div>
         </div>
     </div>
+    <div class="row tab-pane" id="tab2">
+        <div style="background-color: whitesmoke; border-bottom: solid thin rgb(187, 187, 187); height: 60px; padding-top: 5px;">
+            <div class="col-xs-3">
+                <img src="/img/raw_1517891489.png" style="width: 100%; height: 47px;">
+            </div>
+            <div class="col-xs-9">
+                <div style="float: left; width: 100%;">
+                    <div style="float:left; width: 50%;">
+                        <p>商品名称</p>
+                    </div>
+                    <div class="text-right" style="float: right; width: 50%;">
+                        <p>¥ <span>40.00</span></p>
+                    </div>
+                </div>
+                <div style="float: left; width: 100%;">
+                    <div style="float:left; width: 50%;">
+                        <p>规格：xxxx</p>
+                    </div>
+                    <div class="text-right" style="float: right; width: 50%;">
+                        <p>x 2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; height: 66px; background-color: whitesmoke;">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-8">
+                <p style="font-size: 12px;">共2件商品，合计：49（含运费0.00）</p>
+                <div class="col-xs-6">
+                    <button class="user_setting_button" style="background-color: rgb(190, 194, 201); color: white;">取消订单</button>
+                    <%--                    待发货--%>
+                    <%--                    联系客服--%>
+                    <%--                    已发货--%>
+                    <%--                    查看物流--%>
+                </div>
+                <div class="col-xs-6">
+                    <button class="user_setting_button" style="background-color: rgb(255, 152, 0); color: white;">付款</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row tab-pane" id="tab3">
+        <div style="background-color: whitesmoke; border-bottom: solid thin rgb(187, 187, 187); height: 60px; padding-top: 5px;">
+            <div class="col-xs-3">
+                <img src="/img/raw_1517891489.png" style="width: 100%; height: 47px;">
+            </div>
+            <div class="col-xs-9">
+                <div style="float: left; width: 100%;">
+                    <div style="float:left; width: 50%;">
+                        <p>商品名称</p>
+                    </div>
+                    <div class="text-right" style="float: right; width: 50%;">
+                        <p>¥ <span>40.00</span></p>
+                    </div>
+                </div>
+                <div style="float: left; width: 100%;">
+                    <div style="float:left; width: 50%;">
+                        <p>规格：xxxx</p>
+                    </div>
+                    <div class="text-right" style="float: right; width: 50%;">
+                        <p>x 2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; height: 66px; background-color: whitesmoke;">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-8">
+                <p style="font-size: 12px;">共2件商品，合计：49（含运费0.00）</p>
+                <div class="col-xs-6">
+                    <button class="user_setting_button" style="background-color: rgb(190, 194, 201); color: white;">取消订单</button>
+                    <%--                    待发货--%>
+                    <%--                    联系客服--%>
+                    <%--                    已发货--%>
+                    <%--                    查看物流--%>
+                </div>
+                <div class="col-xs-6">
+                    <button class="user_setting_button" style="background-color: rgb(255, 152, 0); color: white;">付款</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row tab-pane" id="tab4">
+        <div style="background-color: whitesmoke; border-bottom: solid thin rgb(187, 187, 187); height: 60px; padding-top: 5px;">
+            <div class="col-xs-3">
+                <img src="/img/raw_1517891489.png" style="width: 100%; height: 47px;">
+            </div>
+            <div class="col-xs-9">
+                <div style="float: left; width: 100%;">
+                    <div style="float:left; width: 50%;">
+                        <p>商品名称</p>
+                    </div>
+                    <div class="text-right" style="float: right; width: 50%;">
+                        <p>¥ <span>40.00</span></p>
+                    </div>
+                </div>
+                <div style="float: left; width: 100%;">
+                    <div style="float:left; width: 50%;">
+                        <p>规格：xxxx</p>
+                    </div>
+                    <div class="text-right" style="float: right; width: 50%;">
+                        <p>x 2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; height: 66px; background-color: whitesmoke;">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-8">
+                <p style="font-size: 12px;">共2件商品，合计：49（含运费0.00）</p>
+                <div class="col-xs-6">
+                    <button class="user_setting_button" style="background-color: rgb(190, 194, 201); color: white;">取消订单</button>
+                    <%--                    待发货--%>
+                    <%--                    联系客服--%>
+                    <%--                    已发货--%>
+                    <%--                    查看物流--%>
+                </div>
+                <div class="col-xs-6">
+                    <button class="user_setting_button" style="background-color: rgb(255, 152, 0); color: white;">付款</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row tab-pane" id="tab5">
+        <div style="background-color: whitesmoke; border-bottom: solid thin rgb(187, 187, 187); height: 60px; padding-top: 5px;">
+            <div class="col-xs-3">
+                <img src="/img/raw_1517891489.png" style="width: 100%; height: 47px;">
+            </div>
+            <div class="col-xs-9">
+                <div style="float: left; width: 100%;">
+                    <div style="float:left; width: 50%;">
+                        <p>商品名称</p>
+                    </div>
+                    <div class="text-right" style="float: right; width: 50%;">
+                        <p>¥ <span>40.00</span></p>
+                    </div>
+                </div>
+                <div style="float: left; width: 100%;">
+                    <div style="float:left; width: 50%;">
+                        <p>规格：xxxx</p>
+                    </div>
+                    <div class="text-right" style="float: right; width: 50%;">
+                        <p>x 2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; height: 66px; background-color: whitesmoke;">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-8">
+                <p style="font-size: 12px;">共2件商品，合计：49（含运费0.00）</p>
+                <div class="col-xs-6">
+                    <button class="user_setting_button" style="background-color: rgb(190, 194, 201); color: white;">取消订单</button>
+                    <%--                    待发货--%>
+                    <%--                    联系客服--%>
+                    <%--                    已发货--%>
+                    <%--                    查看物流--%>
+                </div>
+                <div class="col-xs-6">
+                    <button class="user_setting_button" style="background-color: rgb(255, 152, 0); color: white;">付款</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 <script src="/js/app.js"></script>
+<script src="/js/admin/pending_review_tab.js" type="text/javascript"></script>
 <script>
     function goBack() {
         window.history.go(-1);

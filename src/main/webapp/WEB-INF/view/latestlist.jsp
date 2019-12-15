@@ -14,7 +14,12 @@
 <body>
 <div class="wrapper main_page" style="background-color: white;">
     <div class="text-center latest_list_top_div">
-        <p style="font-size: 19px;">最新榜单</p>
+        <div style="float:left;">
+            <button class="user_setting_button" onclick="goBack()">
+                <i class="fa fa-fw fa-angle-left" style="font-size: 20px;"></i>
+            </button>
+        </div>
+        <p class="text-left" style="font-size: 19px; margin-left: 15rem;">最新榜单</p>
         <button class="latest_list_cover_button">人气热榜</button>
     </div>
     <div class="row" style="height: 4rem; width: 100%;"></div>
@@ -77,5 +82,10 @@
     </div>
 </div>
 <script src="/js/app.js"></script>
+<script>
+    function goBack() {
+        window.history.go(-1);
+    }
+</script>
 </body>
 </html>
