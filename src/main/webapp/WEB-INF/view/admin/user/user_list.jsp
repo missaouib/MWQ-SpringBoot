@@ -113,7 +113,7 @@
                                                             <c:set value="${user.photo}" var="photo_path" />
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <c:set value="/img/v2_pxxlpo.png" var="photo_path" />
+                                                            <c:set value="/img/user_placeholder.png" var="photo_path" />
                                                         </c:otherwise>
                                                     </c:choose>
                                                     <img src="${photo_path}" class="user_avata">

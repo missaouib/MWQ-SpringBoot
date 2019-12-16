@@ -6,8 +6,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -74,8 +73,16 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     private List<Group> groups;
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -90,6 +97,22 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedAt;
+
+    @Override
+    public boolean equals(Object other) {
+        if(this == other)
+            return true;
+        if(other == null)
+            return false;
+        if(getClass() != other.getClass())
+            return false;
+
+        User user = (User)other;
+        if(this.id.equals(user.getId()))
+            return true;
+
+        return false;
+    }
 
     @Override
     public String toString() {

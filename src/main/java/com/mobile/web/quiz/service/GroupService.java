@@ -5,6 +5,7 @@ import com.mobile.web.quiz.model.Group;
 import com.mobile.web.quiz.model.User;
 import com.mobile.web.quiz.model.admin.Article;
 import com.mobile.web.quiz.repository.GroupRepository;
+import com.mobile.web.quiz.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,9 @@ import java.util.Optional;
 public class GroupService {
     @Autowired
     private GroupRepository repository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public void add(Group group) {
         repository.save(group);
@@ -51,6 +55,30 @@ public class GroupService {
         }
     }
 
+    public boolean joinGroup(long groupId, User user) {
+
+        try {
+            Group group = getGroupById(groupId);
+
+            group.getUsers().add(user);
+            repository.save(group);
+
+            return true;
+        } catch (RecordNotFoundException ex) {
+            return false;
+        }
+    }
+
+    public boolean checkExistUser(long groupId, User user) {
+
+        try {
+            Group group = getGroupById(groupId);
+            return group.getUsers().contains(user);
+        } catch (RecordNotFoundException ex) {
+            return false;
+        }
+    }
+
     public List<Group> getAllGroups() {
         return repository.findAll();
     }
@@ -72,7 +100,7 @@ public class GroupService {
                 int c1 = g1.getUserCount();
                 int c2 = g2.getUserCount();
 
-                if (c1 > c2)
+                if (c1 < c2)
                     return 1;
                 else if (c1 == c2)
                     return 0;

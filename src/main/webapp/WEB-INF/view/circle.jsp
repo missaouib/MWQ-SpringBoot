@@ -15,6 +15,7 @@
     <link href="/css/app.css" rel="stylesheet">
     <link href="/vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
     <link href="/vendors/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="/vendors/sweetalert/css/sweetalert.css" rel="stylesheet">
     <link href="/css/pages/icon.css" rel="stylesheet">
 </head>
 <body>
@@ -40,11 +41,13 @@
                 </div>
                 <div class="col-xs-6">
                     <p><c:out value="${group.title}" /></p>
-                    <p>成员: <span><c:out value="${group.userCount}" /></span> <span>帖子数: 578</span></p>
+                    <p>成员: <span id=""><c:out value="${group.userCount}" /></span> <span>帖子数: 578</span></p>
                 </div>
-                <div class="col-xs-4">
-                    <button style="background-color: white; color: rgb(255, 152, 0); padding: 5px 22px; border: none; border-radius: 5px; margin-top: 9px; margin-left: 1rem;">关注</button>
-                </div>
+                <c:if test="${!isJoined}">
+                    <div class="col-xs-4">
+                        <button id="join_button" style="background-color: white; color: rgb(255, 152, 0); padding: 5px 22px; border: none; border-radius: 5px; margin-top: 9px; margin-left: 1rem;">关注</button>
+                    </div>
+                </c:if>
             </div>
         </div>
     </section>
@@ -52,16 +55,21 @@
         <div style="height: 100%; width: 100%;">
             <div class="col-xs-2" style="border-right: solid thin lightgrey;">
                 <p>队长</p>
-                <img src="img/v2_pvfw1g.png" style="width: 100%; border-radius: 50%;">
+                <img src="/img/v2_pvfw1g.png" style="width: 100%; border-radius: 50%;">
             </div>
             <div class="col-xs-8">
-                <p>8412人关注</p>
-                <img src="img/v2_pvfw1g.png" style="width: 13%; border-radius: 50%;">
-                <img src="img/v2_pvfw1g.png" style="width: 13%; border-radius: 50%;  margin-left: 5px;">
-                <img src="img/v2_pvfw1g.png" style="width: 13%; border-radius: 50%;  margin-left: 5px;">
-                <img src="img/v2_pvfw1g.png" style="width: 13%; border-radius: 50%;  margin-left: 5px;">
-                <img src="img/v2_pvfw1g.png" style="width: 13%; border-radius: 50%;  margin-left: 5px;">
-                <img src="img/v2_pvfw1g.png" style="width: 13%; border-radius: 50%;  margin-left: 5px;">
+                <p><c:out value="${group.userCount}" />人关注</p>
+                <c:forEach var="user" items="${group.users}">
+                    <c:choose>
+                        <c:when test="${user.photo != null}">
+                            <c:set value="${user.photo}" var="photo_path" />
+                        </c:when>
+                        <c:otherwise>
+                            <c:set value="/img/user_placeholder.png" var="photo_path" />
+                        </c:otherwise>
+                    </c:choose>
+                    <img src="${photo_path}" class="user_avata" style="width: 13%; border-radius: 50%;">
+                </c:forEach>
             </div>
             <div class="col-xs-2">
                 <button class="user_setting_button" style="margin-top: 3rem;">
@@ -142,11 +150,65 @@
             </a>
         </div>
     </div>
+
+    <form action="<%=request.getContextPath()%>/join-group" method="post">
+        <input type="hidden" id="response_status" value="${status}">
+        <input type="hidden" id="group_id" name="id" value="${group.id}">
+    </form>
+
+    <!-- content -->
+    <div class="modal fade" id="joinConfirmModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">关注圈子</h4>
+                </div>
+                <div class="modal-body">
+                    <p>确定关注吗？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-success" id="join_group" data-dismiss="modal">关注
+                    </button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 </div>
 <script src="/js/app.js"></script>
+<script src="<%=request.getContextPath()%>/vendors/sweetalert/js/sweetalert.min.js"></script>
 <script>
+    $(document).ready(function(){
+        if ($('#response_status').val() == 'true') {
+            $('#joinConfirmModal').modal('hide');
+            swal("成功！", "", "success");
+        } else if ($('#response_status').val() == 'false') {
+            $('#joinConfirmModal').modal('hide');
+            swal("警告", "关注圈子失败。", "warning");
+        }
+
+        $("#join_button").click(function(){
+            join();
+        });
+    });
+
     function goBack() {
-        window.history.go(-1);
+        window.location.href="<%=request.getContextPath()%>/home"
+    }
+
+    function join() {
+
+        var group_id = $('#group_id').val();
+
+        $('#joinConfirmModal').data('id', group_id).modal('show');
+
+        $('#join_group').click(function () {
+            $('form').submit();
+        });
     }
 </script>
 </body>

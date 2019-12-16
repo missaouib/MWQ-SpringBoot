@@ -3,10 +3,11 @@ package com.mobile.web.quiz.controller;
 import com.mobile.web.quiz.model.admin.Notice;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class MainController extends BaseController  {
@@ -63,7 +64,36 @@ public class MainController extends BaseController  {
 
     @GetMapping({"/circle/{id}"})
     public String viewGroup(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("group", groupService.getGroupById(id));
+        if (isLoggedIn()) {
+            model.addAttribute("group", groupService.getGroupById(id));
+            model.addAttribute("isJoined", groupService.checkExistUser(id, getLoggedUser()));
+            return "circle";
+        } else {
+            model.addAttribute("redirectCtrl", "circle/" + id);
+            return "login";
+        }
+    }
+
+    @PostMapping({"/join-group"})
+//    @ResponseBody
+//    public HashMap<String, Object> joinGroup(@RequestParam Map<String, String> params) {
+//        HashMap<String, Object> response = new HashMap<>();
+//
+//        String groupId = params.get("id");
+//
+//        boolean status = groupService.joinGroup(Long.parseLong(groupId), getLoggedUser());
+//
+//        response.put("status", status);
+//        return response;
+//    }
+    public String joinGroup(Model model, @RequestParam Map<String, String> params) {
+
+        long groupId = Long.parseLong(params.get("id"));
+        boolean status = groupService.joinGroup(groupId, getLoggedUser());
+
+        model.addAttribute("group", groupService.getGroupById(groupId));
+        model.addAttribute("isJoined", groupService.checkExistUser(groupId, getLoggedUser()));
+        model.addAttribute("status", status);
         return "circle";
     }
 

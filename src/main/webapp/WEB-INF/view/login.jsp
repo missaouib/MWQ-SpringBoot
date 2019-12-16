@@ -21,7 +21,7 @@
         <div class="wrapper main_page" style="background-color: white;">
             <section class="content" style="margin-bottom: 1rem;">
                 <div style="height: 120px; width: 100%;">
-                    <img src="img/raw_1536823039.png"  style="height: 100%; width: 100%;">
+                    <img src="/img/raw_1536823039.png"  style="height: 100%; width: 100%;">
                 </div>
             </section>
             <section class="content" style="background-color: white;">

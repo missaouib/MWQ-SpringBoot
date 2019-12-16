@@ -11,9 +11,9 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = Group.tableName)
+@Table(name = Post.tableName)
 @EntityListeners(AuditingEntityListener.class)
-public class Group implements Serializable {
+public class Post implements Serializable {
     public static final String tableName = "groups";
 
     public static final int ACTIVE = 1;
