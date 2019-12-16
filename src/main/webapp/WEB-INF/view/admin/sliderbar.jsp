@@ -30,11 +30,11 @@
                                 <i class="fa fa-angle-double-right"></i> 用户列表
                             </a>
                         </li>
-                        <li class="<%= sideBarItem.getMainMenu().equals("user") && sideBarItem.getSubMenu().equals("analysis")? "active" : ""%>">
-                            <a href="/admin/user-analysis">
-                                <i class="fa fa-angle-double-right"></i> 用户分析
-                            </a>
-                        </li>
+<%--                        <li class="<%= sideBarItem.getMainMenu().equals("user") && sideBarItem.getSubMenu().equals("analysis")? "active" : ""%>">--%>
+<%--                            <a href="/admin/user-analysis">--%>
+<%--                                <i class="fa fa-angle-double-right"></i> 用户分析--%>
+<%--                            </a>--%>
+<%--                        </li>--%>
                         <li class="<%= sideBarItem.getMainMenu().equals("user") && sideBarItem.getSubMenu().equals("login-history")? "active" : ""%>">
                             <a href="/admin/user-login-history">
                                 <i class="fa fa-angle-double-right"></i> 登录历史
@@ -176,16 +176,16 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="sub-menu">
-                        <li class="<%= sideBarItem.getMainMenu().equals("settings") && sideBarItem.getSubMenu().equals("basic")? "active" : ""%>">
-                            <a href="/admin/setting-basic">
-                                <i class="fa fa-angle-double-right"></i> 基本设置
-                            </a>
-                        </li>
-                        <li class="<%= sideBarItem.getMainMenu().equals("settings") && sideBarItem.getSubMenu().equals("parameter")? "active" : ""%>">
-                            <a href="/admin/setting-parameter">
-                                <i class="fa fa-angle-double-right"></i> 参数设置
-                            </a>
-                        </li>
+<%--                        <li class="<%= sideBarItem.getMainMenu().equals("settings") && sideBarItem.getSubMenu().equals("basic")? "active" : ""%>">--%>
+<%--                            <a href="/admin/setting-basic">--%>
+<%--                                <i class="fa fa-angle-double-right"></i> 基本设置--%>
+<%--                            </a>--%>
+<%--                        </li>--%>
+<%--                        <li class="<%= sideBarItem.getMainMenu().equals("settings") && sideBarItem.getSubMenu().equals("parameter")? "active" : ""%>">--%>
+<%--                            <a href="/admin/setting-parameter">--%>
+<%--                                <i class="fa fa-angle-double-right"></i> 参数设置--%>
+<%--                            </a>--%>
+<%--                        </li>--%>
                         <li class="<%= sideBarItem.getMainMenu().equals("settings") && sideBarItem.getSubMenu().equals("menu")? "active" : ""%>">
                             <a href="/admin/setting-menu">
                                 <i class="fa fa-angle-double-right"></i> 菜单设置

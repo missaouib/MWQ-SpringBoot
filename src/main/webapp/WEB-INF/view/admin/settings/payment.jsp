@@ -59,112 +59,20 @@
                         <div class="panel-body">
                             <div id="sample_editable_1_wrapper" class="">
                                 <table class="table table-striped table-bordered table-hover dataTable no-footer"
-                                       id="sample_editable_1" role="grid">
+                                       id="payment_setting_table" role="grid">
                                     <thead class="table_head">
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1"
-                                            rowspan="1" colspan="1">Username
+                                            rowspan="1" colspan="1">付款方式
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
                                             colspan="1" aria-label="
                                                  Full Name
-                                            : activate to sort column ascending">Full Name
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" aria-label="
-                                                 Points
-                                            : activate to sort column ascending">Points
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" aria-label="
-                                                 Notes
-                                            : activate to sort column ascending">Notes
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" aria-label="
-                                                 Edit
-                                            : activate to sort column ascending">Edit
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" aria-label="
-                                                 Delete
-                                            : activate to sort column ascending">Delete
+                                            : activate to sort column ascending">操作
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr role="row" class="odd" data-id="1">
-                                        <td class="sorting_1">Tatyana</td>
-                                        <td>Tatyana Nilson</td>
-                                        <td>1234</td>
-                                        <td class="center">power user</td>
-                                        <td>
-                                            <a class="edit" href="javascript:;">Edit</a>
-                                        </td>
-                                        <td>
-                                            <a class="delete" href="javascript:;">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="even" data-id="2">
-                                        <td class="sorting_1">Martena</td>
-                                        <td>Martena Mccray</td>
-                                        <td>62</td>
-                                        <td class="center">new user</td>
-                                        <td>
-                                            <a class="edit" href="javascript:;">Edit</a>
-                                        </td>
-                                        <td>
-                                            <a class="delete" href="javascript:;">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="odd" data-id="3">
-                                        <td class="sorting_1">Cedric</td>
-                                        <td>Cedric Kelly</td>
-                                        <td>132</td>
-                                        <td class="center">elite user</td>
-                                        <td>
-                                            <a class="edit" href="javascript:;">Edit</a>
-                                        </td>
-                                        <td>
-                                            <a class="delete" href="javascript:;">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="even" data-id="4">
-                                        <td class="sorting_1">Sonya</td>
-                                        <td>Sonya Wong</td>
-                                        <td>434</td>
-                                        <td class="center">new user</td>
-                                        <td>
-                                            <a class="edit" href="javascript:;">Edit</a>
-                                        </td>
-                                        <td>
-                                            <a class="delete" href="javascript:;">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="odd" data-id="5">
-                                        <td class="sorting_1">Gavin</td>
-                                        <td>Gavin Joyce</td>
-                                        <td>232</td>
-                                        <td class="center">power user</td>
-                                        <td>
-                                            <a class="edit" href="javascript:;">Edit</a>
-                                        </td>
-                                        <td>
-                                            <a class="delete" href="javascript:;">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="even" data-id="6">
-                                        <td class="sorting_1">Timothy</td>
-                                        <td>Antonio Sanches</td>
-                                        <td>462</td>
-                                        <td class="center">new user</td>
-                                        <td>
-                                            <a class="edit" href="javascript:;">Edit</a>
-                                        </td>
-                                        <td>
-                                            <a class="delete" href="javascript:;">Delete</a>
-                                        </td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -262,7 +170,7 @@
 <script src="/vendors/datatables/js/pdfmake.js"></script>
 <script src="/vendors/datatables/js/vfs_fonts.js"></script>
 <script src="/vendors/datatables/js/dataTables.scroller.js"></script>
-<script src="/js/pages/table-editable.js"></script>
+<script src="/js/admin/payment_setting_table.js"></script>
 <!-- end of page level js -->
 
 </body>
