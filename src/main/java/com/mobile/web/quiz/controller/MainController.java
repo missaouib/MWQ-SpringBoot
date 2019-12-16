@@ -1,16 +1,26 @@
 package com.mobile.web.quiz.controller;
 
+import com.mobile.web.quiz.config.Config;
+import com.mobile.web.quiz.model.Group;
+import com.mobile.web.quiz.model.Post;
 import com.mobile.web.quiz.model.admin.Notice;
+import com.mobile.web.quiz.utils.UploadDirectories;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
-public class MainController extends BaseController  {
+public class MainController extends BaseController {
 
     @GetMapping({"/", "/home"})
     public String index(Model model) {
@@ -19,9 +29,9 @@ public class MainController extends BaseController  {
             notices.append(item.getContent());
             notices.append("，");
         }
-	
+
         if (notices.length() > 0) {
-                notices.deleteCharAt(notices.length() - 1);
+            notices.deleteCharAt(notices.length() - 1);
         }
 
         model.addAttribute("notices", notices.toString());
@@ -49,7 +59,9 @@ public class MainController extends BaseController  {
     }
 
     @GetMapping({"/latestlist"})
-    public String latestlist(Model model) { return "latestlist"; }
+    public String latestlist(Model model) {
+        return "latestlist";
+    }
 
     @GetMapping({"/profile"})
     public String user(Model model, HttpSession session) {
@@ -66,6 +78,7 @@ public class MainController extends BaseController  {
     public String viewGroup(Model model, @PathVariable("id") Long id) {
         if (isLoggedIn()) {
             model.addAttribute("group", groupService.getGroupById(id));
+            model.addAttribute("post", postService.getApprovedPosts(id));
             model.addAttribute("isJoined", groupService.checkExistUser(id, getLoggedUser()));
             return "circle";
         } else {
@@ -109,32 +122,39 @@ public class MainController extends BaseController  {
     }
 
     @GetMapping({"/releasepost"})
-    public String releasepost(Model model) { return "releasepost"; }
+    public String releasepost(Model model, @RequestParam(value = "group_id") long groupId) {
+        model.addAttribute("group_id", groupId);
+        return "releasepost";
+    }
 
     @PostMapping({"/add-post"})
     @ResponseBody
-    public HashMap<String, Object> addPost(@RequestParam Map<String, String> params, @RequestParam Map<String, String[]> images) {
+    public HashMap<String, Object> addPost(@RequestParam long groupId, @RequestParam String message, @RequestParam(value="images[]") String[] images) {
         HashMap<String, Object> response = new HashMap<>();
 
         boolean status = false;
-        /*if (params.size() != 0 || files.size() !=0) {
-            String title = params.get("title");
-            MultipartFile logo = files.get("image");
-            String logoUrl = saveUploadedFile(UploadDirectories.GROUP, logo);
 
-            if (logoUrl != null) {
-                Group newGroup = new Group();
-                newGroup.setTitle(title);
-                newGroup.setLogoUrl(logoUrl);
-                newGroup.setStatus(Group.PENDING);
+        try {
 
-                groupService.add(newGroup);
-                status = true;
-            } else {
-                response.put("message", "fail to upload image");
+            String imageUrls = "";
+            for (String image : images) {
+                String imageUrl = saveUploadedFile(UploadDirectories.POST, image);
+                imageUrls += "@" + imageUrl;
             }
+
+            Post newPost = new Post();
+            newPost.setMessage(message);
+            newPost.setImageUrls(imageUrls.isEmpty() ? "" : imageUrls.substring(1));
+            newPost.setUser(userService.getUserById(getLoggedUser().getId()));
+            newPost.setGroup(groupService.getGroupById(groupId));
+            newPost.setStatus(Post.PENDING);
+
+            postService.add(newPost);
+
+            status = true;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        */
 
         response.put("status", status);
         return response;
@@ -191,5 +211,26 @@ public class MainController extends BaseController  {
     @GetMapping({"/notice-list"})
     public String notice_list(Model model) { return "notice_list"; }
 
+    private String saveUploadedFile(String dest, String fileData) {
+        String uploadedUrl = "";
+
+        try {
+            String extension = fileData.substring("data:image/".length(), fileData.indexOf(";base64,"));
+            String data = fileData.substring(fileData.indexOf(";base64,") + ";base64,".length());
+
+            byte[] bytes = Base64.getDecoder().decode(data);
+
+            String fileName = UUID.randomUUID().toString() + "." + extension;
+            Path savedPath = Paths.get(Config.UPLOAD_DIR.getAbsolutePath(), dest, fileName);
+            Files.write(savedPath, bytes);
+
+            uploadedUrl = Paths.get(Config.UPLOAD_PATH, dest, fileName).toString();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            uploadedUrl = null;
+        }
+
+        return uploadedUrl;
+    }
 }
 

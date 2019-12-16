@@ -80,6 +80,21 @@ public class Group implements Serializable {
         return users.size();
     }
 
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    private List<Post> posts;
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public int getPostCount() {
+        return posts.size();
+    }
+
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate

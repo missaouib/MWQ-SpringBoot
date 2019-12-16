@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-xs-6">
                     <p><c:out value="${group.title}" /></p>
-                    <p>成员: <span id=""><c:out value="${group.userCount}" /></span> <span>帖子数: 578</span></p>
+                    <p>成员: <span id=""><c:out value="${group.userCount}" /></span>&nbsp;&nbsp;<span>帖子数: <c:out value="${post.size()}" /></span></p>
                 </div>
                 <c:if test="${!isJoined}">
                     <div class="col-xs-4">
@@ -145,7 +145,7 @@
     </section>
     <div class="page_footer text-center">
         <div class="row" style="height: 100%; margin: 0; padding-top: 11px; background-color: rgb(255, 152, 0); color: white;">
-            <a href="<%=request.getContextPath()%>/releasepost">
+            <a href="<%=request.getContextPath()%>/releasepost?group_id=${group.id}">
             <span class="site_font" style="color: white;">发布话题</span>
             </a>
         </div>

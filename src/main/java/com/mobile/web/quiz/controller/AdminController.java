@@ -9,10 +9,7 @@ import com.mobile.web.quiz.model.admin.AdminUser;
 import com.mobile.web.quiz.model.admin.Article;
 import com.mobile.web.quiz.model.admin.Notice;
 import com.mobile.web.quiz.model.admin.SideBarItem;
-import com.mobile.web.quiz.service.GroupService;
-import com.mobile.web.quiz.service.ProductService;
-import com.mobile.web.quiz.service.UserLoginHistoryService;
-import com.mobile.web.quiz.service.UserService;
+import com.mobile.web.quiz.service.*;
 import com.mobile.web.quiz.service.admin.AdminUserService;
 import com.mobile.web.quiz.service.admin.ArticleService;
 import com.mobile.web.quiz.service.admin.NoticeService;
@@ -363,6 +360,18 @@ public class AdminController {
         return "admin/sector/circle_management";
     }
 
+    @GetMapping({"/admin/group-user"})
+    public String groupUsers(Model model) {
+        model.addAttribute("sideBarItem", new SideBarItem("plate", "add-circle"));
+        return "admin/sector/group_user";
+    }
+
+    @GetMapping({"/admin/group-post"})
+    public String groupPosts(Model model) {
+        model.addAttribute("sideBarItem", new SideBarItem("plate", "add-circle"));
+        return "admin/sector/group_post";
+    }
+
     @Autowired
     private ProductService productService;
 
@@ -453,6 +462,49 @@ public class AdminController {
         return "admin/order/order_list";
     }
 
+    @Autowired
+    private PostService postService;
+
+    @PostMapping({"/admin/approve-post"})
+    @ResponseBody
+    public HashMap<String, Object> approvePost(@RequestParam Map<String, String> params) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        String id = params.get("id");
+        boolean status = postService.approve(Long.parseLong(id));
+
+        response.put("status", status);
+        return response;
+    }
+
+    @PostMapping({"/admin/post-status"})
+    @ResponseBody
+    public HashMap<String, Object> changePostStatus(@RequestParam Map<String, String> params) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        String id = params.get("id");
+
+        int status = postService.changeStatus(Long.parseLong(id));
+
+        response.put("status", status);
+        return response;
+    }
+
+    @PostMapping({"/admin/del-post"})
+    @ResponseBody
+    public HashMap<String, Object> deletePost(@RequestParam Map<String, String> params) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        String id = params.get("id");
+        postService.delete(Long.parseLong(id));
+
+        response.put("status", true);
+        return response;
+    }
+
+    @Autowired
+    private CommentService commentService;
+
     @GetMapping({"/admin/audited"})
     public String audited(Model model) {
         model.addAttribute("groups", groupService.getApprovedGroups());
@@ -463,6 +515,7 @@ public class AdminController {
     @GetMapping({"/admin/pending-review"})
     public String pendingReview(Model model) {
         model.addAttribute("groups", groupService.getPendingGroups());
+        model.addAttribute("posts", postService.getPendingPosts());
         model.addAttribute("sideBarItem", new SideBarItem("review", "pending"));
         return "admin/audit/pending_review";
     }

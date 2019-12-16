@@ -73,7 +73,7 @@
                                         <a href="#tab_2" data-toggle="tab">主播</a>
                                     </li>
                                     <li>
-                                        <a href="#tab_3" data-toggle="tab">喇叭</a>
+                                        <a href="#tab_3" data-toggle="tab">话题</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content" id="slim2">
@@ -96,7 +96,7 @@
                                                                             colspan="1" > 圈子名称
                                                                         </th>
                                                                         <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                                                            colspan="1" > 更新日期
+                                                                            colspan="1" > 创建日期
                                                                         </th>
                                                                         <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
                                                                             colspan="1"> 状态
@@ -236,61 +236,57 @@
                                                             <table class="table table-striped table-bordered table-hover dataTable no-footer"
                                                                    id="pending_review_table_3" role="grid">
                                                                 <thead class="table_head">
-                                                                <tr role="row">
-                                                                    <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1"
-                                                                        rowspan="1" colspan="1">图片
-                                                                    </th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                                                        colspan="1" aria-label="
-                                                 Full Name
-                                            : activate to sort column ascending">产品名称
-                                                                    </th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                                                        colspan="1" aria-label="
-                                                 Full Name
-                                            : activate to sort column ascending">产品价格
-                                                                    </th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                                                        colspan="1" aria-label="
-                                                 Full Name
-                                            : activate to sort column ascending">快递
-                                                                    </th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                                                        colspan="1" aria-label="
-                                                 Full Name
-                                            : activate to sort column ascending">参数
-                                                                    </th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                                                        colspan="1" aria-label="
-                                                 Full Name
-                                            : activate to sort column ascending">详情
-                                                                    </th>
-                                                                    <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                                                        colspan="1" aria-label="
-                                                 Delete
-                                            : activate to sort column ascending">操作
-                                                                    </th>
-                                                                </tr>
+                                                                    <tr role="row">
+                                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1"
+                                                                            rowspan="1" colspan="1"> 话题内容
+                                                                        </th>
+                                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                                            colspan="1" > 图片
+                                                                        </th>
+                                                                        <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                                            colspan="1" > 创建日期
+                                                                        </th>
+                                                                        <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                                            colspan="1"> 状态
+                                                                        </th>
+                                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                                            colspan="1" > 操作
+                                                                        </th>
+                                                                    </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                <tr role="row" class="odd" data-id="1">
-                                                                    <td class="sorting_1">iamge</td>
-                                                                    <td>product title</td>
-                                                                    <td>product price</td>
-                                                                    <td>product express</td>
-                                                                    <td>product parameter</td>
-                                                                    <td>product detail</td>
-                                                                    <td>
-                                                                        <a class="btn success btn-xs black" href="javascript:;">
-                                                                            <i class="livicon" data-name="edit" data-loop="true" data-color="#fff" data-hovercolor="black" data-size="14"></i>
-                                                                            <span style="color: white;">编辑</span>
-                                                                        </a>
-                                                                        <a class="delete btn danger btn-xs black" href="javascript:;">
-                                                                            <i class="livicon" data-name="trash" data-loop="true" data-color="#fff" data-hovercolor="black" data-size="14"></i>
-                                                                            <span style="color: white;">删除</span>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
+                                                                    <c:forEach var="post" varStatus="status" items="${posts}">
+                                                                        <c:choose>
+                                                                            <c:when test="${status.index % 2 == 1}">
+                                                                                <c:set value="odd" var="class_type" />
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <c:set value="even" var="class_type" />
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                        <tr role="row" class="${class_type}" data-id="${post.id}">
+                                                                            <td><c:out value="${post.message}" /></td>
+                                                                            <td>
+                                                                                <c:forEach var="imageUrl" varStatus="status" items="${post.imageUrls}">
+                                                                                    <img src="${imageUrl}" style="max-width: 100px; max-height: 50px;">
+                                                                                </c:forEach>
+                                                                            </td>
+                                                                            <td><fmt:formatDate value="${post.createdAt}" pattern="yyyy年MM月dd日"/></td>
+                                                                            <td>
+                                                                                <div class="status badge badge-secondary round" data-status="2"><span>待审核</span></div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a class="enable btn success btn-xs black" href="javascript:;">
+                                                                                    <i class="livicon" data-name="check" data-loop="true" data-color="#fff" data-hovercolor="black" data-size="14"></i>
+                                                                                    <span style="color: white;">启用</span>
+                                                                                </a>
+                                                                                <a class="delete btn danger btn-xs black" href="javascript:;">
+                                                                                    <i class="livicon" data-name="trash" data-loop="true" data-color="#fff" data-hovercolor="black" data-size="14"></i>
+                                                                                    <span style="color: white;">删除</span>
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </c:forEach>
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -325,6 +321,28 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                         <button type="button" class="btn btn-danger" id="enable_item_1" data-dismiss="modal">启用
+                        </button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+        <div class="modal fade" id="enableConfirmModal_3" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">启用项目</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>确定要启用吗？</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-danger" id="enable_item_3" data-dismiss="modal">启用
                         </button>
                     </div>
                 </div>

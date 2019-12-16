@@ -45,7 +45,7 @@ public class Post implements Serializable {
     private String imageUrls;
 
     public String[] getImageUrls() {
-        return new String[]{};
+        return imageUrls.split("@");
     }
 
     public void setImageUrls(String imageUrls) {
@@ -74,6 +74,19 @@ public class Post implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "group_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Group group;
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
@@ -107,7 +120,7 @@ public class Post implements Serializable {
 
     @Override
     public String toString() {
-        return "Group {" +
+        return "Post {" +
                 "id=" + id + "," +
                 "message=" + message + "," +
                 "imageUrls=" + imageUrls + "," +

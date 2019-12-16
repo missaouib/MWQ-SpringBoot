@@ -221,12 +221,12 @@ jQuery(document).ready(function()
 
         var id = $(this).closest('tr').data('id');
         var tr_ele = $(this).closest('tr');
-        $('#deleteConfirmModal_3').data('id', id).modal('show');
 
+        $('#deleteConfirmModal_3').data('id', id).modal('show');
 
         $('#delete_item_3').click(function () {
             var id = $('#deleteConfirmModal_3').data('id');
-            $.post("/admin/---", {id: id},
+            $.post("/admin/del-post", {id: id},
                 function (result) {
                     if (result.status) {
                         tr_ele.remove();
@@ -242,16 +242,30 @@ jQuery(document).ready(function()
         });
     });
 
-    table3.on('click', '.cancel', function (e) {
+    table3.on('click', '.enable', function (e) {
         e.preventDefault();
 
-        if (nNew) {
-            oTable.fnDeleteRow(nEditing);
-            nNew = false;
-        } else {
-            restoreRow(oTable, nEditing);
-            nEditing = null;
-        }
+        var id = $(this).closest('tr').data('id');
+        var tr_ele = $(this).closest('tr');
+
+        $('#enableConfirmModal_3').data('id', id).modal('show');
+
+        $('#enable_item_3').click(function () {
+            var id = $('#enableConfirmModal_3').data('id');
+            $.post("/admin/approve-post", {id: id},
+                function (result) {
+                    if (result.status) {
+                        tr_ele.remove();
+
+                        $('#enableConfirmModal_3').modal('hide');
+                    } else {
+                        $('#enableConfirmModal_3').modal('hide');
+
+                        swal("警告", "删除失败。", "warning");
+                    }
+                }
+            );
+        });
     });
 
 });

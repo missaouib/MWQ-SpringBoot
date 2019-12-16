@@ -77,6 +77,8 @@
 <script src="/js/app.js"></script>
 <script src="<%=request.getContextPath()%>/vendors/sweetalert/js/sweetalert.min.js"></script>
 <script>
+    var arr_image_data = [];
+    var cnt = 0;
 
     $(document).ready(function(){
         $("#send_button").click(function(){
@@ -97,14 +99,12 @@
         $.ajax({
             type: "POST",
             url: "/add-post",
+            dataType: "json",
             data: {
-                message: message,
-                images: arr_image_data,
+                'groupId': ${group_id},
+                'message': message,
+                'images': arr_image_data,
             },
-            processData: false,
-            contentType: false,
-            cache: false,
-            timeout: 600000,
             success: function (result) {
                 if (result.status) {
                     swal("成功！", "", "success");
@@ -123,21 +123,16 @@
     }
 
     function reset() {
-        $("#name").val("");
-        $("#price").val("");
-        $("#express").val("");
-        $("#parameter").val("");
-        $("#detail").val("");
-        $("#image").val("");
-        $(".fileinput-preview").html("");
+        arr_image_data = [];
+
+        $("#message").val("");
+        $('#image_selete').style.display = 'block';
     }
 
     function goBack() {
-        window.history.go(-1);
+        window.location.href = "<%=request.getContextPath()%>/circle/${group_id}";
     }
 
-    var arr_image_data = [];
-    var cnt = 0;
     function previewImages() {
 
         var preview = document.querySelector('#image_view');
@@ -169,7 +164,6 @@
                 var currentDiv = document.querySelector('#image_selete');
                 preview.insertBefore(newDiv, currentDiv);
                 arr_image_data.push(this.result);
-                console.log(arr_image_data);
             });
 
             reader.readAsDataURL(file);

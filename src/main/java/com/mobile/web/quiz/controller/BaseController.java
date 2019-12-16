@@ -41,6 +41,12 @@ public class BaseController {
     protected GroupService groupService;
 
     @Autowired
+    protected PostService postService;
+
+    @Autowired
+    protected CommentService commentService;
+
+    @Autowired
     protected ProductService productService;
 
     @Autowired

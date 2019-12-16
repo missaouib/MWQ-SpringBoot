@@ -78,6 +78,9 @@
                                             <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
                                                 colspan="1" > 成员
                                             </th>
+                                            <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" > 帖子
+                                            </th>
                                             <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
                                                 colspan="1" > 更新日期
                                             </th>
@@ -107,6 +110,7 @@
                                                     </c:if>
                                                 </td>
                                                 <td><c:out value="${group.userCount}" /></td>
+                                                <td><c:out value="${group.postCount}" />(<c:out value="${group.postCount}" />)</td>
                                                 <td><fmt:formatDate value="${group.updatedAt}" pattern="yyyy年MM月dd日"/></td>
                                                 <td>
                                                     <c:choose>

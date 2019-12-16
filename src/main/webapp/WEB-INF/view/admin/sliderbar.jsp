@@ -56,7 +56,7 @@
                         </li>
                         <li class="<%= sideBarItem.getMainMenu().equals("info-center") && sideBarItem.getSubMenu().equals("article")? "active" : ""%>">
                             <a href="/admin/article-list">
-                                <i class="fa fa-angle-double-right"></i> 话题
+                                <i class="fa fa-angle-double-right"></i> 资讯
                             </a>
                         </li>
                     </ul>
