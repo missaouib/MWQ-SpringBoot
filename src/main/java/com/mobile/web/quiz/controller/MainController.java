@@ -97,8 +97,48 @@ public class MainController extends BaseController  {
         return "circle";
     }
 
+    @GetMapping({"/join-groups"})
+    public String listJoinGroups(Model model) {
+        if (isLoggedIn()) {
+
+            return "join_groups";
+        } else {
+            model.addAttribute("redirectCtrl", "join-groups");
+            return "login";
+        }
+    }
+
     @GetMapping({"/releasepost"})
     public String releasepost(Model model) { return "releasepost"; }
+
+    @PostMapping({"/add-post"})
+    @ResponseBody
+    public HashMap<String, Object> addPost(@RequestParam Map<String, String> params, @RequestParam Map<String, String[]> images) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        boolean status = false;
+        /*if (params.size() != 0 || files.size() !=0) {
+            String title = params.get("title");
+            MultipartFile logo = files.get("image");
+            String logoUrl = saveUploadedFile(UploadDirectories.GROUP, logo);
+
+            if (logoUrl != null) {
+                Group newGroup = new Group();
+                newGroup.setTitle(title);
+                newGroup.setLogoUrl(logoUrl);
+                newGroup.setStatus(Group.PENDING);
+
+                groupService.add(newGroup);
+                status = true;
+            } else {
+                response.put("message", "fail to upload image");
+            }
+        }
+        */
+
+        response.put("status", status);
+        return response;
+    }
 
     @GetMapping({"/rechargecenter"})
     public String rechargecenter(Model model) { return "rechargecenter"; }

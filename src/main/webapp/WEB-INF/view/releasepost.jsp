@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +15,7 @@
     <link href="/css/app.css" rel="stylesheet">
     <link href="/vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
     <link href="/vendors/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="/vendors/sweetalert/css/sweetalert.css" rel="stylesheet">
     <link href="/css/pages/icon.css" rel="stylesheet">
 </head>
 <body>
@@ -25,7 +29,7 @@
                 <span style="font-family: PingFangSC; font-size: 16px;">发布帖子</span>
             </div>
             <div class="col-xs-3 text-right">
-                <span style="font-family: PingFangSC; color: #8C8C8C;">下一步</span>
+                <span id="send_button" style="font-family: PingFangSC; color: #8C8C8C;">下一步</span>
             </div>
         </div>
     </section>
@@ -63,7 +67,7 @@
 
             <div id="image_selete" class="col-xs-4" style="padding-top: 10px; padding-bottom: 10px;">
                 <input id="file-input" type="file" accept="image/*" style="width: 106px;height: 85px;position: absolute;opacity: 0;">
-                <img src="img/image_selete.png" style="width: 100%; height: 90px;">
+                <img src="/img/image_selete.png" style="width: 100%; height: 90px;">
             </div>
         </div>
     </section>
@@ -71,10 +75,67 @@
 
 </div>
 <script src="/js/app.js"></script>
+<script src="<%=request.getContextPath()%>/vendors/sweetalert/js/sweetalert.min.js"></script>
 <script>
+
+    $(document).ready(function(){
+        $("#send_button").click(function(){
+            submit();
+        });
+    });
+
+    function submit() {
+        var message = $("#message").val();
+
+        if(message.length < 1){
+            swal("警告", "请输入话题内容。", "warning");
+            return;
+        }
+
+        $("#send_button").prop("disabled", true);
+
+        $.ajax({
+            type: "POST",
+            url: "/add-post",
+            data: {
+                message: message,
+                images: arr_image_data,
+            },
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (result) {
+                if (result.status) {
+                    swal("成功！", "", "success");
+                    reset();
+                } else {
+                    swal("失败", "", "warning");
+                }
+
+                $("#send_button").prop("disabled", false);
+            },
+            error: function (e) {
+                swal("错误", "上传数据时出错", "error");
+                $("#send_button").prop("disabled", false);
+            }
+        });
+    }
+
+    function reset() {
+        $("#name").val("");
+        $("#price").val("");
+        $("#express").val("");
+        $("#parameter").val("");
+        $("#detail").val("");
+        $("#image").val("");
+        $(".fileinput-preview").html("");
+    }
+
     function goBack() {
         window.history.go(-1);
     }
+
     var arr_image_data = [];
     var cnt = 0;
     function previewImages() {

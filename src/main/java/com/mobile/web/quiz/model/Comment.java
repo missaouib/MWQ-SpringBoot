@@ -10,17 +10,15 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name = Post.tableName)
+@Table(name = Comment.tableName)
 @EntityListeners(AuditingEntityListener.class)
-public class Post implements Serializable {
-    public static final String tableName = "posts";
+public class Comment implements Serializable {
+    public static final String tableName = "comments";
 
     public static final int ACTIVE = 1;
     public static final int INACTIVE = 0;
-    public static final int PENDING = 2;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,39 +26,6 @@ public class Post implements Serializable {
 
     public Long getId() {
         return id;
-    }
-
-    @NotBlank
-    private String message;
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    @Column(nullable = false, columnDefinition = "VARCHAR(255) DEFAULT ''")
-    private String imageUrls;
-
-    public String[] getImageUrls() {
-        return new String[]{};
-    }
-
-    public void setImageUrls(String imageUrls) {
-        this.imageUrls = imageUrls;
-    }
-
-
-    @Column(nullable = false)
-    private int status;
-
-    public int getStatus() {
-        return status;
-    }
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -76,15 +41,38 @@ public class Post implements Serializable {
         this.user = user;
     }
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private List<Comment> comments;
+    @NotBlank
+    private String content;
 
-    public List<Comment> getComments() {
-        return comments;
+    public String getContent() {
+        return content;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Column(nullable = false)
+    private int status;
+
+    public int getStatus() {
+        return status;
+    }
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "post_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Post post;
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     @Column(nullable = false, updatable = false)
@@ -109,8 +97,8 @@ public class Post implements Serializable {
     public String toString() {
         return "Group {" +
                 "id=" + id + "," +
-                "message=" + message + "," +
-                "imageUrls=" + imageUrls + "," +
+                "user=" + user.toString() + "," +
+                "content=" + content + "," +
                 "status=" + status +
                 "}";
     }

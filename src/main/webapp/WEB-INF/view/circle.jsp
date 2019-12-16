@@ -68,7 +68,7 @@
                             <c:set value="/img/user_placeholder.png" var="photo_path" />
                         </c:otherwise>
                     </c:choose>
-                    <img src="${photo_path}" class="user_avata" style="width: 13%; border-radius: 50%;">
+                    <img src="${photo_path}" class="user_avata" style="width: 13%; border-radius: 50%;" alt="${user.name}">
                 </c:forEach>
             </div>
             <div class="col-xs-2">
