@@ -18,9 +18,9 @@
 <body>
 <div class="wrapper main_page" style="background-color: white;">
     <section class="content" style="height: 212px;">
-        <div class="row">
+        <div class="row" style="height: 100%;">
             <i class="fa fa-fw fa-angle-left" style="font-size: 22px; position: absolute; top: 5px; left: 0;z-index: 99;" onclick="goBack()"></i>
-            <img src="${product.imageUrl}" class="img-responsive" alt="image1">
+            <img src="${product.imageUrl}" class="img-responsive" alt="image1" style="height: 100%; width: 100%;">
         </div>
     </section>
     <section class="content" style="background-color: white; padding-top: 2rem;">

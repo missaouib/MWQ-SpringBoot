@@ -19,7 +19,6 @@
     <link href="/vendors/owl.carousel/css/owl.theme.css" rel="stylesheet">
     <link href="/vendors/owl.carousel/css/owl.transitions.css" rel="stylesheet">
     <link href="/css/pages/carousel.css" rel="stylesheet">
-
 </head>
 <body>
 <div class="wrapper main_page">
@@ -52,15 +51,15 @@
     </section>
 
     <section class="content">
-        <div class="row" style="padding-top: 10px; background-color: white;">
+        <div class="row">
             <c:forEach var="product" varStatus="status" items="${products}">
-                <div class="col-xs-6" style="padding-left: 5px; padding-right: 5px;">
+                <div class="col-xs-6" style="padding:10px; background-color: white; margin-top: 10px;">
                     <a href="<%=request.getContextPath()%>/product-detail/${product.id}">
                         <div>
-                            <img src="${product.imageUrl}" style="width: 100%;">
+                            <img src="${product.imageUrl}" style="width: 100%; height: 120px;">
                         </div>
                         <div style="float: left;">
-                            <div><c:out value="${product.name}" /></div>
+                            <div class="one-line-text"style="white-space:nowrap;overflow: hidden;text-overflow: ellipsis;"><c:out value="${product.name}" /></div>
                             <div style="color: rgb(255, 87, 34);">¥<c:out value="${product.price}" /></div>
                             <div style="float:right;">
                                 <span style="font-size: 12px; color: rgb(148, 148, 148);"><c:out value="${product.purchaseMemberCount}" />人已购买</span>
