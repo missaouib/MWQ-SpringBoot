@@ -68,72 +68,61 @@
                                 <table class="table table-striped table-bordered table-hover dataTable no-footer"
                                        id="group_user_table" role="grid">
                                     <thead class="table_head">
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1"
-                                            rowspan="1" colspan="1"> 圈子LOGO
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 圈子名称
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 成员
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 帖子
-                                        </th>
-                                        <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 更新日期
-                                        </th>
-                                        <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1"> 状态
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 操作
-                                        </th>
-                                    </tr>
+                                        <tr role="row">
+                                            <th class="text-center" tabindex="0" aria-controls="sample_editable_1"
+                                                rowspan="1" colspan="1"> 头像
+                                            </th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1"> 姓名
+                                            </th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1"> 帖子数
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" > 评论数
+                                            </th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1">状态
+                                            </th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="group" varStatus="status" items="${groups}">
-                                        <c:choose>
-                                            <c:when test="${status.index % 2 == 1}">
-                                                <c:set value="odd" var="class_type" />
-                                            </c:when>
-                                            <c:otherwise>
-                                                <c:set value="even" var="class_type" />
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <tr role="row" class="${class_type}" data-id="${group.id}">
-                                            <td><c:out value="${group.title}" /></td>
-                                            <td>
-                                                <c:if test="${group.logoUrl != ''}">
-                                                    <img src="${group.logoUrl}" style="max-width: 100px; max-height: 50px;">
-                                                </c:if>
-                                            </td>
-                                            <td><c:out value="${group.userCount}" /></td>
-                                            <td><c:out value="${group.postCount}" />(<c:out value="${group.postCount}" />)</td>
-                                            <td><fmt:formatDate value="${group.updatedAt}" pattern="yyyy年MM月dd日"/></td>
-                                            <td>
-                                                <c:choose>
-                                                    <c:when test="${group.status == 0}">
-                                                        <div class="status badge badge-secondary round mouse_hover" data-status="0"><span>已停用</span></div>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <div class="status badge badge-success round mouse_hover" data-status="1"><span>有效</span></div>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </td>
-                                            <td>
-                                                <a class="btn success btn-xs black" href="javascript:;">
-                                                    <i class="livicon" data-name="edit" data-loop="true" data-color="#fff" data-hovercolor="black" data-size="14"></i>
-                                                    <span style="color: white;">编辑</span>
-                                                </a>
-                                                <a class="delete btn danger btn-xs black" href="javascript:;">
-                                                    <i class="livicon" data-name="trash" data-loop="true" data-color="#fff" data-hovercolor="black" data-size="14"></i>
-                                                    <span style="color: white;">删除</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
+                                        <c:forEach var="user" varStatus="status" items="${users}">
+                                            <c:choose>
+                                                <c:when test="${status.index % 2 == 1}">
+                                                    <c:set value="odd" var="class_type" />
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:set value="even" var="class_type" />
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <tr role="row" class="${class_type}" data-id="${user.id}">
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${user.photo != null}">
+                                                            <c:set value="${user.photo}" var="photo_path" />
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <c:set value="/img/user_placeholder.png" var="photo_path" />
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    <img src="${photo_path}" class="user_avata">
+                                                </td>
+                                                <td><c:out value="${user.name}" /></td>
+                                                <td><c:out value="${user.approvedPosts.size()}" /></td>
+                                                <td><c:out value="${user.comments.size()}" /></td>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${user.status == 0}">
+                                                            <div class="status badge badge-secondary round mouse_hover" data-status="0"><span>已停用</span></div>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <div class="status badge badge-success round mouse_hover" data-status="1"><span>有效</span></div>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

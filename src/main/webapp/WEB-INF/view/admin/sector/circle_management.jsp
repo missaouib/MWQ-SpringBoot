@@ -109,8 +109,8 @@
                                                         <img src="${group.logoUrl}" style="max-width: 100px; max-height: 50px;">
                                                     </c:if>
                                                 </td>
-                                                <td><c:out value="${group.userCount}" /></td>
-                                                <td><c:out value="${group.approvedPosts.size()}" /></td>
+                                                <td><a href="<%=request.getContextPath()%>/admin/group-user/${group.id}"><c:out value="${group.userCount}" /></a></td>
+                                                <td><a href="<%=request.getContextPath()%>/admin/group-post/${group.id}"><c:out value="${group.approvedPosts.size()}" /></a></td>
                                                 <td><fmt:formatDate value="${group.updatedAt}" pattern="yyyy年MM月dd日"/></td>
                                                 <td>
                                                     <c:choose>

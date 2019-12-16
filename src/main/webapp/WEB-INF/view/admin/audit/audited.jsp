@@ -73,7 +73,7 @@
                                         <a href="#tab_2" data-toggle="tab">主播</a>
                                     </li>
                                     <li>
-                                        <a href="#tab_3" data-toggle="tab">喇叭</a>
+                                        <a href="#tab_3" data-toggle="tab">话题</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content" id="slim2">

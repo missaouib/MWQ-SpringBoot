@@ -360,15 +360,17 @@ public class AdminController {
         return "admin/sector/circle_management";
     }
 
-    @GetMapping({"/admin/group-user"})
-    public String groupUsers(Model model) {
-        model.addAttribute("sideBarItem", new SideBarItem("plate", "add-circle"));
+    @GetMapping({"/admin/group-user/{id}"})
+    public String groupUsers(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("sideBarItem", new SideBarItem("plate", "circle-management"));
+        model.addAttribute("users", groupService.getGroupById(id).getUsers());
         return "admin/sector/group_user";
     }
 
-    @GetMapping({"/admin/group-post"})
-    public String groupPosts(Model model) {
-        model.addAttribute("sideBarItem", new SideBarItem("plate", "add-circle"));
+    @GetMapping({"/admin/group-post/{id}"})
+    public String groupPosts(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("sideBarItem", new SideBarItem("plate", "circle-management"));
+        model.addAttribute("posts", groupService.getGroupById(id).getApprovedPosts());
         return "admin/sector/group_post";
     }
 
@@ -508,6 +510,7 @@ public class AdminController {
     @GetMapping({"/admin/audited"})
     public String audited(Model model) {
         model.addAttribute("groups", groupService.getApprovedGroups());
+        model.addAttribute("posts", postService.getApprovedPosts());
         model.addAttribute("sideBarItem", new SideBarItem("review", "audited"));
         return "admin/audit/audited";
     }

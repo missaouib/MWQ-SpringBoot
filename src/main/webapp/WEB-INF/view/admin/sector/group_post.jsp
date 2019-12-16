@@ -68,32 +68,35 @@
                                 <table class="table table-striped table-bordered table-hover dataTable no-footer"
                                        id="group_post_table" role="grid">
                                     <thead class="table_head">
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1"
-                                            rowspan="1" colspan="1"> 圈子LOGO
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 圈子名称
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 成员
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 帖子
-                                        </th>
-                                        <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 更新日期
-                                        </th>
-                                        <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1"> 状态
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                            colspan="1" > 操作
-                                        </th>
-                                    </tr>
+                                        <tr role="row">
+                                            <th class="text-center" tabindex="0" aria-controls="sample_editable_1"
+                                                rowspan="1" colspan="1">头像
+                                            </th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1"
+                                                rowspan="1" colspan="1"> 成员姓名
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" > 话题内容
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" > 图片
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" > 评论数
+                                            </th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" > 更新日期
+                                            </th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1"> 状态
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
+                                                colspan="1" > 操作
+                                            </th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="group" varStatus="status" items="${groups}">
+                                    <c:forEach var="post" varStatus="status" items="${posts}">
                                         <c:choose>
                                             <c:when test="${status.index % 2 == 1}">
                                                 <c:set value="odd" var="class_type" />
@@ -102,19 +105,28 @@
                                                 <c:set value="even" var="class_type" />
                                             </c:otherwise>
                                         </c:choose>
-                                        <tr role="row" class="${class_type}" data-id="${group.id}">
-                                            <td><c:out value="${group.title}" /></td>
-                                            <td>
-                                                <c:if test="${group.logoUrl != ''}">
-                                                    <img src="${group.logoUrl}" style="max-width: 100px; max-height: 50px;">
-                                                </c:if>
-                                            </td>
-                                            <td><c:out value="${group.userCount}" /></td>
-                                            <td><c:out value="${group.postCount}" />(<c:out value="${group.postCount}" />)</td>
-                                            <td><fmt:formatDate value="${group.updatedAt}" pattern="yyyy年MM月dd日"/></td>
+                                        <tr role="row" class="${class_type}" data-id="${post.id}">
                                             <td>
                                                 <c:choose>
-                                                    <c:when test="${group.status == 0}">
+                                                    <c:when test="${post.user.photo != null}">
+                                                        <c:set value="${post.user.photo}" var="photo_path" />
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set value="/img/user_placeholder.png" var="photo_path" />
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <img src="${photo_path}" class="user_avata">
+                                            </td>
+                                            <td><c:out value="${post.user.name}" /></td>
+                                            <td><c:out value="${post.message}" /></td>
+                                            <c:forEach var="imageUrl" varStatus="status" items="${post.imageUrls}">
+                                                <img src="${imageUrl}" style="max-width: 100px; max-height: 50px;">
+                                            </c:forEach>
+                                            <td><fmt:formatDate value="${post.updatedAt}" pattern="yyyy年MM月dd日"/></td>
+                                            <td><c:out value="${post.comments.size()}" /></td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${post.status == 0}">
                                                         <div class="status badge badge-secondary round mouse_hover" data-status="0"><span>已停用</span></div>
                                                     </c:when>
                                                     <c:otherwise>

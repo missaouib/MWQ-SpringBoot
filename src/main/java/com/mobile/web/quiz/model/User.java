@@ -91,8 +91,14 @@ public class User implements Serializable {
         return posts;
     }
 
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
+    public List<Post> getApprovedPosts() {
+        List<Post> approvedPosts = new ArrayList<Post>();
+        for(Post post: posts) {
+            if (post.getStatus() != Post.PENDING) {
+                approvedPosts.add(post);
+            }
+        }
+        return approvedPosts;
     }
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

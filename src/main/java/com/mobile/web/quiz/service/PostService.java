@@ -2,9 +2,7 @@ package com.mobile.web.quiz.service;
 
 import com.mobile.web.quiz.exception.RecordNotFoundException;
 import com.mobile.web.quiz.model.Post;
-import com.mobile.web.quiz.model.User;
 import com.mobile.web.quiz.repository.PostRepository;
-import com.mobile.web.quiz.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -59,7 +57,7 @@ public class PostService {
     }
 
     public List<Post> getApprovedPosts() {
-        return repository.getByStatusLessThan(Post.ACTIVE);
+        return repository.getByStatusLessThan(Post.PENDING);
     }
 
     public List<Post> getApprovedPosts(long groupId) {
