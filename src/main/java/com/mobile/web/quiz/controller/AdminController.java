@@ -409,6 +409,31 @@ public class AdminController {
         return response;
     }
 
+    @PostMapping({"/admin/product-status"})
+    @ResponseBody
+    public HashMap<String, Object> changeProductStatus(@RequestParam Map<String, String> params) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        String id = params.get("id");
+
+        int status = productService.changeStatus(Long.parseLong(id));
+
+        response.put("status", status);
+        return response;
+    }
+
+    @PostMapping({"/admin/del-product"})
+    @ResponseBody
+    public HashMap<String, Object> deleteProduct(@RequestParam Map<String, String> params) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        String id = params.get("id");
+        productService.delete(Long.parseLong(id));
+
+        response.put("status", true);
+        return response;
+    }
+
     @GetMapping({"/admin/product-list"})
     public String productList(Model model) {
         model.addAttribute("sideBarItem", new SideBarItem("shop", "list"));

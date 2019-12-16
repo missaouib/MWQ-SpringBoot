@@ -60,7 +60,7 @@ jQuery(document).ready(function()
 
         $('#delete_item_1').click(function () {
             var id = $('#deleteConfirmModal_1').data('id');
-            $.post("/admin/---", {id: id},
+            $.post("/admin/del-group", {id: id},
                 function (result) {
                     if (result.status) {
                         tr_ele.remove();
@@ -76,20 +76,7 @@ jQuery(document).ready(function()
         });
     });
 
-    table1.on('click', '.cancel', function (e) {
-        e.preventDefault();
-
-        if (nNew) {
-            oTable.fnDeleteRow(nEditing);
-            nNew = false;
-        } else {
-            restoreRow(oTable, nEditing);
-            nEditing = null;
-        }
-    });
-
     // table 2
-
     var table2 = $('#pending_review_table_2');
 
     var oTable = table2.dataTable({
@@ -156,13 +143,6 @@ jQuery(document).ready(function()
     table2.on('click', '.cancel', function (e) {
         e.preventDefault();
 
-        if (nNew) {
-            oTable.fnDeleteRow(nEditing);
-            nNew = false;
-        } else {
-            restoreRow(oTable, nEditing);
-            nEditing = null;
-        }
     });
 
     //table 3
@@ -232,13 +212,5 @@ jQuery(document).ready(function()
     table3.on('click', '.cancel', function (e) {
         e.preventDefault();
 
-        if (nNew) {
-            oTable.fnDeleteRow(nEditing);
-            nNew = false;
-        } else {
-            restoreRow(oTable, nEditing);
-            nEditing = null;
-        }
     });
-
 });

@@ -25,6 +25,20 @@ public class ProductService {
         repository.deleteById(id);
     }
 
+    public int changeStatus(long id) {
+        try {
+            Product product = getProductById(id);
+            if (product.getStatus() == Product.ACTIVE)
+                product.setStatus(Product.INACTIVE);
+            else
+                product.setStatus(Product.ACTIVE);
+
+            return product.getStatus();
+        } catch (RecordNotFoundException ex) {
+            return -1;
+        }
+    }
+
     public List<Product> getAllProducts() {
         return repository.findAll();
     }

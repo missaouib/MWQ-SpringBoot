@@ -142,8 +142,6 @@ public class AuthController extends BaseController {
             String password = params.get("password");
 
             String redirectCtrl = params.get("redirectCtrl");
-            System.out.println(redirectCtrl);
-
 
             boolean status = false;
             String message = "";

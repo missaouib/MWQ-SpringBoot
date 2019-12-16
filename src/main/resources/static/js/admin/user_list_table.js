@@ -89,7 +89,7 @@ jQuery(document).ready(function()
                     } else {
                         $('#user_list_deleteConfirmModal').modal('hide');
 
-                        swal("警告", "删除失败。", "warning");
+                        swal("警告", "失败更改状态。", "warning");
                     }
                 }
             );
