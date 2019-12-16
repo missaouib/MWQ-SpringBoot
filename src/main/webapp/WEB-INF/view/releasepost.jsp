@@ -65,7 +65,7 @@
 <%--                </div>--%>
 <%--            </div>--%>
 
-            <div id="image_selete" class="col-xs-4" style="padding-top: 10px; padding-bottom: 10px;">
+            <div id="image_select" class="col-xs-4" style="padding-top: 10px; padding-bottom: 10px;">
                 <input id="file-input" type="file" accept="image/*" style="width: 106px;height: 85px;position: absolute;opacity: 0;">
                 <img src="/img/image_selete.png" style="width: 100%; height: 90px;">
             </div>
@@ -126,7 +126,11 @@
         arr_image_data = [];
 
         $("#message").val("");
-        $('#image_selete').style.display = 'block';
+        for(var i = 1; i <= cnt ; i++) {
+            $('#preview-'+ i).remove();
+        }
+        cnt = 0;
+        $('#image_select').css('display', 'block');
     }
 
     function goBack() {
@@ -156,12 +160,14 @@
                 image.src = this.result;
                 image.style.height = "90px";
                 image.style.width = "100%";
+                image.style.objectFit = 'cover';
                 var newDiv = document.createElement("div");
+                newDiv.id="preview-" + cnt;
                 newDiv.className = 'col-xs-4';
                 newDiv.style.paddingTop = '10px';
                 newDiv.style.paddingBottom = '10px';
                 newDiv.appendChild(image);
-                var currentDiv = document.querySelector('#image_selete');
+                var currentDiv = document.querySelector('#image_select');
                 preview.insertBefore(newDiv, currentDiv);
                 arr_image_data.push(this.result);
             });
@@ -169,7 +175,7 @@
             reader.readAsDataURL(file);
             console.log(cnt);
             if (cnt > 8 ) {
-                $('#image_selete').style.display = 'none';
+                $('#image_select').css('display', 'none');
             }
         }
     }
