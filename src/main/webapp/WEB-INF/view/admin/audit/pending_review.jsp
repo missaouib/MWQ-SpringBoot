@@ -268,7 +268,7 @@
                                                                             <td><c:out value="${post.message}" /></td>
                                                                             <td>
                                                                                 <c:forEach var="imageUrl" varStatus="status" items="${post.imageUrls}">
-                                                                                    <img src="${imageUrl}" style="max-width: 100px; max-height: 50px;">
+                                                                                    <img src="${imageUrl}" style="width: 100px; height: 75px; object-fit: cover;">
                                                                                 </c:forEach>
                                                                             </td>
                                                                             <td><fmt:formatDate value="${post.createdAt}" pattern="yyyy年MM月dd日"/></td>

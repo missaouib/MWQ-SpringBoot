@@ -121,11 +121,11 @@
 <%--                    </div>--%>
 <%--                </div>--%>
                 <div class="col-xs-5 text-center" style="padding-top: 1rem;">
-                    <span class="site_font" style="font-size: 12px; color: lightgrey;">2018-12-13</span>
+                    <span class="site_font" style="font-size: 12px; color: lightgrey;"><fmt:formatDate value="${post.createdAt}" pattern="yyyy年MM月dd日"/></span>
                 </div>
                 <div class="col-xs-3"></div>
                 <div class="col-xs-4 text-center" style="padding-top: 1rem;">
-                    <span class="site_font" style="font-size: 12px; color: rgb(255, 64, 129)">评论: 155</span>
+                    <span class="site_font" style="font-size: 12px; color: rgb(255, 64, 129)">评论: <c:out value="${post.comments.size()}" /></span>
                 </div>
             </div>
         </div>
