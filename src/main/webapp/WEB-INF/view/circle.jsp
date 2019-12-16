@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-xs-6">
                     <p><c:out value="${group.title}" /></p>
-                    <p>成员: <span id=""><c:out value="${group.userCount}" /></span> <span>帖子数: 578</span></p>
+                    <p>成员: <span id=""><c:out value="${group.userCount}" /></span>&nbsp;&nbsp;&nbsp;&nbsp; <span>帖子数: 578</span></p>
                 </div>
                 <c:if test="${!isJoined}">
                     <div class="col-xs-4">
