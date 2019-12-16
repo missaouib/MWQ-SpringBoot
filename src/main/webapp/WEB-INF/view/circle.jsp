@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-xs-6">
                     <p><c:out value="${group.title}" /></p>
-                    <p>成员: <span id=""><c:out value="${group.userCount}" /></span>&nbsp;&nbsp;<span>帖子数: <c:out value="${post.size()}" /></span></p>
+                    <p>成员: <span id=""><c:out value="${group.userCount}" /></span>&nbsp;&nbsp;<span>帖子数: <c:out value="${group.approvedPosts.size()}" /></span></p>
                 </div>
                 <c:if test="${!isJoined}">
                     <div class="col-xs-4">
@@ -89,6 +89,25 @@
             <div class="col-xs-1">
                 <div style="background-color: yellow; width: 25px; height: 25px; border-radius: 12.5px;"></div>
             </div>
+            <c:forEach var="post" items="${group.approvedPosts}">
+                <c:choose>
+                    <c:when test="${post.user.photo != null}">
+                        <c:set value="${post.user.photo}" var="photo_path" />
+                    </c:when>
+                    <c:otherwise>
+                        <c:set value="/img/user_placeholder.png" var="photo_path" />
+                    </c:otherwise>
+                </c:choose>
+                <img src="${photo_path}" class="user_avata" style="width: 13%; border-radius: 50%;">
+
+                <c:out value="${post.user.name}" />
+
+                <c:out value="${post.message}" />
+
+                <c:forEach var="imageUrl" varStatus="status" items="${post.imageUrls}">
+                    <img src="${imageUrl}" style="max-width: 100px; max-height: 50px;">
+                </c:forEach>
+            </c:forEach>
             <div class="col-xs-11">
                 <div class="col-xs-12">
                     <span class="site_font" style="font-size: 12px; margin-left: 1rem;">TAXIS &nbsp;  问 &nbsp;</span>

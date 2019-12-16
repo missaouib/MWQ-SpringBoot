@@ -110,7 +110,7 @@
                                                     </c:if>
                                                 </td>
                                                 <td><c:out value="${group.userCount}" /></td>
-                                                <td><c:out value="${group.postCount}" />(<c:out value="${group.postCount}" />)</td>
+                                                <td><c:out value="${group.approvedPosts.size()}" /></td>
                                                 <td><fmt:formatDate value="${group.updatedAt}" pattern="yyyy年MM月dd日"/></td>
                                                 <td>
                                                     <c:choose>

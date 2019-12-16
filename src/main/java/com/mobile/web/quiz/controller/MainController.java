@@ -78,7 +78,6 @@ public class MainController extends BaseController {
     public String viewGroup(Model model, @PathVariable("id") Long id) {
         if (isLoggedIn()) {
             model.addAttribute("group", groupService.getGroupById(id));
-            model.addAttribute("post", postService.getApprovedPosts(id));
             model.addAttribute("isJoined", groupService.checkExistUser(id, getLoggedUser()));
             return "circle";
         } else {

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -83,12 +84,18 @@ public class Group implements Serializable {
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<Post> posts;
 
-    public List<Post> getPosts() {
-        return posts;
+    public List<Post> getApprovedPosts() {
+        List<Post> approvedPosts = new ArrayList<Post>();
+        for(Post post: posts) {
+            if (post.getStatus() != Post.PENDING) {
+                approvedPosts.add(post);
+            }
+        }
+        return approvedPosts;
     }
 
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
+    public List<Post> getPosts() {
+        return posts;
     }
 
     public int getPostCount() {
