@@ -30,7 +30,7 @@
         </div>
     </section>
 
-    <section class="content" style="margin-top: 45px; padding-bottom: 1rem;">
+    <section class="content" style="margin-top: 80px; padding-bottom: 1rem;">
         <div class="row">
             <div class="col-xs-4" style="padding-right: 5px;">
 <%--                <button class="user_setting_button">--%>
@@ -49,15 +49,25 @@
         </div>
     </section>
     <section class="content">
-        <div class="row">
+        <div class="row" style="padding-bottom: 2rem;">
             <div class="col-xs-12">
                 <textarea class="form-control resize_vertical" id="message" name="message" placeholder="输入你的话题" rows="5"></textarea>
             </div>
         </div>
-    </section>
-    <section class="content">
+        <div class="row" id="image_view">
+<%--            <div id="preview">--%>
+<%--                <div class="col-xs-4">--%>
+<%--                    <img src="img/image_selete.png" style="width: 100%; height: 90px;">--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
+            <div id="image_selete" class="col-xs-4" style="padding-top: 10px; padding-bottom: 10px;">
+                <input id="file-input" type="file" accept="image/*" style="width: 106px;height: 85px;position: absolute;opacity: 0;">
+                <img src="img/image_selete.png" style="width: 100%; height: 90px;">
+            </div>
+        </div>
     </section>
+
 
 </div>
 <script src="/js/app.js"></script>
@@ -65,6 +75,52 @@
     function goBack() {
         window.history.go(-1);
     }
+    var arr_image_data = [];
+    var cnt = 0;
+    function previewImages() {
+
+        var preview = document.querySelector('#image_view');
+
+        if (this.files) {
+            [].forEach.call(this.files, readAndPreview);
+        }
+
+        function readAndPreview(file) {
+            cnt++;
+            // Make sure `file.name` matches our extensions criteria
+            if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+                return alert(file.name + " is not an image");
+            } // else...
+
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function() {
+                var image = new Image();
+                image.title  = file.name;
+                image.src = this.result;
+                image.style.height = "90px";
+                image.style.width = "100%";
+                var newDiv = document.createElement("div");
+                newDiv.className = 'col-xs-4';
+                newDiv.style.paddingTop = '10px';
+                newDiv.style.paddingBottom = '10px';
+                newDiv.appendChild(image);
+                var currentDiv = document.querySelector('#image_selete');
+                preview.insertBefore(newDiv, currentDiv);
+                arr_image_data.push(this.result);
+                console.log(arr_image_data);
+            });
+
+            reader.readAsDataURL(file);
+            console.log(cnt);
+            if (cnt > 8 ) {
+                $('#image_selete').style.display = 'none';
+            }
+        }
+    }
+
+    document.querySelector('#file-input').addEventListener("change", previewImages);
+
 </script>
 </body>
 </html>
