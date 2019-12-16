@@ -12,7 +12,8 @@ jQuery(document).ready(function()
         oTable.fnDraw();
     }
 
-    var table = $('#sample_editable_1');
+
+    var table = $('#payment_setting_table');
 
     var oTable = table.dataTable({
         "lengthMenu": [
@@ -49,48 +50,26 @@ jQuery(document).ready(function()
         showSearchInput: false //hide search box with special css class
     }); // initialize select2 dropdown
 
-    table.on('click', '.status', function (e) {
-        e.preventDefault();
-
-        var id = $(this).closest('tr').data('id');
-        var parent = $(this).closest('td');
-
-        $.post("/admin/user-status", {id: id},
-            function (result) {
-                if (result.status == -1) {
-                    swal("警告", "删除失败。", "warning");
-                } else if (result.status == 0) {
-                    parent.html("<div class='status badge badge-secondary round mouse_hover' data-status='0'><span>已停用</span></div>");
-                } else {
-                    parent.html("<div class='status badge badge-success round mouse_hover' data-status='1'><span>有效</span></div>");
-                }
-            }
-        );
-
-
-
-        console.log(id + "， " + status);
-    });
-
     table.on('click', '.delete', function(e) {
         e.preventDefault();
 
         var id = $(this).closest('tr').data('id');
-        $('#user_list_deleteConfirmModal').data('id', id).modal('show');
+        $('#deleteConfirmModal').data('id', id).modal('show');
 
-        $('#user_list_delete_item').click(function () {
-            var id = $('#user_list_deleteConfirmModal').data('id');
 
-            $.post("/admin/del-user", {id: id},
+        $('#delete_item').click(function () {
+            var id = $('#deleteConfirmModal').data('id');
+
+            $.post("/admin/del-article", {id: id},
                 function (result) {
                     if (result.status) {
                         $('[data-id=' + id + ']').remove();
 
-                        $('#user_list_deleteConfirmModal').modal('hide');
+                        $('#deleteConfirmModal').modal('hide');
                     } else {
-                        $('#user_list_deleteConfirmModal').modal('hide');
+                        $('#deleteConfirmModal').modal('hide');
 
-                        swal("警告", "失败更改状态。", "warning");
+                        swal("警告", "删除失败。", "warning");
                     }
                 }
             );

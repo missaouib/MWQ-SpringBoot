@@ -30,7 +30,7 @@ jQuery(document).ready(function()
             "search": "搜索"
         }, dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+            'csv', 'print'
         ],
         "columnDefs": [{ // set default column settings
             'orderable': true,

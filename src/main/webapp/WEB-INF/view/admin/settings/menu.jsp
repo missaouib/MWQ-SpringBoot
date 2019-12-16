@@ -61,7 +61,7 @@
 
                         <div class="panel-body">
                             <div id="sample_editable_1_wrapper" class="">
-                                <table class="table table-striped table-bordered table-hover dataTable no-footer" id="sample_editable_1" role="grid">
+                                <table class="table table-striped table-bordered table-hover dataTable no-footer" id="menu_table" role="grid">
                                     <thead class="table_head">
                                         <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1">Username </th>
@@ -169,7 +169,7 @@
 <script src="/vendors/datatables/js/pdfmake.js"></script>
 <script src="/vendors/datatables/js/vfs_fonts.js"></script>
 <script src="/vendors/datatables/js/dataTables.scroller.js"></script>
-<script src="/js/pages/table-editable.js"></script>
+<script src="/js/admin/menu_table.js"></script>
 <!-- end of page level js -->
 
 </body>
