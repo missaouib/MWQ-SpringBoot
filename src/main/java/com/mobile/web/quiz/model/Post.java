@@ -45,7 +45,7 @@ public class Post implements Serializable {
     private String imageUrls;
 
     public String[] getImageUrls() {
-        return imageUrls.split("@");
+        return imageUrls.isEmpty() ? new String[] {} : imageUrls.split("@");
     }
 
     public void setImageUrls(String imageUrls) {
@@ -63,9 +63,8 @@ public class Post implements Serializable {
         this.status = status;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     public User getUser() {
@@ -76,9 +75,8 @@ public class Post implements Serializable {
         this.user = user;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, optional = false)
     @JoinColumn(name = "group_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Group group;
 
     public Group getGroup() {

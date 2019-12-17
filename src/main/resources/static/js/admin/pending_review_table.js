@@ -219,13 +219,14 @@ jQuery(document).ready(function()
     table3.on('click', '.delete', function(e) {
         e.preventDefault();
 
-        var id = $(this).closest('tr').data('id');
         var tr_ele = $(this).closest('tr');
+        var id = tr_ele.data('id');
 
         $('#deleteConfirmModal_3').data('id', id).modal('show');
 
         $('#delete_item_3').click(function () {
             var id = $('#deleteConfirmModal_3').data('id');
+            console.log(id);
             $.post("/admin/del-post", {id: id},
                 function (result) {
                     if (result.status) {
@@ -245,8 +246,8 @@ jQuery(document).ready(function()
     table3.on('click', '.enable', function (e) {
         e.preventDefault();
 
-        var id = $(this).closest('tr').data('id');
         var tr_ele = $(this).closest('tr');
+        var id = tr_ele.data('id');
 
         $('#enableConfirmModal_3').data('id', id).modal('show');
 

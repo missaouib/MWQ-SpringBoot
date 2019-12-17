@@ -94,21 +94,20 @@
             return;
         }
 
-        arr_image_data.push("");
-
-        console.log(arr_image_data);
-
         $("#send_button").prop("disabled", true);
+
+        var sendData = {
+            groupId: ${group_id},
+            message: message,
+            images: arr_image_data
+        };
 
         $.ajax({
             type: "POST",
             url: "/add-post",
             dataType: "json",
-            data: {
-                'groupId': ${group_id},
-                'message': message,
-                'images': arr_image_data,
-            },
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(sendData),
             success: function (result) {
                 if (result.status) {
                     swal("成功！", "", "success");
@@ -150,6 +149,8 @@
         }
 
         function readAndPreview(file) {
+            cnt++;
+
             // Make sure `file.name` matches our extensions criteria
             if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
                 return alert(file.name + " is not an image");
@@ -158,8 +159,6 @@
             var reader = new FileReader();
 
             reader.addEventListener("load", function() {
-                cnt++;
-
                 var image = new Image();
                 image.title  = file.name;
                 image.src = this.result;

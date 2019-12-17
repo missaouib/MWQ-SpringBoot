@@ -84,7 +84,7 @@ public class User implements Serializable {
         this.groups = groups;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Post> posts;
 
     public List<Post> getPosts() {

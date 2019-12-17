@@ -27,7 +27,11 @@ public class GroupService {
     }
 
     public void delete(long id) {
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean approve(long id) {

@@ -3,6 +3,8 @@ package com.mobile.web.quiz.controller;
 import com.mobile.web.quiz.config.Config;
 import com.mobile.web.quiz.model.Group;
 import com.mobile.web.quiz.model.Post;
+import com.mobile.web.quiz.model.PostData;
+import com.mobile.web.quiz.model.User;
 import com.mobile.web.quiz.model.admin.Notice;
 import com.mobile.web.quiz.utils.UploadDirectories;
 import org.springframework.stereotype.Controller;
@@ -38,6 +40,7 @@ public class MainController extends BaseController {
         model.addAttribute("popularArticles", articleService.getPopularArticles());
 
         model.addAttribute("popularGroups", groupService.getPopularGroups());
+        model.addAttribute("popularPosts", postService.getPopularPosts());
 
         model.addAttribute("bottomBar", getBottomBarItems(0));
 
@@ -112,6 +115,8 @@ public class MainController extends BaseController {
     @GetMapping({"/join-groups"})
     public String listJoinGroups(Model model) {
         if (isLoggedIn()) {
+            User user = userService.getUserById(getLoggedUser().getId());
+            model.addAttribute("joinGroups", user.getGroups());
 
             return "join_groups";
         } else {
@@ -128,15 +133,14 @@ public class MainController extends BaseController {
 
     @PostMapping({"/add-post"})
     @ResponseBody
-    public HashMap<String, Object> addPost(@RequestParam long groupId, @RequestParam String message, @RequestParam(value="images[]") String[] images) {
+    public HashMap<String, Object> addPost(@RequestBody PostData data) {
         HashMap<String, Object> response = new HashMap<>();
 
         boolean status = false;
 
         try {
-
             String imageUrls = "";
-            for (String image : images) {
+            for (String image : data.getImages()) {
                 if (!image.equals("")) {
                     String imageUrl = saveUploadedFile(UploadDirectories.POST, image);
                     imageUrls += "@" + imageUrl;
@@ -144,10 +148,10 @@ public class MainController extends BaseController {
             }
 
             Post newPost = new Post();
-            newPost.setMessage(message);
+            newPost.setMessage(data.getMessage());
             newPost.setImageUrls(imageUrls.isEmpty() ? "" : imageUrls.substring(1));
             newPost.setUser(userService.getUserById(getLoggedUser().getId()));
-            newPost.setGroup(groupService.getGroupById(groupId));
+            newPost.setGroup(groupService.getGroupById(data.getGroupId()));
             newPost.setStatus(Post.PENDING);
 
             postService.add(newPost);

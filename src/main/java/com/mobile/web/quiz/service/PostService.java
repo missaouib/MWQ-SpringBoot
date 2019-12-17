@@ -20,7 +20,11 @@ public class PostService {
     }
 
     public void delete(long id) {
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean approve(long id) {
@@ -65,7 +69,7 @@ public class PostService {
     }
 
     public List<Post> getPopularPosts() {
-        List<Post> availablePosts = repository.getByStatusLessThan(Post.PENDING);
+        List<Post> availablePosts = getApprovedPosts();
 
         availablePosts.sort(new Comparator<Post>() {
             @Override
@@ -82,7 +86,11 @@ public class PostService {
             }
         });
 
-        return availablePosts;
+        try {
+            return availablePosts.subList(0, 10);
+        } catch (IndexOutOfBoundsException ex) {
+            return availablePosts;
+        }
     }
 
     public Post getPostById(long id) {

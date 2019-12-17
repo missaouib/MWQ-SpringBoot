@@ -22,7 +22,11 @@ public class ProductService {
     }
 
     public void delete(long id) {
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public int changeStatus(long id) {

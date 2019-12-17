@@ -69,9 +69,11 @@
                 </button>
             </div>
             <div class="col-xs-5">
-                <button type="button" class="home_page_button">
-                    <img src="/img/btn_circleofconcern.png" style="width: 100%;">
-                </button>
+                <a href="<%=request.getContextPath()%>/join-groups">
+                    <button type="button" class="home_page_button">
+                        <img src="/img/btn_circleofconcern.png" style="width: 100%;">
+                    </button>
+                </a>
             </div>
          </div>
     </section>
@@ -171,63 +173,51 @@
                 <span class="site_font" style="margin-left: 2rem;">热门话题</span>
             </div>
         </div>
-        <div class="row border_bottom_line" style="padding-bottom: 1rem;">
-            <div class="col-xs-1">
-                <div style="background-color: yellow; width: 25px; height: 25px; border-radius: 12.5px;"></div>
-            </div>
-            <div class="col-xs-11">
-                <div class="col-xs-12">
-                    <span class="site_font" style="font-size: 12px; margin-left: 1rem;">TAXIS &nbsp;  问 &nbsp;</span>
-                    <img src="/img/img_vip.png" style="width: 43px;">
-                    <p>时时彩，超高倍率投注，有一起投单的吗？老铁们欢迎来个神评论~</p>
+        <c:forEach var="post" items="${popularPosts}">
+            <div class="row border_bottom_line" style="padding-top:1rem;padding-bottom: 1rem;">
+                <div class="col-xs-1">
+                    <div style="background-color: yellow; width: 25px; height: 25px; border-radius: 12.5px;"></div>
                 </div>
-                <div class="col-xs-5">
-                    <img src="/img/raw_1514134111.png" style="width: 100%; height: 180px;">
-                </div>
-                <div class="col-xs-3"></div>
-                <div class="col-xs-4">
-                    <div style="height: 180px; width: 100%; padding: 50% 1% 0% 12%;">
-                        <div class="btn_marster_sticker">
-                            <span class="site_font" style="font-size: 12px; color: white;">大师贴</span>
-                        </div>
+                    <%--                <c:choose>--%>
+                    <%--                    <c:when test="${post.user.photo != null}">--%>
+                    <%--                        <c:set value="${post.user.photo}" var="photo_path" />--%>
+                    <%--                    </c:when>--%>
+                    <%--                    <c:otherwise>--%>
+                    <%--                        <c:set value="/img/user_placeholder.png" var="photo_path" />--%>
+                    <%--                    </c:otherwise>--%>
+                    <%--                </c:choose>--%>
+                    <%--                <img src="${photo_path}" class="user_avata" style="width: 13%; border-radius: 50%;">--%>
+                <div class="col-xs-11">
+                    <div class="col-xs-12">
+                        <span class="site_font" style="font-size: 12px; margin-left: 1rem;"><c:out value="${post.user.name}" /></span>
+                            <%--                    <img src="/img/img_vip.png" style="width: 43px;">--%>
+                        <p> <c:out value="${post.message}" /></p>
+                    </div>
+                    <div class="col-xs-12">
+                        <c:forEach var="imageUrl" varStatus="status" items="${post.imageUrls}">
+                            <div class="col-xs-4" style="margin-bottom: 5px; height: 50px;">
+                                <img src="${imageUrl}" style="max-width: 100px; max-height: 50px;width: 100%; height: 100%;object-fit: cover;">
+                            </div>
+                        </c:forEach>
+                    </div>
+                        <%--                <div class="col-xs-3"></div>--%>
+                        <%--                <div class="col-xs-4">--%>
+                        <%--                    <div style="height: 180px; width: 100%; padding: 50% 1% 0% 12%;">--%>
+                        <%--                        <div class="btn_marster_sticker">--%>
+                        <%--                            <span class="site_font" style="font-size: 12px; color: white;">大师贴</span>--%>
+                        <%--                        </div>--%>
+                        <%--                    </div>--%>
+                        <%--                </div>--%>
+                    <div class="col-xs-5 text-center" style="padding-top: 1rem;">
+                        <span class="site_font" style="font-size: 12px; color: lightgrey;"><fmt:formatDate value="${post.createdAt}" pattern="yyyy年MM月dd日"/></span>
+                    </div>
+                    <div class="col-xs-3"></div>
+                    <div class="col-xs-4 text-center" style="padding-top: 1rem;">
+                        <span class="site_font" style="font-size: 12px; color: rgb(255, 64, 129)">评论: <c:out value="${post.comments.size()}" /></span>
                     </div>
                 </div>
-                <div class="col-xs-5 text-center" style="padding-top: 1rem;">
-                    <span class="site_font" style="font-size: 12px; color: lightgrey;">2018-12-13</span>
-                </div>
-                <div class="col-xs-3"></div>
-                <div class="col-xs-4 text-center" style="padding-top: 1rem;">
-                    <span class="site_font" style="font-size: 12px; color: rgb(255, 64, 129)">评论: 155</span>
-                </div>
             </div>
-        </div>
-
-        <div class="row" style="padding-top: 1rem;">
-            <div class="col-xs-1">
-                <div style="background-color: yellow; width: 25px; height: 25px; border-radius: 12.5px;"></div>
-            </div>
-            <div class="col-xs-11">
-                <div class="col-xs-12">
-                    <span class="site_font" style="font-size: 12px; margin-left: 1rem;">TAXIS &nbsp;  问 &nbsp;</span>
-                    <span class="site_font" style="font-size: 12px;">胜率：</span>
-                    <span class="site_font" style="font-size: 12px; color: rgba(255, 152, 0, 1)">84%</span>
-                    <p>时时彩，超高倍率投注，有一起投单的吗？老铁们欢迎来个神评论~</p>
-                </div>
-                <div class="col-xs-12">
-                    <div style="width: 100%; height: 180px;">
-                        <img src="/img/v2_pxxpk8.png" style="width: 100%;">
-                    </div>
-
-                </div>
-                <div class="col-xs-5 text-center" style="padding-top: 1rem;">
-                    <span class="site_font" style="font-size: 12px; color: lightgrey;">2018-12-13</span>
-                </div>
-                <div class="col-xs-3"></div>
-                <div class="col-xs-4 text-center" style="padding-top: 1rem;">
-                    <span class="site_font" style="font-size: 12px; color: rgb(255, 64, 129)">评论: 155</span>
-                </div>
-            </div>
-        </div>
+        </c:forEach>
     </section>
     <div class="page_footer">
         <div class="row" style="height: 100%; margin: 0; padding: 0;">

@@ -81,7 +81,7 @@ public class Group implements Serializable {
         return users.size();
     }
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.PERSIST)
     private List<Post> posts;
 
     public List<Post> getApprovedPosts() {

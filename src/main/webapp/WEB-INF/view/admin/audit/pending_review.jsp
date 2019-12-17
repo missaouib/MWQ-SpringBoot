@@ -267,9 +267,11 @@
                                                                         <tr role="row" class="${class_type}" data-id="${post.id}">
                                                                             <td><c:out value="${post.message}" /></td>
                                                                             <td>
-                                                                                <c:forEach var="imageUrl" varStatus="status" items="${post.imageUrls}">
-                                                                                    <img src="${imageUrl}" style="width: 100px; height: 75px; object-fit: cover;">
-                                                                                </c:forEach>
+<%--                                                                                <c:if test="${post.imageUrls.length > 0}">--%>
+                                                                                    <c:forEach var="imageUrl" varStatus="status" items="${post.imageUrls}">
+                                                                                        <img src="${imageUrl}" style="width: 100px; height: 75px; object-fit: cover;">
+                                                                                    </c:forEach>
+<%--                                                                                </c:if>--%>
                                                                             </td>
                                                                             <td><fmt:formatDate value="${post.createdAt}" pattern="yyyy年MM月dd日"/></td>
                                                                             <td>

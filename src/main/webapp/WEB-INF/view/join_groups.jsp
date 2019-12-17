@@ -34,17 +34,21 @@
     </section>
 
     <section class="content" style="height: 90px; background-color: white;">
-        <div class="row" style="height: 100%;">
-            <div style="height: 100%; padding: 18px 0;">
-                <div class="col-xs-2">
-                    <img src="${group.logoUrl}" style="width: 45px; height: 45px; border-radius: 50%;">
-                </div>
-                <div class="col-xs-6">
-                    <p><c:out value="${group.title}" />asdasd</p>
-                    <p>成员: <span id=""><c:out value="${group.userCount}" /></span>&nbsp;&nbsp;&nbsp;&nbsp; <span>帖子数: 578</span></p>
+        <c:forEach var="group" varStatus="status" items="${joinGroups}">
+            <div class="row" style="height: 100%;" data-id="${group.id}">
+                <div style="height: 100%; padding: 18px 0;">
+                    <a href="<%=request.getContextPath()%>/circle/${group.id}">
+                        <div class="col-xs-2">
+                            <img src="${group.logoUrl}" style="width: 45px; height: 45px; border-radius: 50%;">
+                        </div>
+                        <div class="col-xs-6">
+                            <p><c:out value="${group.title}" /></p>
+                            <p>成员: <span id=""><c:out value="${group.userCount}" /></span>&nbsp;&nbsp;&nbsp;&nbsp; <span>帖子数: <c:out value="${group.approvedPosts.size()}" /></span></p>
+                        </div>
+                    </a>
                 </div>
             </div>
-        </div>
+        </c:forEach>
     </section>
 </div>
 <script src="/js/app.js"></script>
