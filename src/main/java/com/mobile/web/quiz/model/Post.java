@@ -41,7 +41,7 @@ public class Post implements Serializable {
         this.message = message;
     }
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(255) DEFAULT ''")
+    @Column(nullable = false, columnDefinition = "VARCHAR(2048) DEFAULT ''")
     private String imageUrls;
 
     public String[] getImageUrls() {

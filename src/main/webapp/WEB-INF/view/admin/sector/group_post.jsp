@@ -119,9 +119,11 @@
                                             </td>
                                             <td><c:out value="${post.user.name}" /></td>
                                             <td><c:out value="${post.message}" /></td>
-                                            <c:forEach var="imageUrl" varStatus="status" items="${post.imageUrls}">
-                                                <img src="${imageUrl}" style="max-width: 100px; max-height: 50px;">
-                                            </c:forEach>
+                                            <td>
+                                                <c:forEach var="imageUrl" varStatus="status" items="${post.imageUrls}">
+                                                    <img src="${imageUrl}" style="max-width: 100px; max-height: 50px;">
+                                                </c:forEach>
+                                            </td>
                                             <td><fmt:formatDate value="${post.updatedAt}" pattern="yyyy年MM月dd日"/></td>
                                             <td><c:out value="${post.comments.size()}" /></td>
                                             <td>

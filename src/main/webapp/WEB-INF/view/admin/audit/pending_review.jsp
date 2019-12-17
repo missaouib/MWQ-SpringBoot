@@ -320,7 +320,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-danger" id="enable_item_1" data-dismiss="modal">启用
+                        <button type="button" class="btn btn-success" id="enable_item_1" data-dismiss="modal">启用
                         </button>
                     </div>
                 </div>
