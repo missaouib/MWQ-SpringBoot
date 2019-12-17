@@ -137,8 +137,10 @@ public class MainController extends BaseController {
 
             String imageUrls = "";
             for (String image : images) {
-                String imageUrl = saveUploadedFile(UploadDirectories.POST, image);
-                imageUrls += "@" + imageUrl;
+                if (!image.equals("")) {
+                    String imageUrl = saveUploadedFile(UploadDirectories.POST, image);
+                    imageUrls += "@" + imageUrl;
+                }
             }
 
             Post newPost = new Post();

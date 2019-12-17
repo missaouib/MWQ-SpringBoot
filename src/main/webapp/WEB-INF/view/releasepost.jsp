@@ -94,6 +94,10 @@
             return;
         }
 
+        arr_image_data.push("");
+
+        console.log(arr_image_data);
+
         $("#send_button").prop("disabled", true);
 
         $.ajax({
@@ -146,7 +150,6 @@
         }
 
         function readAndPreview(file) {
-            cnt++;
             // Make sure `file.name` matches our extensions criteria
             if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
                 return alert(file.name + " is not an image");
@@ -155,6 +158,8 @@
             var reader = new FileReader();
 
             reader.addEventListener("load", function() {
+                cnt++;
+
                 var image = new Image();
                 image.title  = file.name;
                 image.src = this.result;
@@ -169,6 +174,7 @@
                 newDiv.appendChild(image);
                 var currentDiv = document.querySelector('#image_select');
                 preview.insertBefore(newDiv, currentDiv);
+
                 arr_image_data.push(this.result);
             });
 
